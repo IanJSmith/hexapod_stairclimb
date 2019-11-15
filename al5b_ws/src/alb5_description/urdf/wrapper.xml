@@ -1,0 +1,7 @@
+<robot file="alb5.dae">
+  <Manipulator name="alb5">
+    <base>universal_base</base>
+    <effector>gripper_link</effector>
+  </Manipulator>
+</robot>
+

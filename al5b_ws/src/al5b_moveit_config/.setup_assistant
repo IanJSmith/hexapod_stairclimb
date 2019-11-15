@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: alb5_description
+    relative_path: urdf/alb5.URDF
+    xacro_args: "--inorder "
+  SRDF:
+    relative_path: config/alb5.srdf
+  CONFIG:
+    author_name: DareBear
+    author_email: dariandzirko@gmail.com
+    generated_timestamp: 1573077630

@@ -1,0 +1,8 @@
+prefix=/home/darian/al5b_ws/devel
+
+Name: moveit_planners_chomp
+Description: Description of moveit_planners_chomp
+Version: 0.9.17
+Cflags: -I/home/darian/al5b_ws/src/moveit/moveit_planners/chomp/chomp_interface/include
+Libs: -L/home/darian/al5b_ws/devel/lib -lmoveit_planners_chomp
+Requires: roscpp moveit_core pluginlib

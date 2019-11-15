@@ -125,7 +125,8 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/darian/hexapod_ws/build/gtest/cmake_install.cmake")
+  include("/home/darian/hexapod_ws/build/hexapodV2/cmake_install.cmake")
+  include("/home/darian/hexapod_ws/build/hexapod_moveit_config/cmake_install.cmake")
 
 endif()
 

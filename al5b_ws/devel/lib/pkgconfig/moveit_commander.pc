@@ -1,0 +1,8 @@
+prefix=/home/darian/al5b_ws/devel
+
+Name: moveit_commander
+Description: Description of moveit_commander
+Version: 0.9.17
+Cflags: 
+Libs: -L/home/darian/al5b_ws/devel/lib 
+Requires: 

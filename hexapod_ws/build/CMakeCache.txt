@@ -24,7 +24,7 @@ CATKIN_BLACKLIST_PACKAGES:STRING=
 CATKIN_DEVEL_PREFIX:PATH=/home/darian/hexapod_ws/devel
 
 //Catkin enable testing
-CATKIN_ENABLE_TESTING:BOOL=ON
+CATKIN_ENABLE_TESTING:BOOL=0
 
 //Catkin skip testing
 CATKIN_SKIP_TESTING:BOOL=OFF
@@ -304,6 +304,21 @@ gtest_force_shared_crt:BOOL=OFF
 
 //Dependencies for the target
 gtest_main_LIB_DEPENDS:STATIC=general;-lpthread;general;gtest;
+
+//Value Computed by CMake
+hexapodV2_BINARY_DIR:STATIC=/home/darian/hexapod_ws/build/hexapodV2
+
+//Value Computed by CMake
+hexapodV2_SOURCE_DIR:STATIC=/home/darian/hexapod_ws/src/hexapodV2
+
+//Value Computed by CMake
+hexapod_moveit_config_BINARY_DIR:STATIC=/home/darian/hexapod_ws/build/hexapod_moveit_config
+
+//Value Computed by CMake
+hexapod_moveit_config_SOURCE_DIR:STATIC=/home/darian/hexapod_ws/src/hexapod_moveit_config
+
+//The directory containing a CMake configuration file for roslaunch.
+roslaunch_DIR:PATH=/opt/ros/kinetic/share/roslaunch/cmake
 
 
 ########################

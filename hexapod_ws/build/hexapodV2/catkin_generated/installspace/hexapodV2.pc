@@ -1,0 +1,8 @@
+prefix=/home/darian/hexapod_ws/install
+
+Name: hexapodV2
+Description: Description of hexapodV2
+Version: 1.0.0
+Cflags: 
+Libs: -L/home/darian/hexapod_ws/install/lib 
+Requires: 

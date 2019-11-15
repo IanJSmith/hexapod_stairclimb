@@ -1,0 +1,220 @@
+<?xml version="1.0" ?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="hexapodV2">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="rf_leg">
+        <joint name="rf_hip" />
+        <joint name="rf_knee" />
+        <joint name="rf_toe" />
+        <joint name="rf_toe_to_rf_toe_end" />
+    </group>
+    <group name="rm_leg">
+        <joint name="rm_hip" />
+        <joint name="rm_knee" />
+        <joint name="rm_toe" />
+        <joint name="rm_toe_to_rm_toe_end" />
+    </group>
+    <group name="rb_leg">
+        <joint name="rb_hip" />
+        <joint name="rb_knee" />
+        <joint name="rb_toe" />
+        <joint name="rb_toe_to_rb_toe_end" />
+    </group>
+    <group name="lf_leg">
+        <joint name="lf_hip" />
+        <joint name="lf_knee" />
+        <joint name="lf_toe" />
+        <joint name="lf_toe_to_lf_toe_end" />
+    </group>
+    <group name="lm_leg">
+        <joint name="lm_hip" />
+        <joint name="lm_knee" />
+        <joint name="lm_toe" />
+        <joint name="lm_toe_to_lm_toe_end" />
+    </group>
+    <group name="lb_leg">
+        <joint name="lb_hip" />
+        <joint name="lb_knee" />
+        <joint name="lb_toe" />
+        <joint name="lb_toe_to_lb_toe_end" />
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="default" group="rf_leg">
+        <joint name="rf_hip" value="0" />
+        <joint name="rf_knee" value="0" />
+        <joint name="rf_toe" value="1.57" />
+    </group_state>
+    <group_state name="default" group="rm_leg">
+        <joint name="rm_hip" value="0" />
+        <joint name="rm_knee" value="0" />
+        <joint name="rm_toe" value="1.57" />
+    </group_state>
+    <group_state name="default" group="rb_leg">
+        <joint name="rb_hip" value="0" />
+        <joint name="rb_knee" value="0" />
+        <joint name="rb_toe" value="1.57" />
+    </group_state>
+    <group_state name="default" group="lf_leg">
+        <joint name="lf_hip" value="0" />
+        <joint name="lf_knee" value="0" />
+        <joint name="lf_toe" value="-1.57" />
+    </group_state>
+    <group_state name="default" group="lm_leg">
+        <joint name="lm_hip" value="0" />
+        <joint name="lm_knee" value="0" />
+        <joint name="lm_toe" value="-1.57" />
+    </group_state>
+    <group_state name="default" group="lb_leg">
+        <joint name="lb_hip" value="0" />
+        <joint name="lb_knee" value="0" />
+        <joint name="lb_toe" value="-1.57" />
+    </group_state>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="rf_toe_end" parent_link="rf_toe_end" group="rf_leg" />
+    <end_effector name="rm_toe_end" parent_link="rm_toe_end" group="rm_leg" />
+    <end_effector name="rb_toe_end" parent_link="rb_toe_end" group="rb_leg" />
+    <end_effector name="lf_toe_end" parent_link="lf_toe_end" group="lf_leg" />
+    <end_effector name="lm_toe_end" parent_link="lm_toe_end" group="lm_leg" />
+    <end_effector name="lb_toe_end" parent_link="lb_toe_end" group="lb_leg" />
+    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
+    <virtual_joint name="universal_base" type="fixed" parent_frame="world" child_link="base_link" />
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="base_link" link2="lb_hip_to_base" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="lf_hip_to_base" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="lm_hip_to_base" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="rb_hip_to_base" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="rf_hip_to_base" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="rm_hip_to_base" reason="Adjacent" />
+    <disable_collisions link1="lb_hip_to_base" link2="lb_knee_to_hip" reason="Adjacent" />
+    <disable_collisions link1="lb_hip_to_base" link2="lb_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lb_hip_to_base" link2="lf_hip_to_base" reason="Never" />
+    <disable_collisions link1="lb_hip_to_base" link2="lf_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lb_hip_to_base" link2="lf_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lb_hip_to_base" link2="lm_hip_to_base" reason="Never" />
+    <disable_collisions link1="lb_hip_to_base" link2="lm_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lb_hip_to_base" link2="rb_hip_to_base" reason="Never" />
+    <disable_collisions link1="lb_hip_to_base" link2="rb_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lb_hip_to_base" link2="rb_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lb_hip_to_base" link2="rf_hip_to_base" reason="Never" />
+    <disable_collisions link1="lb_hip_to_base" link2="rf_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lb_hip_to_base" link2="rf_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lb_hip_to_base" link2="rm_hip_to_base" reason="Never" />
+    <disable_collisions link1="lb_hip_to_base" link2="rm_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lb_hip_to_base" link2="rm_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lb_knee_to_hip" link2="lb_toe_to_knee" reason="Adjacent" />
+    <disable_collisions link1="lb_knee_to_hip" link2="lf_hip_to_base" reason="Never" />
+    <disable_collisions link1="lb_knee_to_hip" link2="lf_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lb_knee_to_hip" link2="lf_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lb_knee_to_hip" link2="lm_hip_to_base" reason="Never" />
+    <disable_collisions link1="lb_knee_to_hip" link2="rb_hip_to_base" reason="Never" />
+    <disable_collisions link1="lb_knee_to_hip" link2="rb_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lb_knee_to_hip" link2="rb_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lb_knee_to_hip" link2="rf_hip_to_base" reason="Never" />
+    <disable_collisions link1="lb_knee_to_hip" link2="rf_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lb_knee_to_hip" link2="rf_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lb_knee_to_hip" link2="rm_hip_to_base" reason="Never" />
+    <disable_collisions link1="lb_knee_to_hip" link2="rm_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lb_knee_to_hip" link2="rm_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lb_toe_to_knee" link2="lf_hip_to_base" reason="Never" />
+    <disable_collisions link1="lb_toe_to_knee" link2="lf_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lb_toe_to_knee" link2="rb_hip_to_base" reason="Never" />
+    <disable_collisions link1="lb_toe_to_knee" link2="rb_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lb_toe_to_knee" link2="rb_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lb_toe_to_knee" link2="rf_hip_to_base" reason="Never" />
+    <disable_collisions link1="lb_toe_to_knee" link2="rf_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lb_toe_to_knee" link2="rf_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lb_toe_to_knee" link2="rm_hip_to_base" reason="Never" />
+    <disable_collisions link1="lb_toe_to_knee" link2="rm_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lb_toe_to_knee" link2="rm_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lf_hip_to_base" link2="lf_knee_to_hip" reason="Adjacent" />
+    <disable_collisions link1="lf_hip_to_base" link2="lf_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lf_hip_to_base" link2="lm_hip_to_base" reason="Never" />
+    <disable_collisions link1="lf_hip_to_base" link2="lm_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lf_hip_to_base" link2="rb_hip_to_base" reason="Never" />
+    <disable_collisions link1="lf_hip_to_base" link2="rb_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lf_hip_to_base" link2="rb_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lf_hip_to_base" link2="rf_hip_to_base" reason="Never" />
+    <disable_collisions link1="lf_hip_to_base" link2="rf_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lf_hip_to_base" link2="rf_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lf_hip_to_base" link2="rm_hip_to_base" reason="Never" />
+    <disable_collisions link1="lf_hip_to_base" link2="rm_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lf_hip_to_base" link2="rm_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lf_knee_to_hip" link2="lf_toe_to_knee" reason="Adjacent" />
+    <disable_collisions link1="lf_knee_to_hip" link2="lm_hip_to_base" reason="Never" />
+    <disable_collisions link1="lf_knee_to_hip" link2="rb_hip_to_base" reason="Never" />
+    <disable_collisions link1="lf_knee_to_hip" link2="rb_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lf_knee_to_hip" link2="rb_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lf_knee_to_hip" link2="rf_hip_to_base" reason="Never" />
+    <disable_collisions link1="lf_knee_to_hip" link2="rf_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lf_knee_to_hip" link2="rf_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lf_knee_to_hip" link2="rm_hip_to_base" reason="Never" />
+    <disable_collisions link1="lf_knee_to_hip" link2="rm_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lf_knee_to_hip" link2="rm_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lf_toe_to_knee" link2="rb_hip_to_base" reason="Never" />
+    <disable_collisions link1="lf_toe_to_knee" link2="rb_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lf_toe_to_knee" link2="rb_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lf_toe_to_knee" link2="rf_hip_to_base" reason="Never" />
+    <disable_collisions link1="lf_toe_to_knee" link2="rf_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lf_toe_to_knee" link2="rf_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lf_toe_to_knee" link2="rm_hip_to_base" reason="Never" />
+    <disable_collisions link1="lf_toe_to_knee" link2="rm_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lf_toe_to_knee" link2="rm_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lm_hip_to_base" link2="lm_knee_to_hip" reason="Adjacent" />
+    <disable_collisions link1="lm_hip_to_base" link2="lm_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lm_hip_to_base" link2="rb_hip_to_base" reason="Never" />
+    <disable_collisions link1="lm_hip_to_base" link2="rb_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lm_hip_to_base" link2="rb_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lm_hip_to_base" link2="rf_hip_to_base" reason="Never" />
+    <disable_collisions link1="lm_hip_to_base" link2="rf_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lm_hip_to_base" link2="rf_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lm_hip_to_base" link2="rm_hip_to_base" reason="Never" />
+    <disable_collisions link1="lm_hip_to_base" link2="rm_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lm_hip_to_base" link2="rm_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lm_knee_to_hip" link2="lm_toe_to_knee" reason="Adjacent" />
+    <disable_collisions link1="lm_knee_to_hip" link2="rb_hip_to_base" reason="Never" />
+    <disable_collisions link1="lm_knee_to_hip" link2="rb_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lm_knee_to_hip" link2="rb_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lm_knee_to_hip" link2="rf_hip_to_base" reason="Never" />
+    <disable_collisions link1="lm_knee_to_hip" link2="rf_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lm_knee_to_hip" link2="rf_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lm_knee_to_hip" link2="rm_hip_to_base" reason="Never" />
+    <disable_collisions link1="lm_knee_to_hip" link2="rm_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lm_knee_to_hip" link2="rm_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lm_toe_to_knee" link2="rb_hip_to_base" reason="Never" />
+    <disable_collisions link1="lm_toe_to_knee" link2="rb_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lm_toe_to_knee" link2="rb_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lm_toe_to_knee" link2="rf_hip_to_base" reason="Never" />
+    <disable_collisions link1="lm_toe_to_knee" link2="rf_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lm_toe_to_knee" link2="rf_toe_to_knee" reason="Never" />
+    <disable_collisions link1="lm_toe_to_knee" link2="rm_hip_to_base" reason="Never" />
+    <disable_collisions link1="lm_toe_to_knee" link2="rm_knee_to_hip" reason="Never" />
+    <disable_collisions link1="lm_toe_to_knee" link2="rm_toe_to_knee" reason="Never" />
+    <disable_collisions link1="rb_hip_to_base" link2="rb_knee_to_hip" reason="Adjacent" />
+    <disable_collisions link1="rb_hip_to_base" link2="rf_hip_to_base" reason="Never" />
+    <disable_collisions link1="rb_hip_to_base" link2="rf_knee_to_hip" reason="Never" />
+    <disable_collisions link1="rb_hip_to_base" link2="rf_toe_to_knee" reason="Never" />
+    <disable_collisions link1="rb_hip_to_base" link2="rm_hip_to_base" reason="Never" />
+    <disable_collisions link1="rb_hip_to_base" link2="rm_knee_to_hip" reason="Never" />
+    <disable_collisions link1="rb_knee_to_hip" link2="rb_toe_to_knee" reason="Adjacent" />
+    <disable_collisions link1="rb_knee_to_hip" link2="rf_hip_to_base" reason="Never" />
+    <disable_collisions link1="rb_knee_to_hip" link2="rf_knee_to_hip" reason="Never" />
+    <disable_collisions link1="rb_knee_to_hip" link2="rf_toe_to_knee" reason="Never" />
+    <disable_collisions link1="rb_knee_to_hip" link2="rm_hip_to_base" reason="Never" />
+    <disable_collisions link1="rb_toe_to_knee" link2="rf_hip_to_base" reason="Never" />
+    <disable_collisions link1="rb_toe_to_knee" link2="rf_knee_to_hip" reason="Never" />
+    <disable_collisions link1="rb_toe_to_knee" link2="rf_toe_to_knee" reason="Never" />
+    <disable_collisions link1="rf_hip_to_base" link2="rf_knee_to_hip" reason="Adjacent" />
+    <disable_collisions link1="rf_hip_to_base" link2="rm_hip_to_base" reason="Never" />
+    <disable_collisions link1="rf_hip_to_base" link2="rm_knee_to_hip" reason="Never" />
+    <disable_collisions link1="rf_knee_to_hip" link2="rf_toe_to_knee" reason="Adjacent" />
+    <disable_collisions link1="rf_knee_to_hip" link2="rm_hip_to_base" reason="Never" />
+    <disable_collisions link1="rm_hip_to_base" link2="rm_knee_to_hip" reason="Adjacent" />
+    <disable_collisions link1="rm_knee_to_hip" link2="rm_toe_to_knee" reason="Adjacent" />
+</robot>

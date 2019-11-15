@@ -1,0 +1,8 @@
+prefix=/home/darian/al5b_ws/devel
+
+Name: moveit_ros_benchmarks
+Description: Description of moveit_ros_benchmarks
+Version: 0.9.17
+Cflags: -I/home/darian/al5b_ws/src/moveit/moveit_ros/benchmarks/include
+Libs: -L/home/darian/al5b_ws/devel/lib -lmoveit_ros_benchmarks
+Requires: moveit_ros_planning moveit_ros_warehouse roscpp

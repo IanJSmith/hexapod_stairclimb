@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: hexapodV2
+    relative_path: urdf/hexapodV2.urdf
+    xacro_args: "--inorder "
+  SRDF:
+    relative_path: config/hexapodV2.srdf
+  CONFIG:
+    author_name: darebear
+    author_email: dariandirko@gmail.com
+    generated_timestamp: 1573849297

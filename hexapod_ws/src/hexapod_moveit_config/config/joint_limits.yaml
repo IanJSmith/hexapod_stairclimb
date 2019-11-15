@@ -1,0 +1,94 @@
+# joint_limits.yaml allows the dynamics properties specified in the URDF to be overwritten or augmented as needed
+# Specific joint properties can be changed with the keys [max_position, min_position, max_velocity, max_acceleration]
+# Joint limits can be turned off with [has_velocity_limits, has_acceleration_limits]
+joint_limits:
+  lb_hip:
+    has_velocity_limits: true
+    max_velocity: 5.235
+    has_acceleration_limits: false
+    max_acceleration: 0
+  lb_knee:
+    has_velocity_limits: true
+    max_velocity: 5.235
+    has_acceleration_limits: false
+    max_acceleration: 0
+  lb_toe:
+    has_velocity_limits: true
+    max_velocity: 5.235
+    has_acceleration_limits: false
+    max_acceleration: 0
+  lf_hip:
+    has_velocity_limits: true
+    max_velocity: 5.235
+    has_acceleration_limits: false
+    max_acceleration: 0
+  lf_knee:
+    has_velocity_limits: true
+    max_velocity: 5.235
+    has_acceleration_limits: false
+    max_acceleration: 0
+  lf_toe:
+    has_velocity_limits: true
+    max_velocity: 5.235
+    has_acceleration_limits: false
+    max_acceleration: 0
+  lm_hip:
+    has_velocity_limits: true
+    max_velocity: 5.235
+    has_acceleration_limits: false
+    max_acceleration: 0
+  lm_knee:
+    has_velocity_limits: true
+    max_velocity: 5.235
+    has_acceleration_limits: false
+    max_acceleration: 0
+  lm_toe:
+    has_velocity_limits: true
+    max_velocity: 5.235
+    has_acceleration_limits: false
+    max_acceleration: 0
+  rb_hip:
+    has_velocity_limits: true
+    max_velocity: 5.235
+    has_acceleration_limits: false
+    max_acceleration: 0
+  rb_knee:
+    has_velocity_limits: true
+    max_velocity: 5.235
+    has_acceleration_limits: false
+    max_acceleration: 0
+  rb_toe:
+    has_velocity_limits: true
+    max_velocity: 5.235
+    has_acceleration_limits: false
+    max_acceleration: 0
+  rf_hip:
+    has_velocity_limits: true
+    max_velocity: 5.235
+    has_acceleration_limits: false
+    max_acceleration: 0
+  rf_knee:
+    has_velocity_limits: true
+    max_velocity: 5.235
+    has_acceleration_limits: false
+    max_acceleration: 0
+  rf_toe:
+    has_velocity_limits: true
+    max_velocity: 5.235
+    has_acceleration_limits: false
+    max_acceleration: 0
+  rm_hip:
+    has_velocity_limits: true
+    max_velocity: 5.235
+    has_acceleration_limits: false
+    max_acceleration: 0
+  rm_knee:
+    has_velocity_limits: true
+    max_velocity: 5.235
+    has_acceleration_limits: false
+    max_acceleration: 0
+  rm_toe:
+    has_velocity_limits: true
+    max_velocity: 5.235
+    has_acceleration_limits: false
+    max_acceleration: 0

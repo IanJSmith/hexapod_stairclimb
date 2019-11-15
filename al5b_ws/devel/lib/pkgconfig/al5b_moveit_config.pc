@@ -1,0 +1,8 @@
+prefix=/home/darian/al5b_ws/devel
+
+Name: al5b_moveit_config
+Description: Description of al5b_moveit_config
+Version: 0.3.0
+Cflags: 
+Libs: -L/home/darian/al5b_ws/devel/lib 
+Requires: 

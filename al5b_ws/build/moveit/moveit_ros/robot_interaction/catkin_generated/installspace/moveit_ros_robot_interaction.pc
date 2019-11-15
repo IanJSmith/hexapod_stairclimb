@@ -1,0 +1,8 @@
+prefix=/home/darian/al5b_ws/install
+
+Name: moveit_ros_robot_interaction
+Description: Description of moveit_ros_robot_interaction
+Version: 0.9.17
+Cflags: -I/home/darian/al5b_ws/install/include
+Libs: -L/home/darian/al5b_ws/install/lib -lmoveit_robot_interaction
+Requires: moveit_ros_planning interactive_markers

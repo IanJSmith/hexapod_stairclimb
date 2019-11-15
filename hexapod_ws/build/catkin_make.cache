@@ -1,2 +1,2 @@
-
+hexapodV2:hexapod_moveit_config
 -DCATKIN_DEVEL_PREFIX=/home/darian/hexapod_ws/devel -DCMAKE_INSTALL_PREFIX=/home/darian/hexapod_ws/install -G Unix Makefiles
