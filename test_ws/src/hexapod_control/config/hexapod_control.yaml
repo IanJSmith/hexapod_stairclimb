@@ -1,0 +1,84 @@
+hexapodV2:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+
+  # Position Controllers ---------------------------------------
+  rf_hip_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: rf_hip
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  rf_knee_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: rf_knee
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  rf_toe_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: rf_toe
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  rm_hip_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: rm_hip
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  rm_knee_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: rm_knee
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  rm_toe_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: rm_toe
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  rb_hip_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: rb_hip
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  rb_knee_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: rb_knee
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  rb_toe_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: rb_toe
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  lf_hip_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: lf_hip
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  lf_knee_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: lf_knee
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  lf_toe_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: lf_toe
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  lm_hip_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: lm_hip
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  lm_knee_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: lm_knee
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  lm_toe_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: lm_toe
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  lb_hip_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: lb_hip
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  lb_knee_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: lb_knee
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  lb_toe_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: lb_toe
+    pid: {p: 100.0, i: 0.01, d: 10.0}

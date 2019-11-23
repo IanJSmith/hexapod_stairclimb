@@ -1,0 +1,8 @@
+prefix=/home/darian/test_ws/install
+
+Name: moveit_ros_move_group
+Description: Description of moveit_ros_move_group
+Version: 0.9.17
+Cflags: -I/home/darian/test_ws/install/include
+Libs: -L/home/darian/test_ws/install/lib -lmoveit_move_group_capabilities_base
+Requires: roscpp moveit_core moveit_ros_planning

@@ -1,0 +1,8 @@
+prefix=/home/darian/test_ws/devel
+
+Name: moveit_fake_controller_manager
+Description: Description of moveit_fake_controller_manager
+Version: 0.9.17
+Cflags: 
+Libs: -L/home/darian/test_ws/devel/lib 
+Requires: moveit_core moveit_ros_planning

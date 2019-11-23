@@ -1,0 +1,8 @@
+prefix=/home/darian/test_ws/install
+
+Name: lynxmotion_ssc32
+Description: Description of lynxmotion_ssc32
+Version: 0.1.0
+Cflags: -I/home/darian/test_ws/install/include
+Libs: -L/home/darian/test_ws/install/lib -lssc32_driver -lssc32
+Requires: roscpp sensor_msgs joint_state_publisher

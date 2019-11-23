@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/darian/test_ws/src/moveit/moveit_core/utils/include/moveit/utils/lexical_casts.h
+string
+-
+
+/home/darian/test_ws/src/moveit/moveit_core/utils/src/lexical_casts.cpp
+moveit/utils/lexical_casts.h
+/home/darian/test_ws/src/moveit/moveit_core/utils/src/moveit/utils/lexical_casts.h
+locale
+-
+sstream
+-
+

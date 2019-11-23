@@ -1,0 +1,8 @@
+prefix=/home/darian/test_ws/install
+
+Name: hexapod_gazebo
+Description: Description of hexapod_gazebo
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/darian/test_ws/install/lib 
+Requires: 

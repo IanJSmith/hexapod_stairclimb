@@ -1,0 +1,8 @@
+prefix=/home/darian/test_ws/devel
+
+Name: chomp_motion_planner
+Description: Description of chomp_motion_planner
+Version: 0.9.17
+Cflags: -I/home/darian/test_ws/src/moveit/moveit_planners/chomp/chomp_motion_planner/include
+Libs: -L/home/darian/test_ws/devel/lib -lchomp_motion_planner
+Requires: 

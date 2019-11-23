@@ -1,0 +1,8 @@
+prefix=/home/darian/test_ws/install
+
+Name: moveit_planners_ompl
+Description: Description of moveit_planners_ompl
+Version: 0.9.17
+Cflags: -I/home/darian/test_ws/install/include
+Libs: -L/home/darian/test_ws/install/lib -lmoveit_ompl_interface /opt/ros/kinetic/lib/x86_64-linux-gnu/libompl.so
+Requires: moveit_core

@@ -1,0 +1,1611 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+
+<robot
+  name="hexapodV2">
+
+  <!-- ROS_CONTROL PLUGIN-->
+
+  <!-- I THINK I DID THIS WRONG SAURAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAV-->
+  <!--gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/hexapodV2</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo-->
+
+  <!-- 
+        xyz="0.0067990308454218 -0.0259575342121318 -9.66259386206335E-06"-->
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0 0.0 -9.66259386206335E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.328" />
+      <inertia
+        ixx="0.00094553" ixy="0.00000498" ixz="0.00000423"
+        iyy="0.00453323" iyz="0"
+        izz="0.00449473" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!--RF LEG-->
+
+  <link
+    name="rf_hip_to_base">
+    <inertial>
+      <origin
+        xyz="-0.00415399182982698 -0.0166558983167384 0.012717760570252"
+        rpy="0 0 0" />
+      <mass
+        value="0.133" />
+      <inertia
+        ixx="0.00013197" ixy="0.00003487" ixz="-0.00002725"
+        iyy="0.00008839" iyz="-0.0000446"
+        izz="0.00011716" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/rf_hip_to_base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/rf_hip_to_base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rf_hip"
+    type="revolute">
+    <origin
+      xyz="0.15172 -0.078675 0"
+      rpy="1.5708 0 -0.029412" />
+    <parent
+      link="base_link" />
+    <child
+      link="rf_hip_to_base" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.5708"
+      upper="1.5708"
+      effort="0.79796"
+      velocity="5.235" />
+    <dynamics 
+      damping="0.7"/>
+  </joint>
+  <link
+    name="rf_knee_to_hip">
+    <inertial>
+      <origin
+        xyz="-0.000555802236244879 -0.00168932214648174 -0.02847384010096"
+        rpy="0 0 0" />
+      <mass
+        value="0.027" />
+      <inertia
+        ixx="0.00004347" ixy="0.00000003" ixz="0.00000059"
+        iyy="0.00003321" iyz="0.00000132"
+        izz="0.00001297" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/rf_knee_to_hip.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/rf_knee_to_hip.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rf_knee"
+    type="revolute">
+    <origin
+      xyz="0 -0.0056176 0.027189"
+      rpy="3.1416 0.013699 1.5708" />
+    <parent
+      link="rf_hip_to_base" />
+    <child
+      link="rf_knee_to_hip" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.7854"
+      upper="1.9198"
+      effort="0.79796"
+      velocity="5.235" />
+    <dynamics 
+      damping="0.7"/>
+  </joint>
+  <link
+    name="rf_toe_to_knee">
+    <inertial>
+      <origin
+        xyz="-0.030164880601543 -0.000902438506913184 -5.33411860692296E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.081" />
+      <inertia
+        ixx="0.00000781" ixy="0.00000094" ixz="0"
+        iyy="0.00017172" iyz="0"
+        izz="0.00017312" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/rf_toe_to_knee.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/rf_toe_to_knee.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rf_toe"
+    type="revolute">
+    <origin
+      xyz="-0.0011153 0 -0.057139"
+      rpy="0 -1.554 0" />
+    <parent
+      link="rf_knee_to_hip" />
+    <child
+      link="rf_toe_to_knee" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.4835"
+      upper="2.0994"
+      effort="0.79796"
+      velocity="5.235" />
+    <dynamics 
+      damping="0.7"/>
+  </joint>
+
+  <!--END EFFECTOR FRAME-->
+
+  <link name="rf_toe_end"/>
+  <joint
+    name="rf_toe_to_rf_toe_end"
+    type="fixed">
+    <origin
+      xyz="-0.11 0 0"
+      rpy="0 1.57 3.14" />
+    <parent
+      link="rf_toe_to_knee" />
+    <child
+      link="rf_toe_end" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.2"
+      upper="0.2"
+      effort="0.79796"
+      velocity="5.235" />
+  </joint>
+
+  <!--RM LEG-->
+
+  <link
+    name="rm_hip_to_base">
+    <inertial>
+      <origin
+        xyz="-0.00415149189707401 -0.0166558983167402 0.0127176884256242"
+        rpy="0 0 0" />
+      <mass
+        value="0.328" />
+      <inertia
+        ixx="0.00013197" ixy="0.00003487" ixz="-0.00002725"
+        iyy="0.00008839" iyz="-0.0000446"
+        izz="0.00011716" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/rm_hip_to_base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/rm_hip_to_base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rm_hip"
+    type="revolute">
+    <origin
+      xyz="0 -0.078675 0"
+      rpy="1.5708 0 -0.028851" />
+    <parent
+      link="base_link" />
+    <child
+      link="rm_hip_to_base" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.5708"
+      upper="1.5708"
+      effort="0.79796"
+      velocity="5.235" />
+    <dynamics 
+      damping="0.7"/>
+  </joint>
+  <link
+    name="rm_knee_to_hip">
+    <inertial>
+      <origin
+        xyz="-0.000555802236693805 -0.00168682221372598 -0.0284738401009373"
+        rpy="0 0 0" />
+      <mass
+        value="0.027" />
+      <inertia
+        ixx="0.00004347" ixy="0.00000003" ixz="0.00000059"
+        iyy="0.00003321" iyz="0.00000132"
+        izz="0.00001297" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/rm_knee_to_hip.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/rm_knee_to_hip.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rm_knee"
+    type="revolute">
+    <origin
+      xyz="0 -0.0056176 0.027189"
+      rpy="3.1416 0.020983 1.5708" />
+    <parent
+      link="rm_hip_to_base" />
+    <child
+      link="rm_knee_to_hip" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.7854"
+      upper="1.9198"
+      effort="0.79796"
+      velocity="5.235" />
+    <dynamics 
+      damping="0.7"/>
+  </joint>
+  <link
+    name="rm_toe_to_knee">
+    <inertial>
+      <origin
+        xyz="-0.0301648806026858 -0.000899938574727707 -5.33412241864387E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.081" />
+      <inertia
+        ixx="0.00000781" ixy="0.00000094" ixz="0"
+        iyy="0.00017172" iyz="0"
+        izz="0.00017312" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/rm_toe_to_knee.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/rm_toe_to_knee.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rm_toe"
+    type="revolute">
+    <origin
+      xyz="-0.0011153 0 -0.057139"
+      rpy="0 -1.5436 0" />
+    <parent
+      link="rm_knee_to_hip" />
+    <child
+      link="rm_toe_to_knee" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.4835"
+      upper="2.0994"
+      effort="0.79796"
+      velocity="5.235" />
+    <dynamics 
+      damping="0.7"/>
+  </joint>
+
+  <!--END EFFECTOR FRAME-->
+
+  <link name="rm_toe_end"/>
+  <joint
+    name="rm_toe_to_rm_toe_end"
+    type="fixed">
+    <origin
+      xyz="-0.11 0 0"
+      rpy="0 1.57 3.14" />
+    <parent
+      link="rm_toe_to_knee" />
+    <child
+      link="rm_toe_end" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.2"
+      upper="0.2"
+      effort="0.79796"
+      velocity="5.235" />
+  </joint>
+
+  <!--RB LEG-->
+
+  <link
+    name="rb_hip_to_base">
+    <inertial>
+      <origin
+        xyz="-0.00415399182982679 -0.0166558983167385 0.0127177605702519"
+        rpy="0 0 0" />
+      <mass
+        value="0.133" />
+      <inertia
+        ixx="0.00013197" ixy="0.00003487" ixz="-0.00002725"
+        iyy="0.00008839" iyz="-0.0000446"
+        izz="0.00011716" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/rb_hip_to_base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/rb_hip_to_base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rb_hip"
+    type="revolute">
+    <origin
+      xyz="-0.15173 -0.078675 0"
+      rpy="1.5708 0 -0.029396" />
+    <parent
+      link="base_link" />
+    <child
+      link="rb_hip_to_base" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.5708"
+      upper="1.5708"
+      effort="0.79796"
+      velocity="5.235" />
+    <dynamics 
+      damping="0.7"/>
+  </joint>
+  <link
+    name="rb_knee_to_hip">
+    <inertial>
+      <origin
+        xyz="-0.000555802237101171 -0.00168932214650303 -0.0284738401009497"
+        rpy="0 0 0" />
+      <mass
+        value="0.027" />
+      <inertia
+        ixx="0.00004347" ixy="0.00000003" ixz="0.00000059"
+        iyy="0.00003321" iyz="0.00000132"
+        izz="0.00001297" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/rb_knee_to_hip.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/rb_knee_to_hip.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rb_knee"
+    type="revolute">
+    <origin
+      xyz="0 -0.0056176 0.027189"
+      rpy="3.1416 0.027582 1.5708" />
+    <parent
+      link="rb_hip_to_base" />
+    <child
+      link="rb_knee_to_hip" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.7854"
+      upper="1.9198"
+      effort="0.79796"
+      velocity="5.235" />
+    <dynamics 
+      damping="0.7"/>
+  </joint>
+  <link
+    name="rb_toe_to_knee">
+    <inertial>
+      <origin
+        xyz="-0.0301648806045727 -0.000902438508263326 -5.33412863879543E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.081" />
+      <inertia
+        ixx="0.00000781" ixy="0.00000094" ixz="0"
+        iyy="0.00017172" iyz="0"
+        izz="0.00017312" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/rb_toe_to_knee.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/rb_toe_to_knee.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rb_toe"
+    type="revolute">
+    <origin
+      xyz="-0.0011153 0 -0.057139"
+      rpy="0 -1.5318 0" />
+    <parent
+      link="rb_knee_to_hip" />
+    <child
+      link="rb_toe_to_knee" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.4835"
+      upper="2.0944"
+      effort="0.79796"
+      velocity="5.235" />
+    <dynamics 
+      damping="0.7"/>
+  </joint>
+
+  <!--END EFFECTOR FRAME-->
+
+  <link name="rb_toe_end"/>
+  <joint
+    name="rb_toe_to_rb_toe_end"
+    type="fixed">
+    <origin
+      xyz="-0.11 0 0"
+      rpy="0 1.57 3.14" />
+    <parent
+      link="rb_toe_to_knee" />
+    <child
+      link="rb_toe_end" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.2"
+      upper="0.2"
+      effort="0.79796"
+      velocity="5.235" />
+  </joint>
+
+  <!--LF LEG-->
+
+  <link
+    name="lf_hip_to_base">
+    <inertial>
+      <origin
+        xyz="-0.00415110886194259 -0.016654015933136 -0.0127177605585447"
+        rpy="0 0 0" />
+      <mass
+        value="0.133" />
+      <inertia
+        ixx="0.00009468" ixy="0.00001246" ixz="0.0000021"
+        iyy="0.00006976" iyz="0.000018"
+        izz="0.00007375" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/lf_hip_to_base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/lf_hip_to_base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lf_hip"
+    type="revolute">
+    <origin
+      xyz="0.15172 0.078675 0"
+      rpy="1.5708 0 0.029653" />
+    <parent
+      link="base_link" />
+    <child
+      link="lf_hip_to_base" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.5708"
+      upper="1.5708"
+      effort="0.79796"
+      velocity="5.235" />
+    <dynamics 
+      damping="0.7"/>
+  </joint>
+  <link
+    name="lf_knee_to_hip">
+    <inertial>
+      <origin
+        xyz="-0.000555802236137545 -0.00168432214648084 -0.0284738401009665"
+        rpy="0 0 0" />
+      <mass
+        value="0.027" />
+      <inertia
+        ixx="0.00004347" ixy="0.00000003" ixz="0.00000059"
+        iyy="0.00003321" iyz="0.00000132"
+        izz="0.00001297" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/lf_knee_to_hip.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/lf_knee_to_hip.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lf_knee"
+    type="revolute">
+    <origin
+      xyz="0 -0.0056176 -0.027189"
+      rpy="0 -0.011958 -1.5708" />
+    <parent
+      link="lf_hip_to_base" />
+    <child
+      link="lf_knee_to_hip" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.7854"
+      upper="1.9198"
+      effort="0.79796"
+      velocity="5.235" />
+    <dynamics 
+      damping="0.7"/>
+  </joint>
+  <link
+    name="lf_toe_to_knee">
+    <inertial>
+      <origin
+        xyz="-0.0301648806018033 -0.000897438507030668 -5.33411964347228E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.81" />
+      <inertia
+        ixx="0.00000781" ixy="0.00000094" ixz="0"
+        iyy="0.00017172" iyz="0"
+        izz="0.00017312" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/lf_toe_to_knee.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/lf_toe_to_knee.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lf_toe"
+    type="revolute">
+    <origin
+      xyz="-0.0011153 0 -0.057139"
+      rpy="0 -1.5549 0" />
+    <parent
+      link="lf_knee_to_hip" />
+    <child
+      link="lf_toe_to_knee" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-2.0944"
+      upper="1.4835"
+      effort="0.79796"
+      velocity="5.235" />
+    <dynamics 
+      damping="0.7"/>
+  </joint>
+
+  <!--END EFFECTOR FRAME-->
+
+  <link name="lf_toe_end"/>
+  <joint
+    name="lf_toe_to_lf_toe_end"
+    type="fixed">
+    <origin
+      xyz="-0.11 0 0"
+      rpy="0 -1.57 0" />
+    <parent
+      link="lf_toe_to_knee" />
+    <child
+      link="lf_toe_end" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.2"
+      upper="0.2"
+      effort="0.79796"
+      velocity="5.235" />
+  </joint>
+
+  <!--LM LEG-->
+
+  <link
+    name="lm_hip_to_base">
+    <inertial>
+      <origin
+        xyz="-0.00414860894159053 -0.0166540159331394 -0.0127176879854171"
+        rpy="0 0 0" />
+      <mass
+        value="0.328" />
+      <inertia
+        ixx="0.00009468" ixy="0.00001246" ixz="0.0000021"
+        iyy="0.00006976" iyz="0.000018"
+        izz="0.00007375" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/lm_hip_to_base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/lm_hip_to_base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lm_hip"
+    type="revolute">
+    <origin
+      xyz="0 0.078675 0"
+      rpy="1.5708 0 0.029022" />
+    <parent
+      link="base_link" />
+    <child
+      link="lm_hip_to_base" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.5708"
+      upper="1.5708"
+      effort="0.79796"
+      velocity="5.235" />
+    <dynamics 
+      damping="0.7"/>
+  </joint>
+  <link
+    name="lm_knee_to_hip">
+    <inertial>
+      <origin
+        xyz="-0.000555802236787112 -0.00168182222613859 -0.0284738401009408"
+        rpy="0 0 0" />
+      <mass
+        value="0.027" />
+      <inertia
+        ixx="0.00004347" ixy="0.00000003" ixz="0.00000059"
+        iyy="0.00003321" iyz="0.00000132"
+        izz="0.00001297" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/lm_knee_to_hip.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/lm_knee_to_hip.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lm_knee"
+    type="revolute">
+    <origin
+      xyz="0 -0.0056176 -0.027189"
+      rpy="0 -0.022496 -1.5708" />
+    <parent
+      link="lm_hip_to_base" />
+    <child
+      link="lm_knee_to_hip" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.7854"
+      upper="1.9198"
+      effort="0.79796"
+      velocity="5.235" />
+    <dynamics 
+      damping="0.7"/>
+  </joint>
+  <link
+    name="lm_toe_to_knee">
+    <inertial>
+      <origin
+        xyz="-0.0301648806047343 -0.00089493858800551 -5.3341290053464E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.081" />
+      <inertia
+        ixx="0.00000781" ixy="0.00000094" ixz="0"
+        iyy="0.00017172" iyz="0"
+        izz="0.00017312" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/lm_toe_to_knee.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/lm_toe_to_knee.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lm_toe"
+    type="revolute">
+    <origin
+      xyz="-0.0011153 0 -0.057139"
+      rpy="0 -1.5366 0" />
+    <parent
+      link="lm_knee_to_hip" />
+    <child
+      link="lm_toe_to_knee" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-2.0944"
+      upper="1.4835"
+      effort="0.79796"
+      velocity="5.235" />
+    <dynamics 
+      damping="0.7"/>
+  </joint>
+
+  <!--END EFFECTOR FRAME-->
+
+  <link name="lm_toe_end"/>
+  <joint
+    name="lm_toe_to_lm_toe_end"
+    type="fixed">
+    <origin
+      xyz="-0.11 0 0"
+      rpy="0 -1.57 0" />
+    <parent
+      link="lm_toe_to_knee" />
+    <child
+      link="lm_toe_end" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.2"
+      upper="0.2"
+      effort="0.79796"
+      velocity="5.235" />
+  </joint>
+
+  <!--LB LEG-->
+
+  <link
+    name="lb_hip_to_base">
+    <inertial>
+      <origin
+        xyz="-0.00415110886192369 -0.0166540159331409 -0.0127177605585427"
+        rpy="0 0 0" />
+      <mass
+        value="0.133" />
+      <inertia
+        ixx="0.00009468" ixy="0.00001246" ixz="0.0000021"
+        iyy="0.00006976" iyz="0.000018"
+        izz="0.00007375" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/lb_hip_to_base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/lb_hip_to_base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lb_hip"
+    type="revolute">
+    <origin
+      xyz="-0.15173 0.078675 0"
+      rpy="1.5708 0 0.028737" />
+    <parent
+      link="base_link" />
+    <child
+      link="lb_hip_to_base" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.5708"
+      upper="1.5708"
+      effort="0.79796"
+      velocity="5.235" />
+    <dynamics 
+      damping="0.7"/>
+  </joint>
+  <link
+    name="lb_knee_to_hip">
+    <inertial>
+      <origin
+        xyz="-0.000555802236661192 -0.0016843221464683 -0.028473840100936"
+        rpy="0 0 0" />
+      <mass
+        value="0.027" />
+      <inertia
+        ixx="0.00004347" ixy="0.00000003" ixz="0.00000059"
+        iyy="0.00003321" iyz="0.00000132"
+        izz="0.00001297" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/lb_knee_to_hip.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/lb_knee_to_hip.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lb_knee"
+    type="revolute">
+    <origin
+      xyz="0 -0.0056176 -0.027189"
+      rpy="0 -0.020453 -1.5708" />
+    <parent
+      link="lb_hip_to_base" />
+    <child
+      link="lb_knee_to_hip" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.7854"
+      upper="1.9198"
+      effort="0.79796"
+      velocity="5.235" />
+    <dynamics 
+      damping="0.7"/>
+  </joint>
+  <link
+    name="lb_toe_to_knee">
+    <inertial>
+      <origin
+        xyz="-0.0301648806041941 -0.000897438508131315 -5.33412726268483E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.081" />
+      <inertia
+        ixx="0.00000781" ixy="0.00000094" ixz="0"
+        iyy="0.00017172" iyz="0"
+        izz="0.00017312" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/lb_toe_to_knee.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapodV2/meshes/lb_toe_to_knee.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lb_toe"
+    type="revolute">
+    <origin
+      xyz="-0.0011153 0 -0.057139"
+      rpy="0 -1.5401 0" />
+    <parent
+      link="lb_knee_to_hip" />
+    <child
+      link="lb_toe_to_knee" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-2.0944"
+      upper="1.4835"
+      effort="0.79796"
+      velocity="5.235" />
+    <dynamics 
+      damping="0.7"/>
+  </joint>
+
+  <!--END EFFECTOR FRAME-->
+
+  <link name="lb_toe_end"/>
+  <joint
+    name="lb_toe_to_lb_toe_end"
+    type="fixed">
+    <origin
+      xyz="-0.11 0 0"
+      rpy="0 -1.57 0" />
+    <parent
+      link="lb_toe_to_knee" />
+    <child
+      link="lb_toe_end" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.2"
+      upper="0.2"
+      effort="0.79796"
+      velocity="5.235" />
+
+  </joint>
+
+
+  <transmission name="tran1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rf_hip">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="servo1">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rf_knee">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="servo2">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran3">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rf_toe">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="servo3">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran4">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rm_hip">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="servo4">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran5">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rm_knee">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="servo5">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran6">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rm_toe">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="servo6">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran7">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rb_hip">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="servo7">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran8">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rb_knee">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="servo8">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran9">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rb_toe">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="servo9">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>  
+
+  <transmission name="tran10">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lf_hip">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="servo10">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran11">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lf_knee">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="servo11">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran12">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lf_toe">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="servo12">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran13">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lm_hip">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="servo13">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran14">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lm_knee">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="servo14">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran15">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lm_toe">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="servo15">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran16">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lb_hip">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="servo16">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran17">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lb_knee">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="servo17">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran18">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lb_toe">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="servo18">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>  
+
+  <!--GAZEBO LINKS-->
+
+  <gazebo reference="base_link">
+    <!--mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <gravity>0</gravity-->
+
+    <material>Gazebo/Orange</material>
+    <self_collide>0</self_collide>
+  </gazebo>
+
+  <gazebo reference="rf_hip_to_base">
+    <!--mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <gravity>0</gravity-->
+
+    <material>Gazebo/Orange</material>
+    <self_collide>0</self_collide>
+  </gazebo>
+
+  <gazebo reference="rf_knee_to_hip">
+    <!--mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <gravity>0</gravity-->
+
+    <material>Gazebo/Orange</material>
+    <self_collide>0</self_collide>
+  </gazebo>
+
+  <gazebo reference="rf_toe_to_knee">
+    <mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <!--gravity>0</gravity-->
+
+    <material>Gazebo/Orange</material>
+    <self_collide>0</self_collide>
+  </gazebo>
+
+  <gazebo reference="rm_hip_to_base">
+    <!--mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <gravity>0</gravity-->
+
+    <material>Gazebo/Orange</material>
+    <self_collide>0</self_collide>
+  </gazebo>
+
+  <gazebo reference="rm_knee_to_hip">
+    <!--mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <gravity>0</gravity-->
+
+    <material>Gazebo/Orange</material>
+    <self_collide>0</self_collide>
+  </gazebo>
+
+  <gazebo reference="rm_toe_to_knee">
+    <mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <!--gravity>0</gravity-->
+
+    <material>Gazebo/Orange</material>
+    <self_collide>0</self_collide>
+  </gazebo>
+    
+
+  <gazebo reference="rb_hip_to_base">
+    <!--mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <gravity>0</gravity-->
+
+    <material>Gazebo/Orange</material>
+    <self_collide>0</self_collide>
+  </gazebo>
+
+  <gazebo reference="rb_knee_to_hip">
+    <!--mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <gravity>0</gravity-->
+
+    <material>Gazebo/Orange</material>
+    <self_collide>0</self_collide>
+  </gazebo>
+
+  <gazebo reference="rb_toe_to_knee">
+    <mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <!--gravity>0</gravity-->
+
+    <material>Gazebo/Orange</material>
+    <self_collide>0</self_collide>
+  </gazebo>
+
+  <gazebo reference="lf_hip_to_base">
+    <!--mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <gravity>0</gravity-->
+
+    <material>Gazebo/Orange</material>
+    <self_collide>0</self_collide>
+  </gazebo>
+
+  <gazebo reference="lf_knee_to_hip">
+    <!--mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <gravity>0</gravity-->
+
+    <material>Gazebo/Orange</material>
+    <self_collide>0</self_collide>
+  </gazebo>
+
+  <gazebo reference="lf_toe_to_knee">
+    <mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <!--gravity>0</gravity-->
+
+    <material>Gazebo/Orange</material>
+    <self_collide>0</self_collide>
+  </gazebo>
+
+  <gazebo reference="lm_hip_to_base">
+    <!--mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <gravity>0</gravity-->
+
+    <material>Gazebo/Orange</material>
+    <self_collide>0</self_collide>
+  </gazebo>
+
+  <gazebo reference="lm_knee_to_hip">
+    <!--mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <gravity>0</gravity-->
+
+    <material>Gazebo/Orange</material>
+    <self_collide>0</self_collide>
+  </gazebo>
+
+  <gazebo reference="lm_toe_to_knee">
+    <mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <!--gravity>0</gravity-->
+
+    <material>Gazebo/Orange</material>
+    <self_collide>0</self_collide>
+  </gazebo>
+
+  <gazebo reference="lb_hip_to_base">
+    <!--mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <gravity>0</gravity-->
+
+    <material>Gazebo/Orange</material>
+    <self_collide>0</self_collide>
+  </gazebo>
+
+  <gazebo reference="lb_knee_to_hip">
+    <!--mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <gravity>0</gravity-->
+
+    <material>Gazebo/Orange</material>
+    <self_collide>0</self_collide>
+  </gazebo>
+
+  <gazebo reference="lb_toe_to_knee">
+    <mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <!--gravity>0</gravity-->
+
+    <material>Gazebo/Orange</material>
+    <self_collide>0</self_collide>
+  </gazebo>
+
+</robot>

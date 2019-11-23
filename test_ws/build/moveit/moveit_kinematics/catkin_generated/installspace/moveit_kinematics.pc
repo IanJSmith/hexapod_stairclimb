@@ -1,0 +1,8 @@
+prefix=/home/darian/test_ws/install
+
+Name: moveit_kinematics
+Description: Description of moveit_kinematics
+Version: 0.9.17
+Cflags: -I/home/darian/test_ws/install/include -I/usr/include/eigen3
+Libs: -L/home/darian/test_ws/install/lib 
+Requires: roscpp pluginlib moveit_core moveit_ros_planning

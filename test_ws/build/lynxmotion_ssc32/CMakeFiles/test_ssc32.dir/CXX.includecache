@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/darian/test_ws/src/lynxmotion_ssc32/include/lynxmotion_ssc32/ssc32.h
+fcntl.h
+-
+termios.h
+-
+unistd.h
+-
+cstring
+-
+iostream
+-
+math.h
+-
+string
+-
+sstream
+-
+cstdio
+-
+
+/home/darian/test_ws/src/lynxmotion_ssc32/src/test_ssc32.cpp
+iostream
+-
+string
+-
+cstdlib
+-
+lynxmotion_ssc32/ssc32.h
+/home/darian/test_ws/src/lynxmotion_ssc32/src/lynxmotion_ssc32/ssc32.h
+

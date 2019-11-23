@@ -1,0 +1,31 @@
+controller_list:
+  - name: fake_rf_leg_controller
+    joints:
+      - rf_hip
+      - rf_knee
+      - rf_toe
+  - name: fake_rm_leg_controller
+    joints:
+      - rm_hip
+      - rm_knee
+      - rm_toe
+  - name: fake_rb_leg_controller
+    joints:
+      - rb_hip
+      - rb_knee
+      - rb_toe
+  - name: fake_lf_leg_controller
+    joints:
+      - lf_hip
+      - lf_knee
+      - lf_toe
+  - name: fake_lm_leg_controller
+    joints:
+      - lm_hip
+      - lm_knee
+      - lm_toe
+  - name: fake_lb_leg_controller
+    joints:
+      - lb_hip
+      - lb_knee
+      - lb_toe
