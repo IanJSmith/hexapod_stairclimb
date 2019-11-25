@@ -5,7 +5,7 @@
 
   <!-- load the controllers -->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-    output="screen" ns="/hexapod" args="rf_hip_position_controller rf_knee_position_controller rf_toe_position_controller 
+    output="screen" ns="/hexapodV2" args="rf_hip_position_controller rf_knee_position_controller rf_toe_position_controller 
                                         rm_hip_position_controller rm_knee_position_controller rm_toe_position_controller 
                                         rb_hip_position_controller rb_knee_position_controller rb_toe_position_controller 
 
@@ -18,7 +18,7 @@
   <!-- convert joint states to TF transforms for rviz, etc -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
     respawn="false" output="screen">
-    <remap from="/joint_states" to="/hexapod/joint_states" />
+    <remap from="/joint_states" to="/hexapodV2/joint_states" />
   </node>
 
 </launch>

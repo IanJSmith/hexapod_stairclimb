@@ -26,4 +26,6 @@
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
     args="-urdf -model rrbot -param robot_description -z 0.5"/>
 
+  <!--CONTROL-->
+
 </launch>

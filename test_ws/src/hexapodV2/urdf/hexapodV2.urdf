@@ -9,6 +9,15 @@
   <!-- ROS_CONTROL PLUGIN-->
 
   <!-- I THINK I DID THIS WRONG SAURAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAV-->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/hexapodV2</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo>
+
+  <!-- I THINK I DID THIS WRONG SAURAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAV-->
   <!--gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>/hexapodV2</robotNamespace>
@@ -20,6 +29,19 @@
   <!-- 
         xyz="0.0067990308454218 -0.0259575342121318 -9.66259386206335E-06"-->
 
+  <link name="base"/>
+  <joint
+    name="base_to_base_link"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base" />
+    <child
+      link="base_link" />
+  </joint>
+
   <link
     name="base_link">
     <inertial>
@@ -28,10 +50,17 @@
         rpy="0 0 0" />
       <mass
         value="0.328" />
-      <inertia
+
+      <!--THIS INTERTIA BAD -->
+
+      <!--inertia
         ixx="0.00094553" ixy="0.00000498" ixz="0.00000423"
         iyy="0.00453323" iyz="0"
-        izz="0.00449473" />
+        izz="0.00449473" /-->
+      <inertia
+        ixx="1" ixy="0" ixz="0"
+        iyy="1" iyz="0"
+        izz="1" />
     </inertial>
     <visual>
       <origin
@@ -68,10 +97,16 @@
         rpy="0 0 0" />
       <mass
         value="0.133" />
+
+      <!--THIS INERTIA BAD -->  
       <inertia
         ixx="0.00013197" ixy="0.00003487" ixz="-0.00002725"
         iyy="0.00008839" iyz="-0.0000446"
         izz="0.00011716" />
+      <!--inertia
+        ixx="1" ixy="0" ixz="0"
+        iyy="1" iyz="0"
+        izz="1" /-->
     </inertial>
     <visual>
       <origin
@@ -125,10 +160,17 @@
         rpy="0 0 0" />
       <mass
         value="0.027" />
-      <inertia
+
+      <!--THIS INERTIA BAD-->
+
+      <!--inertia
         ixx="0.00004347" ixy="0.00000003" ixz="0.00000059"
         iyy="0.00003321" iyz="0.00000132"
-        izz="0.00001297" />
+        izz="0.00001297" /-->
+      <inertia
+        ixx="1" ixy="0" ixz="0"
+        iyy="1" iyz="0"
+        izz="1" />
     </inertial>
     <visual>
       <origin
@@ -182,10 +224,16 @@
         rpy="0 0 0" />
       <mass
         value="0.081" />
-      <inertia
+
+      <!--  THIS INERTIA IS BAD-->  
+      <!--inertia
         ixx="0.00000781" ixy="0.00000094" ixz="0"
         iyy="0.00017172" iyz="0"
-        izz="0.00017312" />
+        izz="0.00017312" /-->
+      <inertia
+        ixx="1" ixy="0" ixz="0"
+        iyy="1" iyz="0"
+        izz="1" />
     </inertial>
     <visual>
       <origin
@@ -264,10 +312,16 @@
         rpy="0 0 0" />
       <mass
         value="0.328" />
+
+      <!--THIS INERTIA NOT BAD BUT SEEMS NOT GREAT -->
       <inertia
         ixx="0.00013197" ixy="0.00003487" ixz="-0.00002725"
         iyy="0.00008839" iyz="-0.0000446"
         izz="0.00011716" />
+      <!--inertia
+        ixx="1" ixy="0" ixz="0"
+        iyy="1" iyz="0"
+        izz="1" /-->
     </inertial>
     <visual>
       <origin
@@ -321,10 +375,16 @@
         rpy="0 0 0" />
       <mass
         value="0.027" />
-      <inertia
+      
+      <!--THIS ONE BROKE IT MIGHT BE BECAUSE OF THE COMBINATION OF THE HIPE AND KNEE -->
+      <!--inertia
         ixx="0.00004347" ixy="0.00000003" ixz="0.00000059"
         iyy="0.00003321" iyz="0.00000132"
-        izz="0.00001297" />
+        izz="0.00001297" /-->
+      <inertia
+        ixx="1" ixy="0" ixz="0"
+        iyy="1" iyz="0"
+        izz="1" />
     </inertial>
     <visual>
       <origin
@@ -378,10 +438,14 @@
         rpy="0 0 0" />
       <mass
         value="0.081" />
-      <inertia
+      <!--inertia
         ixx="0.00000781" ixy="0.00000094" ixz="0"
         iyy="0.00017172" iyz="0"
-        izz="0.00017312" />
+        izz="0.00017312" /-->
+      <inertia
+        ixx="1" ixy="0" ixz="0"
+        iyy="1" iyz="0"
+        izz="1" />
     </inertial>
     <visual>
       <origin
@@ -464,6 +528,10 @@
         ixx="0.00013197" ixy="0.00003487" ixz="-0.00002725"
         iyy="0.00008839" iyz="-0.0000446"
         izz="0.00011716" />
+      <!--inertia
+        ixx="1" ixy="0" ixz="0"
+        iyy="1" iyz="0"
+        izz="1" /-->
     </inertial>
     <visual>
       <origin
@@ -517,10 +585,16 @@
         rpy="0 0 0" />
       <mass
         value="0.027" />
-      <inertia
+
+      <!--THIS INERTIA BAD -->  
+      <!--inertia
         ixx="0.00004347" ixy="0.00000003" ixz="0.00000059"
         iyy="0.00003321" iyz="0.00000132"
-        izz="0.00001297" />
+        izz="0.00001297" /-->
+      <inertia
+        ixx="1" ixy="0" ixz="0"
+        iyy="1" iyz="0"
+        izz="1" />
     </inertial>
     <visual>
       <origin
@@ -574,10 +648,16 @@
         rpy="0 0 0" />
       <mass
         value="0.081" />
-      <inertia
+      
+      <!--THIS INERTIA BAD -->
+      <!--inertia
         ixx="0.00000781" ixy="0.00000094" ixz="0"
         iyy="0.00017172" iyz="0"
-        izz="0.00017312" />
+        izz="0.00017312" /-->
+      <inertia
+        ixx="1" ixy="0" ixz="0"
+        iyy="1" iyz="0"
+        izz="1" />
     </inertial>
     <visual>
       <origin
@@ -660,6 +740,10 @@
         ixx="0.00009468" ixy="0.00001246" ixz="0.0000021"
         iyy="0.00006976" iyz="0.000018"
         izz="0.00007375" />
+      <!--inertia
+        ixx="1" ixy="0" ixz="0"
+        iyy="1" iyz="0"
+        izz="1" /-->
     </inertial>
     <visual>
       <origin
@@ -717,6 +801,10 @@
         ixx="0.00004347" ixy="0.00000003" ixz="0.00000059"
         iyy="0.00003321" iyz="0.00000132"
         izz="0.00001297" />
+      <!--inertia
+        ixx="1" ixy="0" ixz="0"
+        iyy="1" iyz="0"
+        izz="1" /-->
     </inertial>
     <visual>
       <origin
@@ -770,10 +858,16 @@
         rpy="0 0 0" />
       <mass
         value="0.81" />
-      <inertia
+
+      <!--THIS INERTIA BAD-->
+      <!--inertia
         ixx="0.00000781" ixy="0.00000094" ixz="0"
         iyy="0.00017172" iyz="0"
-        izz="0.00017312" />
+        izz="0.00017312" /-->
+      <inertia
+        ixx="1" ixy="0" ixz="0"
+        iyy="1" iyz="0"
+        izz="1" />
     </inertial>
     <visual>
       <origin
@@ -856,6 +950,10 @@
         ixx="0.00009468" ixy="0.00001246" ixz="0.0000021"
         iyy="0.00006976" iyz="0.000018"
         izz="0.00007375" />
+      <!--inertia
+        ixx="1" ixy="0" ixz="0"
+        iyy="1" iyz="0"
+        izz="1" /-->
     </inertial>
     <visual>
       <origin
@@ -909,10 +1007,15 @@
         rpy="0 0 0" />
       <mass
         value="0.027" />
-      <inertia
+      <!-- THIS INERTIA BAD-->
+      <!--inertia
         ixx="0.00004347" ixy="0.00000003" ixz="0.00000059"
         iyy="0.00003321" iyz="0.00000132"
-        izz="0.00001297" />
+        izz="0.00001297" /-->
+      <inertia
+        ixx="1" ixy="0" ixz="0"
+        iyy="1" iyz="0"
+        izz="1" />
     </inertial>
     <visual>
       <origin
@@ -966,10 +1069,15 @@
         rpy="0 0 0" />
       <mass
         value="0.081" />
-      <inertia
+      <!--THIS INERTIA BAD -->
+      <!--inertia
         ixx="0.00000781" ixy="0.00000094" ixz="0"
         iyy="0.00017172" iyz="0"
-        izz="0.00017312" />
+        izz="0.00017312" /-->
+      <inertia
+        ixx="1" ixy="0" ixz="0"
+        iyy="1" iyz="0"
+        izz="1" />
     </inertial>
     <visual>
       <origin
@@ -1052,6 +1160,10 @@
         ixx="0.00009468" ixy="0.00001246" ixz="0.0000021"
         iyy="0.00006976" iyz="0.000018"
         izz="0.00007375" />
+      <!--inertia
+        ixx="1" ixy="0" ixz="0"
+        iyy="1" iyz="0"
+        izz="1" /-->
     </inertial>
     <visual>
       <origin
@@ -1105,10 +1217,15 @@
         rpy="0 0 0" />
       <mass
         value="0.027" />
-      <inertia
+      <!-- THIS INERTIA BAD-->
+      <!--inertia
         ixx="0.00004347" ixy="0.00000003" ixz="0.00000059"
         iyy="0.00003321" iyz="0.00000132"
-        izz="0.00001297" />
+        izz="0.00001297" /-->
+      <inertia
+        ixx="1" ixy="0" ixz="0"
+        iyy="1" iyz="0"
+        izz="1" />
     </inertial>
     <visual>
       <origin
@@ -1162,10 +1279,15 @@
         rpy="0 0 0" />
       <mass
         value="0.081" />
-      <inertia
+      <!--THIS INERTIA BAD -->
+      <!--inertia
         ixx="0.00000781" ixy="0.00000094" ixz="0"
         iyy="0.00017172" iyz="0"
-        izz="0.00017312" />
+        izz="0.00017312" /-->
+      <inertia
+        ixx="1" ixy="0" ixz="0"
+        iyy="1" iyz="0"
+        izz="1" />
     </inertial>
     <visual>
       <origin
@@ -1239,10 +1361,10 @@
   <transmission name="tran1">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="rf_hip">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="servo1">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -1250,10 +1372,10 @@
   <transmission name="tran2">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="rf_knee">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="servo2">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -1261,10 +1383,10 @@
   <transmission name="tran3">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="rf_toe">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="servo3">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -1272,10 +1394,10 @@
   <transmission name="tran4">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="rm_hip">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="servo4">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -1283,10 +1405,10 @@
   <transmission name="tran5">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="rm_knee">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="servo5">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -1294,10 +1416,10 @@
   <transmission name="tran6">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="rm_toe">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="servo6">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -1305,10 +1427,10 @@
   <transmission name="tran7">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="rb_hip">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="servo7">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -1316,10 +1438,10 @@
   <transmission name="tran8">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="rb_knee">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="servo8">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -1327,10 +1449,10 @@
   <transmission name="tran9">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="rb_toe">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="servo9">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>  
@@ -1338,10 +1460,10 @@
   <transmission name="tran10">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="lf_hip">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="servo10">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -1349,10 +1471,10 @@
   <transmission name="tran11">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="lf_knee">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="servo11">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -1360,10 +1482,10 @@
   <transmission name="tran12">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="lf_toe">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="servo12">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -1371,10 +1493,10 @@
   <transmission name="tran13">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="lm_hip">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="servo13">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -1382,10 +1504,10 @@
   <transmission name="tran14">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="lm_knee">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="servo14">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -1393,10 +1515,10 @@
   <transmission name="tran15">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="lm_toe">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="servo15">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -1404,10 +1526,10 @@
   <transmission name="tran16">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="lb_hip">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="servo16">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -1415,10 +1537,10 @@
   <transmission name="tran17">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="lb_knee">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="servo17">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -1426,15 +1548,24 @@
   <transmission name="tran18">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="lb_toe">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="servo18">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>  
 
   <!--GAZEBO LINKS-->
+
+  <gazebo reference="base">
+    <!--mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <gravity>0</gravity-->
+
+    <material>Gazebo/Orange</material>
+    <self_collide>0</self_collide>
+  </gazebo>
 
   <gazebo reference="base_link">
     <!--mu1>0.9</mu1>
