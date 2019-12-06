@@ -68,17 +68,6 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # Special rule for the target list_install_components
 list_install_components:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
@@ -88,6 +77,17 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -122,17 +122,6 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # The main all target
 all: cmake_check_build_system
 	cd /home/darian/test_ws/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/darian/test_ws/build/CMakeFiles /home/darian/test_ws/build/moveit/moveit_core/trajectory_processing/CMakeFiles/progress.marks
@@ -164,51 +153,6 @@ preinstall/fast:
 depend:
 	cd /home/darian/test_ws/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
-
-# Convenience name for target.
-moveit/moveit_core/trajectory_processing/CMakeFiles/_run_tests_moveit_core_gtest_test_time_parameterization.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/trajectory_processing/CMakeFiles/_run_tests_moveit_core_gtest_test_time_parameterization.dir/rule
-.PHONY : moveit/moveit_core/trajectory_processing/CMakeFiles/_run_tests_moveit_core_gtest_test_time_parameterization.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_core_gtest_test_time_parameterization: moveit/moveit_core/trajectory_processing/CMakeFiles/_run_tests_moveit_core_gtest_test_time_parameterization.dir/rule
-
-.PHONY : _run_tests_moveit_core_gtest_test_time_parameterization
-
-# fast build rule for target.
-_run_tests_moveit_core_gtest_test_time_parameterization/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/trajectory_processing/CMakeFiles/_run_tests_moveit_core_gtest_test_time_parameterization.dir/build.make moveit/moveit_core/trajectory_processing/CMakeFiles/_run_tests_moveit_core_gtest_test_time_parameterization.dir/build
-.PHONY : _run_tests_moveit_core_gtest_test_time_parameterization/fast
-
-# Convenience name for target.
-moveit/moveit_core/trajectory_processing/CMakeFiles/test_time_parameterization.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/trajectory_processing/CMakeFiles/test_time_parameterization.dir/rule
-.PHONY : moveit/moveit_core/trajectory_processing/CMakeFiles/test_time_parameterization.dir/rule
-
-# Convenience name for target.
-test_time_parameterization: moveit/moveit_core/trajectory_processing/CMakeFiles/test_time_parameterization.dir/rule
-
-.PHONY : test_time_parameterization
-
-# fast build rule for target.
-test_time_parameterization/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/trajectory_processing/CMakeFiles/test_time_parameterization.dir/build.make moveit/moveit_core/trajectory_processing/CMakeFiles/test_time_parameterization.dir/build
-.PHONY : test_time_parameterization/fast
-
-# Convenience name for target.
-moveit/moveit_core/trajectory_processing/CMakeFiles/run_tests_moveit_core_gtest_test_time_parameterization.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/trajectory_processing/CMakeFiles/run_tests_moveit_core_gtest_test_time_parameterization.dir/rule
-.PHONY : moveit/moveit_core/trajectory_processing/CMakeFiles/run_tests_moveit_core_gtest_test_time_parameterization.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_core_gtest_test_time_parameterization: moveit/moveit_core/trajectory_processing/CMakeFiles/run_tests_moveit_core_gtest_test_time_parameterization.dir/rule
-
-.PHONY : run_tests_moveit_core_gtest_test_time_parameterization
-
-# fast build rule for target.
-run_tests_moveit_core_gtest_test_time_parameterization/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/trajectory_processing/CMakeFiles/run_tests_moveit_core_gtest_test_time_parameterization.dir/build.make moveit/moveit_core/trajectory_processing/CMakeFiles/run_tests_moveit_core_gtest_test_time_parameterization.dir/build
-.PHONY : run_tests_moveit_core_gtest_test_time_parameterization/fast
 
 # Convenience name for target.
 moveit/moveit_core/trajectory_processing/CMakeFiles/moveit_trajectory_processing.dir/rule:
@@ -306,50 +250,19 @@ src/trajectory_tools.cpp.s:
 	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/trajectory_processing/CMakeFiles/moveit_trajectory_processing.dir/build.make moveit/moveit_core/trajectory_processing/CMakeFiles/moveit_trajectory_processing.dir/src/trajectory_tools.cpp.s
 .PHONY : src/trajectory_tools.cpp.s
 
-test/test_time_parameterization.o: test/test_time_parameterization.cpp.o
-
-.PHONY : test/test_time_parameterization.o
-
-# target to build an object file
-test/test_time_parameterization.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/trajectory_processing/CMakeFiles/test_time_parameterization.dir/build.make moveit/moveit_core/trajectory_processing/CMakeFiles/test_time_parameterization.dir/test/test_time_parameterization.cpp.o
-.PHONY : test/test_time_parameterization.cpp.o
-
-test/test_time_parameterization.i: test/test_time_parameterization.cpp.i
-
-.PHONY : test/test_time_parameterization.i
-
-# target to preprocess a source file
-test/test_time_parameterization.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/trajectory_processing/CMakeFiles/test_time_parameterization.dir/build.make moveit/moveit_core/trajectory_processing/CMakeFiles/test_time_parameterization.dir/test/test_time_parameterization.cpp.i
-.PHONY : test/test_time_parameterization.cpp.i
-
-test/test_time_parameterization.s: test/test_time_parameterization.cpp.s
-
-.PHONY : test/test_time_parameterization.s
-
-# target to generate assembly for a file
-test/test_time_parameterization.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/trajectory_processing/CMakeFiles/test_time_parameterization.dir/build.make moveit/moveit_core/trajectory_processing/CMakeFiles/test_time_parameterization.dir/test/test_time_parameterization.cpp.s
-.PHONY : test/test_time_parameterization.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... _run_tests_moveit_core_gtest_test_time_parameterization"
 	@echo "... install"
-	@echo "... test_time_parameterization"
-	@echo "... test"
-	@echo "... run_tests_moveit_core_gtest_test_time_parameterization"
-	@echo "... moveit_trajectory_processing"
 	@echo "... list_install_components"
+	@echo "... rebuild_cache"
+	@echo "... moveit_trajectory_processing"
 	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... edit_cache"
-	@echo "... rebuild_cache"
 	@echo "... src/iterative_spline_parameterization.o"
 	@echo "... src/iterative_spline_parameterization.i"
 	@echo "... src/iterative_spline_parameterization.s"
@@ -359,9 +272,6 @@ help:
 	@echo "... src/trajectory_tools.o"
 	@echo "... src/trajectory_tools.i"
 	@echo "... src/trajectory_tools.s"
-	@echo "... test/test_time_parameterization.o"
-	@echo "... test/test_time_parameterization.i"
-	@echo "... test/test_time_parameterization.s"
 .PHONY : help
 
 

@@ -56,17 +56,27 @@ CMAKE_BINARY_DIR = /home/darian/test_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
 
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+
+.PHONY : install/strip/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -79,27 +89,17 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
 
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # Special rule for the target list_install_components
 list_install_components:
@@ -110,17 +110,6 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-
-.PHONY : install/strip/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -166,51 +155,6 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-moveit/moveit_setup_assistant/CMakeFiles/_run_tests_moveit_setup_assistant_gtest_test_reading_writing_config.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_setup_assistant/CMakeFiles/_run_tests_moveit_setup_assistant_gtest_test_reading_writing_config.dir/rule
-.PHONY : moveit/moveit_setup_assistant/CMakeFiles/_run_tests_moveit_setup_assistant_gtest_test_reading_writing_config.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_setup_assistant_gtest_test_reading_writing_config: moveit/moveit_setup_assistant/CMakeFiles/_run_tests_moveit_setup_assistant_gtest_test_reading_writing_config.dir/rule
-
-.PHONY : _run_tests_moveit_setup_assistant_gtest_test_reading_writing_config
-
-# fast build rule for target.
-_run_tests_moveit_setup_assistant_gtest_test_reading_writing_config/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/_run_tests_moveit_setup_assistant_gtest_test_reading_writing_config.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/_run_tests_moveit_setup_assistant_gtest_test_reading_writing_config.dir/build
-.PHONY : _run_tests_moveit_setup_assistant_gtest_test_reading_writing_config/fast
-
-# Convenience name for target.
-moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater.dir/rule
-.PHONY : moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater.dir/rule
-
-# Convenience name for target.
-moveit_setup_assistant_updater: moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater.dir/rule
-
-.PHONY : moveit_setup_assistant_updater
-
-# fast build rule for target.
-moveit_setup_assistant_updater/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater.dir/build
-.PHONY : moveit_setup_assistant_updater/fast
-
-# Convenience name for target.
-moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant.dir/rule
-.PHONY : moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant.dir/rule
-
-# Convenience name for target.
-moveit_setup_assistant: moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant.dir/rule
-
-.PHONY : moveit_setup_assistant
-
-# fast build rule for target.
-moveit_setup_assistant/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant.dir/build
-.PHONY : moveit_setup_assistant/fast
-
-# Convenience name for target.
 moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_tools.dir/rule:
 	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_tools.dir/rule
 .PHONY : moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_tools.dir/rule
@@ -241,139 +185,34 @@ moveit_setup_assistant_widgets/fast:
 .PHONY : moveit_setup_assistant_widgets/fast
 
 # Convenience name for target.
-moveit/moveit_setup_assistant/CMakeFiles/run_tests_moveit_setup_assistant.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_setup_assistant/CMakeFiles/run_tests_moveit_setup_assistant.dir/rule
-.PHONY : moveit/moveit_setup_assistant/CMakeFiles/run_tests_moveit_setup_assistant.dir/rule
+moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant.dir/rule:
+	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant.dir/rule
+.PHONY : moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant.dir/rule
 
 # Convenience name for target.
-run_tests_moveit_setup_assistant: moveit/moveit_setup_assistant/CMakeFiles/run_tests_moveit_setup_assistant.dir/rule
+moveit_setup_assistant: moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant.dir/rule
 
-.PHONY : run_tests_moveit_setup_assistant
+.PHONY : moveit_setup_assistant
 
 # fast build rule for target.
-run_tests_moveit_setup_assistant/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/run_tests_moveit_setup_assistant.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/run_tests_moveit_setup_assistant.dir/build
-.PHONY : run_tests_moveit_setup_assistant/fast
+moveit_setup_assistant/fast:
+	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant.dir/build
+.PHONY : moveit_setup_assistant/fast
 
 # Convenience name for target.
-moveit/moveit_setup_assistant/CMakeFiles/_run_tests_moveit_setup_assistant.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_setup_assistant/CMakeFiles/_run_tests_moveit_setup_assistant.dir/rule
-.PHONY : moveit/moveit_setup_assistant/CMakeFiles/_run_tests_moveit_setup_assistant.dir/rule
+moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater.dir/rule:
+	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater.dir/rule
+.PHONY : moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater.dir/rule
 
 # Convenience name for target.
-_run_tests_moveit_setup_assistant: moveit/moveit_setup_assistant/CMakeFiles/_run_tests_moveit_setup_assistant.dir/rule
+moveit_setup_assistant_updater: moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater.dir/rule
 
-.PHONY : _run_tests_moveit_setup_assistant
+.PHONY : moveit_setup_assistant_updater
 
 # fast build rule for target.
-_run_tests_moveit_setup_assistant/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/_run_tests_moveit_setup_assistant.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/_run_tests_moveit_setup_assistant.dir/build
-.PHONY : _run_tests_moveit_setup_assistant/fast
-
-# Convenience name for target.
-moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config.dir/rule
-.PHONY : moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config.dir/rule
-
-# Convenience name for target.
-test_reading_writing_config: moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config.dir/rule
-
-.PHONY : test_reading_writing_config
-
-# fast build rule for target.
-test_reading_writing_config/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config.dir/build
-.PHONY : test_reading_writing_config/fast
-
-# Convenience name for target.
-moveit/moveit_setup_assistant/CMakeFiles/run_tests_moveit_setup_assistant_gtest.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_setup_assistant/CMakeFiles/run_tests_moveit_setup_assistant_gtest.dir/rule
-.PHONY : moveit/moveit_setup_assistant/CMakeFiles/run_tests_moveit_setup_assistant_gtest.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_setup_assistant_gtest: moveit/moveit_setup_assistant/CMakeFiles/run_tests_moveit_setup_assistant_gtest.dir/rule
-
-.PHONY : run_tests_moveit_setup_assistant_gtest
-
-# fast build rule for target.
-run_tests_moveit_setup_assistant_gtest/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/run_tests_moveit_setup_assistant_gtest.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/run_tests_moveit_setup_assistant_gtest.dir/build
-.PHONY : run_tests_moveit_setup_assistant_gtest/fast
-
-# Convenience name for target.
-moveit/moveit_setup_assistant/CMakeFiles/clean_test_results_moveit_setup_assistant.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_setup_assistant/CMakeFiles/clean_test_results_moveit_setup_assistant.dir/rule
-.PHONY : moveit/moveit_setup_assistant/CMakeFiles/clean_test_results_moveit_setup_assistant.dir/rule
-
-# Convenience name for target.
-clean_test_results_moveit_setup_assistant: moveit/moveit_setup_assistant/CMakeFiles/clean_test_results_moveit_setup_assistant.dir/rule
-
-.PHONY : clean_test_results_moveit_setup_assistant
-
-# fast build rule for target.
-clean_test_results_moveit_setup_assistant/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/clean_test_results_moveit_setup_assistant.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/clean_test_results_moveit_setup_assistant.dir/build
-.PHONY : clean_test_results_moveit_setup_assistant/fast
-
-# Convenience name for target.
-moveit/moveit_setup_assistant/CMakeFiles/_run_tests_moveit_setup_assistant_gtest.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_setup_assistant/CMakeFiles/_run_tests_moveit_setup_assistant_gtest.dir/rule
-.PHONY : moveit/moveit_setup_assistant/CMakeFiles/_run_tests_moveit_setup_assistant_gtest.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_setup_assistant_gtest: moveit/moveit_setup_assistant/CMakeFiles/_run_tests_moveit_setup_assistant_gtest.dir/rule
-
-.PHONY : _run_tests_moveit_setup_assistant_gtest
-
-# fast build rule for target.
-_run_tests_moveit_setup_assistant_gtest/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/_run_tests_moveit_setup_assistant_gtest.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/_run_tests_moveit_setup_assistant_gtest.dir/build
-.PHONY : _run_tests_moveit_setup_assistant_gtest/fast
-
-# Convenience name for target.
-moveit/moveit_setup_assistant/CMakeFiles/run_tests_moveit_setup_assistant_gtest_test_reading_writing_config.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_setup_assistant/CMakeFiles/run_tests_moveit_setup_assistant_gtest_test_reading_writing_config.dir/rule
-.PHONY : moveit/moveit_setup_assistant/CMakeFiles/run_tests_moveit_setup_assistant_gtest_test_reading_writing_config.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_setup_assistant_gtest_test_reading_writing_config: moveit/moveit_setup_assistant/CMakeFiles/run_tests_moveit_setup_assistant_gtest_test_reading_writing_config.dir/rule
-
-.PHONY : run_tests_moveit_setup_assistant_gtest_test_reading_writing_config
-
-# fast build rule for target.
-run_tests_moveit_setup_assistant_gtest_test_reading_writing_config/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/run_tests_moveit_setup_assistant_gtest_test_reading_writing_config.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/run_tests_moveit_setup_assistant_gtest_test_reading_writing_config.dir/build
-.PHONY : run_tests_moveit_setup_assistant_gtest_test_reading_writing_config/fast
-
-# Convenience name for target.
-moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater_automoc.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater_automoc.dir/rule
-.PHONY : moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater_automoc.dir/rule
-
-# Convenience name for target.
-moveit_setup_assistant_updater_automoc: moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater_automoc.dir/rule
-
-.PHONY : moveit_setup_assistant_updater_automoc
-
-# fast build rule for target.
-moveit_setup_assistant_updater_automoc/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater_automoc.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater_automoc.dir/build
-.PHONY : moveit_setup_assistant_updater_automoc/fast
-
-# Convenience name for target.
-moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_automoc.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_automoc.dir/rule
-.PHONY : moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_automoc.dir/rule
-
-# Convenience name for target.
-moveit_setup_assistant_automoc: moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_automoc.dir/rule
-
-.PHONY : moveit_setup_assistant_automoc
-
-# fast build rule for target.
-moveit_setup_assistant_automoc/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_automoc.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_automoc.dir/build
-.PHONY : moveit_setup_assistant_automoc/fast
+moveit_setup_assistant_updater/fast:
+	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater.dir/build
+.PHONY : moveit_setup_assistant_updater/fast
 
 # Convenience name for target.
 moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_tools_automoc.dir/rule:
@@ -406,19 +245,34 @@ moveit_setup_assistant_widgets_automoc/fast:
 .PHONY : moveit_setup_assistant_widgets_automoc/fast
 
 # Convenience name for target.
-moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config_automoc.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config_automoc.dir/rule
-.PHONY : moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config_automoc.dir/rule
+moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_automoc.dir/rule:
+	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_automoc.dir/rule
+.PHONY : moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_automoc.dir/rule
 
 # Convenience name for target.
-test_reading_writing_config_automoc: moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config_automoc.dir/rule
+moveit_setup_assistant_automoc: moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_automoc.dir/rule
 
-.PHONY : test_reading_writing_config_automoc
+.PHONY : moveit_setup_assistant_automoc
 
 # fast build rule for target.
-test_reading_writing_config_automoc/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config_automoc.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config_automoc.dir/build
-.PHONY : test_reading_writing_config_automoc/fast
+moveit_setup_assistant_automoc/fast:
+	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_automoc.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_automoc.dir/build
+.PHONY : moveit_setup_assistant_automoc/fast
+
+# Convenience name for target.
+moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater_automoc.dir/rule:
+	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater_automoc.dir/rule
+.PHONY : moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater_automoc.dir/rule
+
+# Convenience name for target.
+moveit_setup_assistant_updater_automoc: moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater_automoc.dir/rule
+
+.PHONY : moveit_setup_assistant_updater_automoc
+
+# fast build rule for target.
+moveit_setup_assistant_updater_automoc/fast:
+	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater_automoc.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_updater_automoc.dir/build
+.PHONY : moveit_setup_assistant_updater_automoc/fast
 
 moveit_setup_assistant_automoc.o: moveit_setup_assistant_automoc.cpp.o
 
@@ -1257,90 +1111,26 @@ src/widgets/virtual_joints_widget.cpp.s:
 	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_widgets.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/moveit_setup_assistant_widgets.dir/src/widgets/virtual_joints_widget.cpp.s
 .PHONY : src/widgets/virtual_joints_widget.cpp.s
 
-test/moveit_config_data_test.o: test/moveit_config_data_test.cpp.o
-
-.PHONY : test/moveit_config_data_test.o
-
-# target to build an object file
-test/moveit_config_data_test.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config.dir/test/moveit_config_data_test.cpp.o
-.PHONY : test/moveit_config_data_test.cpp.o
-
-test/moveit_config_data_test.i: test/moveit_config_data_test.cpp.i
-
-.PHONY : test/moveit_config_data_test.i
-
-# target to preprocess a source file
-test/moveit_config_data_test.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config.dir/test/moveit_config_data_test.cpp.i
-.PHONY : test/moveit_config_data_test.cpp.i
-
-test/moveit_config_data_test.s: test/moveit_config_data_test.cpp.s
-
-.PHONY : test/moveit_config_data_test.s
-
-# target to generate assembly for a file
-test/moveit_config_data_test.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config.dir/test/moveit_config_data_test.cpp.s
-.PHONY : test/moveit_config_data_test.cpp.s
-
-test_reading_writing_config_automoc.o: test_reading_writing_config_automoc.cpp.o
-
-.PHONY : test_reading_writing_config_automoc.o
-
-# target to build an object file
-test_reading_writing_config_automoc.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config.dir/test_reading_writing_config_automoc.cpp.o
-.PHONY : test_reading_writing_config_automoc.cpp.o
-
-test_reading_writing_config_automoc.i: test_reading_writing_config_automoc.cpp.i
-
-.PHONY : test_reading_writing_config_automoc.i
-
-# target to preprocess a source file
-test_reading_writing_config_automoc.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config.dir/test_reading_writing_config_automoc.cpp.i
-.PHONY : test_reading_writing_config_automoc.cpp.i
-
-test_reading_writing_config_automoc.s: test_reading_writing_config_automoc.cpp.s
-
-.PHONY : test_reading_writing_config_automoc.s
-
-# target to generate assembly for a file
-test_reading_writing_config_automoc.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config.dir/build.make moveit/moveit_setup_assistant/CMakeFiles/test_reading_writing_config.dir/test_reading_writing_config_automoc.cpp.s
-.PHONY : test_reading_writing_config_automoc.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install"
-	@echo "... rebuild_cache"
-	@echo "... test"
-	@echo "... _run_tests_moveit_setup_assistant_gtest_test_reading_writing_config"
-	@echo "... moveit_setup_assistant_updater"
 	@echo "... install/local"
-	@echo "... moveit_setup_assistant"
-	@echo "... moveit_setup_assistant_tools"
-	@echo "... list_install_components"
 	@echo "... install/strip"
+	@echo "... rebuild_cache"
+	@echo "... moveit_setup_assistant_tools"
+	@echo "... install"
+	@echo "... list_install_components"
 	@echo "... moveit_setup_assistant_widgets"
-	@echo "... run_tests_moveit_setup_assistant"
-	@echo "... _run_tests_moveit_setup_assistant"
 	@echo "... edit_cache"
-	@echo "... test_reading_writing_config"
-	@echo "... run_tests_moveit_setup_assistant_gtest"
-	@echo "... clean_test_results_moveit_setup_assistant"
-	@echo "... _run_tests_moveit_setup_assistant_gtest"
-	@echo "... run_tests_moveit_setup_assistant_gtest_test_reading_writing_config"
-	@echo "... moveit_setup_assistant_updater_automoc"
-	@echo "... moveit_setup_assistant_automoc"
+	@echo "... moveit_setup_assistant"
+	@echo "... moveit_setup_assistant_updater"
 	@echo "... moveit_setup_assistant_tools_automoc"
 	@echo "... moveit_setup_assistant_widgets_automoc"
-	@echo "... test_reading_writing_config_automoc"
+	@echo "... moveit_setup_assistant_automoc"
+	@echo "... moveit_setup_assistant_updater_automoc"
 	@echo "... moveit_setup_assistant_automoc.o"
 	@echo "... moveit_setup_assistant_automoc.i"
 	@echo "... moveit_setup_assistant_automoc.s"
@@ -1434,12 +1224,6 @@ help:
 	@echo "... src/widgets/virtual_joints_widget.o"
 	@echo "... src/widgets/virtual_joints_widget.i"
 	@echo "... src/widgets/virtual_joints_widget.s"
-	@echo "... test/moveit_config_data_test.o"
-	@echo "... test/moveit_config_data_test.i"
-	@echo "... test/moveit_config_data_test.s"
-	@echo "... test_reading_writing_config_automoc.o"
-	@echo "... test_reading_writing_config_automoc.i"
-	@echo "... test_reading_writing_config_automoc.s"
 .PHONY : help
 
 

@@ -53,10 +53,20 @@
 
       <!--THIS INTERTIA BAD -->
 
+      <!--WRT Frame -->
+      
       <!--inertia
         ixx="0.00094553" ixy="0.00000498" ixz="0.00000423"
         iyy="0.00453323" iyz="0"
         izz="0.00449473" /-->
+
+      <!--WRT Center of Mass -->
+
+      <!--inertia
+        ixx="0.00071484" ixy="0.00006547" ixz="0.00000425"
+        iyy="0.00451737" iyz="-0.0000001"
+        izz="0.00424818" /-->
+
       <inertia
         ixx="1" ixy="0" ixz="0"
         iyy="1" iyz="0"
@@ -99,10 +109,20 @@
         value="0.133" />
 
       <!--THIS INERTIA BAD -->  
+
+      <!--WRT Frame -->
       <inertia
         ixx="0.00013197" ixy="0.00003487" ixz="-0.00002725"
         iyy="0.00008839" iyz="-0.0000446"
         izz="0.00011716" />
+
+      <!--WRT Center of Mass -->
+
+      <!--inertia
+        ixx="0.0000482" ixy="0.00000511" ixz="-0.00000694"
+        iyy="0.00004627" iyz="-0.00000559"
+        izz="0.00004453" /-->
+
       <!--inertia
         ixx="1" ixy="0" ixz="0"
         iyy="1" iyz="0"
@@ -163,10 +183,20 @@
 
       <!--THIS INERTIA BAD-->
 
+      <!--WRT Frame -->
+
       <!--inertia
         ixx="0.00004347" ixy="0.00000003" ixz="0.00000059"
         iyy="0.00003321" iyz="0.00000132"
         izz="0.00001297" /-->
+      
+      <!--WRT Center of Mass -->
+
+      <!--inertia
+        ixx="0.0000212" ixy="0" ixz="0.00000016"
+        iyy="0.00001102" iyz="0.00000001"
+        izz="0.00001288" /-->
+
       <inertia
         ixx="1" ixy="0" ixz="0"
         iyy="1" iyz="0"
@@ -226,10 +256,21 @@
         value="0.081" />
 
       <!--  THIS INERTIA IS BAD-->  
+
+      <!--WRT Frame -->
+
       <!--inertia
         ixx="0.00000781" ixy="0.00000094" ixz="0"
         iyy="0.00017172" iyz="0"
         izz="0.00017312" /-->
+
+      <!--WRT Center of Mass -->
+
+      <!--inertia
+        ixx="0.00000765" ixy="0.00000428" ixz="-0.00000001"
+        iyy="0.00010195" iyz="0"
+        izz="0.00010319" /-->
+
       <inertia
         ixx="1" ixy="0" ixz="0"
         iyy="1" iyz="0"
@@ -314,14 +355,27 @@
         value="0.328" />
 
       <!--THIS INERTIA NOT BAD BUT SEEMS NOT GREAT -->
+
+      <!--WRT Frame -->
+
       <inertia
         ixx="0.00013197" ixy="0.00003487" ixz="-0.00002725"
         iyy="0.00008839" iyz="-0.0000446"
         izz="0.00011716" />
+
+      <!--WRT Center of Mass -->
+
+      <!--inertia
+        ixx="0.0000482" ixy="0.00000511" ixz="-0.00000694"
+        iyy="0.00004627" iyz="-0.00000559"
+        izz="0.00004453" /-->
+
+
       <!--inertia
         ixx="1" ixy="0" ixz="0"
         iyy="1" iyz="0"
         izz="1" /-->
+
     </inertial>
     <visual>
       <origin
@@ -377,10 +431,21 @@
         value="0.027" />
       
       <!--THIS ONE BROKE IT MIGHT BE BECAUSE OF THE COMBINATION OF THE HIPE AND KNEE -->
+
+      <!--WRT Frame -->
+
       <!--inertia
         ixx="0.00004347" ixy="0.00000003" ixz="0.00000059"
         iyy="0.00003321" iyz="0.00000132"
         izz="0.00001297" /-->
+
+      <!--WRT Center of Mass -->
+
+      <!--inertia
+        ixx="0.0000212" ixy="0" ixz="0.00000016"
+        iyy="0.00001102" iyz="0.00000001"
+        izz="0.00001288" /-->
+
       <inertia
         ixx="1" ixy="0" ixz="0"
         iyy="1" iyz="0"
@@ -438,10 +503,22 @@
         rpy="0 0 0" />
       <mass
         value="0.081" />
+ 
+      <!--THIS INERTIA BAD -->
+      <!--WRT Frame -->
+
       <!--inertia
         ixx="0.00000781" ixy="0.00000094" ixz="0"
         iyy="0.00017172" iyz="0"
         izz="0.00017312" /-->
+
+      <!--WRT Center of Mass -->
+
+      <!--inertia
+        ixx="0.00000765" ixy="0.00000428" ixz="-0.00000001"
+        iyy="0.00010195" iyz="0"
+        izz="0.00010319" /-->
+
       <inertia
         ixx="1" ixy="0" ixz="0"
         iyy="1" iyz="0"
@@ -524,10 +601,22 @@
         rpy="0 0 0" />
       <mass
         value="0.133" />
+
+      <!--WRT Frame -->
+
       <inertia
         ixx="0.00013197" ixy="0.00003487" ixz="-0.00002725"
         iyy="0.00008839" iyz="-0.0000446"
         izz="0.00011716" />
+
+      <!--WRT Center of Mass -->
+
+      <!--inertia
+        ixx="0.0000482" ixy="0.00000511" ixz="-0.00000694"
+        iyy="0.00004627" iyz="-0.00000559"
+        izz="0.00004453" /-->
+
+
       <!--inertia
         ixx="1" ixy="0" ixz="0"
         iyy="1" iyz="0"
@@ -587,10 +676,21 @@
         value="0.027" />
 
       <!--THIS INERTIA BAD -->  
+
+      <!--WRT Frame -->
+
       <!--inertia
         ixx="0.00004347" ixy="0.00000003" ixz="0.00000059"
         iyy="0.00003321" iyz="0.00000132"
         izz="0.00001297" /-->
+
+      <!--WRT Center of Mass -->
+
+      <!--inertia
+        ixx="0.0000212" ixy="0" ixz="0.00000016"
+        iyy="0.00001102" iyz="0.00000001"
+        izz="0.00001288" /-->
+
       <inertia
         ixx="1" ixy="0" ixz="0"
         iyy="1" iyz="0"
@@ -650,10 +750,21 @@
         value="0.081" />
       
       <!--THIS INERTIA BAD -->
+
+      <!--WRT Frame -->
+
       <!--inertia
         ixx="0.00000781" ixy="0.00000094" ixz="0"
         iyy="0.00017172" iyz="0"
         izz="0.00017312" /-->
+      
+      <!--WRT Center of Mass -->
+
+      <!--inertia
+        ixx="0.00000765" ixy="0.00000428" ixz="-0.00000001"
+        iyy="0.00010195" iyz="0"
+        izz="0.00010319" /-->
+
       <inertia
         ixx="1" ixy="0" ixz="0"
         iyy="1" iyz="0"
@@ -736,10 +847,21 @@
         rpy="0 0 0" />
       <mass
         value="0.133" />
+
+      <!--WRT Frame -->
+
       <inertia
         ixx="0.00009468" ixy="0.00001246" ixz="0.0000021"
         iyy="0.00006976" iyz="0.000018"
         izz="0.00007375" />
+
+      <!--WRT Center of Mass -->
+
+      <!--inertia
+        ixx="0.00004617" ixy="0.00000464" ixz="-0.00000461"
+        iyy="0.000047" iyz="-0.00000597"
+        izz="0.00004361" /-->
+
       <!--inertia
         ixx="1" ixy="0" ixz="0"
         iyy="1" iyz="0"
@@ -797,10 +919,21 @@
         rpy="0 0 0" />
       <mass
         value="0.027" />
+
+      <!--WRT Frame -->
+
       <inertia
         ixx="0.00004347" ixy="0.00000003" ixz="0.00000059"
         iyy="0.00003321" iyz="0.00000132"
         izz="0.00001297" />
+
+      <!--WRT Center of Mass -->
+
+      <!--inertia
+        ixx="0.0000212" ixy="0" ixz="0.00000016"
+        iyy="0.00001102" iyz="0.00000001"
+        izz="0.00001288" /-->
+
       <!--inertia
         ixx="1" ixy="0" ixz="0"
         iyy="1" iyz="0"
@@ -860,10 +993,21 @@
         value="0.81" />
 
       <!--THIS INERTIA BAD-->
+
+      <!--WRT Frame -->
+
       <!--inertia
         ixx="0.00000781" ixy="0.00000094" ixz="0"
         iyy="0.00017172" iyz="0"
         izz="0.00017312" /-->
+
+      <!--WRT Center of Mass -->
+
+      <!--inertia
+        ixx="0.00000765" ixy="0.00000428" ixz="-0.00000001"
+        iyy="0.00010195" iyz="0"
+        izz="0.00010319" /-->
+
       <inertia
         ixx="1" ixy="0" ixz="0"
         iyy="1" iyz="0"
@@ -946,10 +1090,21 @@
         rpy="0 0 0" />
       <mass
         value="0.328" />
+
+      <!--WRT Frame -->  
+      
       <inertia
         ixx="0.00009468" ixy="0.00001246" ixz="0.0000021"
         iyy="0.00006976" iyz="0.000018"
-        izz="0.00007375" />
+        izz="0.00007375" />>
+
+      <!--WRT Center of Mass -->
+
+      <!--inertia
+        ixx="0.00004617" ixy="0.00000464" ixz="-0.00000461"
+        iyy="0.000047" iyz="-0.00000597"
+        izz="0.00004361" /-->
+      
       <!--inertia
         ixx="1" ixy="0" ixz="0"
         iyy="1" iyz="0"
@@ -1008,10 +1163,21 @@
       <mass
         value="0.027" />
       <!-- THIS INERTIA BAD-->
+
+      <!--WRT Frame -->
+
       <!--inertia
         ixx="0.00004347" ixy="0.00000003" ixz="0.00000059"
         iyy="0.00003321" iyz="0.00000132"
         izz="0.00001297" /-->
+
+      <!--WRT Center of Mass -->
+
+      <!--inertia
+        ixx="0.0000212" ixy="0" ixz="0.00000016"
+        iyy="0.00001102" iyz="0.00000001"
+        izz="0.00001288" /-->
+
       <inertia
         ixx="1" ixy="0" ixz="0"
         iyy="1" iyz="0"
@@ -1070,10 +1236,21 @@
       <mass
         value="0.081" />
       <!--THIS INERTIA BAD -->
+
+      <!--WRT Frame -->
+
       <!--inertia
         ixx="0.00000781" ixy="0.00000094" ixz="0"
         iyy="0.00017172" iyz="0"
         izz="0.00017312" /-->
+
+      <!--WRT Center of Mass -->
+
+      <!--inertia
+        ixx="0.00000765" ixy="0.00000428" ixz="-0.00000001"
+        iyy="0.00010195" iyz="0"
+        izz="0.00010319" /-->
+      
       <inertia
         ixx="1" ixy="0" ixz="0"
         iyy="1" iyz="0"
@@ -1156,10 +1333,21 @@
         rpy="0 0 0" />
       <mass
         value="0.133" />
+
+      <!--WRT Frame -->
+
       <inertia
         ixx="0.00009468" ixy="0.00001246" ixz="0.0000021"
         iyy="0.00006976" iyz="0.000018"
         izz="0.00007375" />
+
+      <!--WRT Center of Mass -->
+
+      <!--inertia
+        ixx="0.00004617" ixy="0.00000464" ixz="-0.00000461"
+        iyy="0.000047" iyz="-0.00000597"
+        izz="0.00004361" /-->  
+      
       <!--inertia
         ixx="1" ixy="0" ixz="0"
         iyy="1" iyz="0"
@@ -1218,10 +1406,21 @@
       <mass
         value="0.027" />
       <!-- THIS INERTIA BAD-->
+
+      <!--WRT Frame -->
+
       <!--inertia
         ixx="0.00004347" ixy="0.00000003" ixz="0.00000059"
         iyy="0.00003321" iyz="0.00000132"
         izz="0.00001297" /-->
+
+      <!--WRT Center of Mass -->
+
+      <!--inertia
+        ixx="0.0000212" ixy="0" ixz="0.00000016"
+        iyy="0.00001102" iyz="0.00000001"
+        izz="0.00001288" /-->
+
       <inertia
         ixx="1" ixy="0" ixz="0"
         iyy="1" iyz="0"
@@ -1280,10 +1479,21 @@
       <mass
         value="0.081" />
       <!--THIS INERTIA BAD -->
+
+      <!--WRT Frame -->
+
       <!--inertia
         ixx="0.00000781" ixy="0.00000094" ixz="0"
         iyy="0.00017172" iyz="0"
         izz="0.00017312" /-->
+
+      <!--WRT Center of Mass -->
+
+      <!--inertia
+        ixx="0.00000765" ixy="0.00000428" ixz="-0.00000001"
+        iyy="0.00010195" iyz="0"
+        izz="0.00010319" /-->
+  
       <inertia
         ixx="1" ixy="0" ixz="0"
         iyy="1" iyz="0"

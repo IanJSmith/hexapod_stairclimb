@@ -56,49 +56,17 @@ CMAKE_BINARY_DIR = /home/darian/test_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # Special rule for the target list_install_components
 list_install_components:
@@ -109,6 +77,17 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -121,17 +100,27 @@ install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
 
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,66 +155,6 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_py.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_py.dir/rule
-.PHONY : moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_py.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_py: moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_py.dir/rule
-
-.PHONY : tf_generate_messages_py
-
-# fast build rule for target.
-tf_generate_messages_py/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_py.dir/build.make moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_py.dir/build
-.PHONY : tf_generate_messages_py/fast
-
-# Convenience name for target.
-moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_eus.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_eus.dir/rule
-.PHONY : moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_eus: moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_eus.dir/rule
-
-.PHONY : tf_generate_messages_eus
-
-# fast build rule for target.
-tf_generate_messages_eus/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_eus.dir/build.make moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_eus.dir/build
-.PHONY : tf_generate_messages_eus/fast
-
-# Convenience name for target.
-moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/rule
-.PHONY : moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/rule
-
-# Convenience name for target.
-test_constraint_samplers: moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/rule
-
-.PHONY : test_constraint_samplers
-
-# fast build rule for target.
-test_constraint_samplers/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/build.make moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/build
-.PHONY : test_constraint_samplers/fast
-
-# Convenience name for target.
-moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_cpp.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_cpp.dir/rule
-.PHONY : moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_cpp: moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_cpp.dir/rule
-
-.PHONY : tf_generate_messages_cpp
-
-# fast build rule for target.
-tf_generate_messages_cpp/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_cpp.dir/build.make moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_cpp.dir/build
-.PHONY : tf_generate_messages_cpp/fast
-
-# Convenience name for target.
 moveit/moveit_core/constraint_samplers/CMakeFiles/moveit_constraint_samplers.dir/rule:
 	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/constraint_samplers/CMakeFiles/moveit_constraint_samplers.dir/rule
 .PHONY : moveit/moveit_core/constraint_samplers/CMakeFiles/moveit_constraint_samplers.dir/rule
@@ -239,66 +168,6 @@ moveit_constraint_samplers: moveit/moveit_core/constraint_samplers/CMakeFiles/mo
 moveit_constraint_samplers/fast:
 	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/constraint_samplers/CMakeFiles/moveit_constraint_samplers.dir/build.make moveit/moveit_core/constraint_samplers/CMakeFiles/moveit_constraint_samplers.dir/build
 .PHONY : moveit_constraint_samplers/fast
-
-# Convenience name for target.
-moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_nodejs.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_nodejs.dir/rule
-.PHONY : moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_nodejs: moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_nodejs.dir/rule
-
-.PHONY : tf_generate_messages_nodejs
-
-# fast build rule for target.
-tf_generate_messages_nodejs/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_nodejs.dir/build.make moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_nodejs.dir/build
-.PHONY : tf_generate_messages_nodejs/fast
-
-# Convenience name for target.
-moveit/moveit_core/constraint_samplers/CMakeFiles/run_tests_moveit_core_gtest_test_constraint_samplers.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/constraint_samplers/CMakeFiles/run_tests_moveit_core_gtest_test_constraint_samplers.dir/rule
-.PHONY : moveit/moveit_core/constraint_samplers/CMakeFiles/run_tests_moveit_core_gtest_test_constraint_samplers.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_core_gtest_test_constraint_samplers: moveit/moveit_core/constraint_samplers/CMakeFiles/run_tests_moveit_core_gtest_test_constraint_samplers.dir/rule
-
-.PHONY : run_tests_moveit_core_gtest_test_constraint_samplers
-
-# fast build rule for target.
-run_tests_moveit_core_gtest_test_constraint_samplers/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/constraint_samplers/CMakeFiles/run_tests_moveit_core_gtest_test_constraint_samplers.dir/build.make moveit/moveit_core/constraint_samplers/CMakeFiles/run_tests_moveit_core_gtest_test_constraint_samplers.dir/build
-.PHONY : run_tests_moveit_core_gtest_test_constraint_samplers/fast
-
-# Convenience name for target.
-moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_lisp.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_lisp.dir/rule
-.PHONY : moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_lisp: moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_lisp.dir/rule
-
-.PHONY : tf_generate_messages_lisp
-
-# fast build rule for target.
-tf_generate_messages_lisp/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_lisp.dir/build.make moveit/moveit_core/constraint_samplers/CMakeFiles/tf_generate_messages_lisp.dir/build
-.PHONY : tf_generate_messages_lisp/fast
-
-# Convenience name for target.
-moveit/moveit_core/constraint_samplers/CMakeFiles/_run_tests_moveit_core_gtest_test_constraint_samplers.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/constraint_samplers/CMakeFiles/_run_tests_moveit_core_gtest_test_constraint_samplers.dir/rule
-.PHONY : moveit/moveit_core/constraint_samplers/CMakeFiles/_run_tests_moveit_core_gtest_test_constraint_samplers.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_core_gtest_test_constraint_samplers: moveit/moveit_core/constraint_samplers/CMakeFiles/_run_tests_moveit_core_gtest_test_constraint_samplers.dir/rule
-
-.PHONY : _run_tests_moveit_core_gtest_test_constraint_samplers
-
-# fast build rule for target.
-_run_tests_moveit_core_gtest_test_constraint_samplers/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/constraint_samplers/CMakeFiles/_run_tests_moveit_core_gtest_test_constraint_samplers.dir/build.make moveit/moveit_core/constraint_samplers/CMakeFiles/_run_tests_moveit_core_gtest_test_constraint_samplers.dir/build
-.PHONY : _run_tests_moveit_core_gtest_test_constraint_samplers/fast
 
 src/constraint_sampler.o: src/constraint_sampler.cpp.o
 
@@ -435,109 +304,19 @@ src/union_constraint_sampler.cpp.s:
 	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/constraint_samplers/CMakeFiles/moveit_constraint_samplers.dir/build.make moveit/moveit_core/constraint_samplers/CMakeFiles/moveit_constraint_samplers.dir/src/union_constraint_sampler.cpp.s
 .PHONY : src/union_constraint_sampler.cpp.s
 
-test/pr2_arm_ik.o: test/pr2_arm_ik.cpp.o
-
-.PHONY : test/pr2_arm_ik.o
-
-# target to build an object file
-test/pr2_arm_ik.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/build.make moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/test/pr2_arm_ik.cpp.o
-.PHONY : test/pr2_arm_ik.cpp.o
-
-test/pr2_arm_ik.i: test/pr2_arm_ik.cpp.i
-
-.PHONY : test/pr2_arm_ik.i
-
-# target to preprocess a source file
-test/pr2_arm_ik.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/build.make moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/test/pr2_arm_ik.cpp.i
-.PHONY : test/pr2_arm_ik.cpp.i
-
-test/pr2_arm_ik.s: test/pr2_arm_ik.cpp.s
-
-.PHONY : test/pr2_arm_ik.s
-
-# target to generate assembly for a file
-test/pr2_arm_ik.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/build.make moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/test/pr2_arm_ik.cpp.s
-.PHONY : test/pr2_arm_ik.cpp.s
-
-test/pr2_arm_kinematics_plugin.o: test/pr2_arm_kinematics_plugin.cpp.o
-
-.PHONY : test/pr2_arm_kinematics_plugin.o
-
-# target to build an object file
-test/pr2_arm_kinematics_plugin.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/build.make moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/test/pr2_arm_kinematics_plugin.cpp.o
-.PHONY : test/pr2_arm_kinematics_plugin.cpp.o
-
-test/pr2_arm_kinematics_plugin.i: test/pr2_arm_kinematics_plugin.cpp.i
-
-.PHONY : test/pr2_arm_kinematics_plugin.i
-
-# target to preprocess a source file
-test/pr2_arm_kinematics_plugin.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/build.make moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/test/pr2_arm_kinematics_plugin.cpp.i
-.PHONY : test/pr2_arm_kinematics_plugin.cpp.i
-
-test/pr2_arm_kinematics_plugin.s: test/pr2_arm_kinematics_plugin.cpp.s
-
-.PHONY : test/pr2_arm_kinematics_plugin.s
-
-# target to generate assembly for a file
-test/pr2_arm_kinematics_plugin.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/build.make moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/test/pr2_arm_kinematics_plugin.cpp.s
-.PHONY : test/pr2_arm_kinematics_plugin.cpp.s
-
-test/test_constraint_samplers.o: test/test_constraint_samplers.cpp.o
-
-.PHONY : test/test_constraint_samplers.o
-
-# target to build an object file
-test/test_constraint_samplers.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/build.make moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/test/test_constraint_samplers.cpp.o
-.PHONY : test/test_constraint_samplers.cpp.o
-
-test/test_constraint_samplers.i: test/test_constraint_samplers.cpp.i
-
-.PHONY : test/test_constraint_samplers.i
-
-# target to preprocess a source file
-test/test_constraint_samplers.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/build.make moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/test/test_constraint_samplers.cpp.i
-.PHONY : test/test_constraint_samplers.cpp.i
-
-test/test_constraint_samplers.s: test/test_constraint_samplers.cpp.s
-
-.PHONY : test/test_constraint_samplers.s
-
-# target to generate assembly for a file
-test/test_constraint_samplers.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/build.make moveit/moveit_core/constraint_samplers/CMakeFiles/test_constraint_samplers.dir/test/test_constraint_samplers.cpp.s
-.PHONY : test/test_constraint_samplers.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... install/local"
-	@echo "... tf_generate_messages_py"
-	@echo "... tf_generate_messages_eus"
-	@echo "... test_constraint_samplers"
-	@echo "... tf_generate_messages_cpp"
-	@echo "... test"
-	@echo "... moveit_constraint_samplers"
-	@echo "... tf_generate_messages_nodejs"
-	@echo "... run_tests_moveit_core_gtest_test_constraint_samplers"
-	@echo "... list_install_components"
-	@echo "... install/strip"
 	@echo "... install"
-	@echo "... tf_generate_messages_lisp"
-	@echo "... _run_tests_moveit_core_gtest_test_constraint_samplers"
+	@echo "... list_install_components"
+	@echo "... rebuild_cache"
+	@echo "... install/strip"
+	@echo "... install/local"
+	@echo "... moveit_constraint_samplers"
+	@echo "... edit_cache"
 	@echo "... src/constraint_sampler.o"
 	@echo "... src/constraint_sampler.i"
 	@echo "... src/constraint_sampler.s"
@@ -553,15 +332,6 @@ help:
 	@echo "... src/union_constraint_sampler.o"
 	@echo "... src/union_constraint_sampler.i"
 	@echo "... src/union_constraint_sampler.s"
-	@echo "... test/pr2_arm_ik.o"
-	@echo "... test/pr2_arm_ik.i"
-	@echo "... test/pr2_arm_ik.s"
-	@echo "... test/pr2_arm_kinematics_plugin.o"
-	@echo "... test/pr2_arm_kinematics_plugin.i"
-	@echo "... test/pr2_arm_kinematics_plugin.s"
-	@echo "... test/test_constraint_samplers.o"
-	@echo "... test/test_constraint_samplers.i"
-	@echo "... test/test_constraint_samplers.s"
 .PHONY : help
 
 

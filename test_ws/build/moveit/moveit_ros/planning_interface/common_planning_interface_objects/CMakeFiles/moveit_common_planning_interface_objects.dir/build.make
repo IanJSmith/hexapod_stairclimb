@@ -121,7 +121,8 @@ moveit_common_planning_interface_objects_EXTERNAL_OBJECTS =
 /home/darian/test_ws/devel/lib/libmoveit_common_planning_interface_objects.so.0.9.17: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
 /home/darian/test_ws/devel/lib/libmoveit_common_planning_interface_objects.so.0.9.17: /usr/lib/x86_64-linux-gnu/libtinyxml.so
 /home/darian/test_ws/devel/lib/libmoveit_common_planning_interface_objects.so.0.9.17: /opt/ros/kinetic/lib/libeigen_conversions.so
-/home/darian/test_ws/devel/lib/libmoveit_common_planning_interface_objects.so.0.9.17: /opt/ros/kinetic/lib/libeigenpy.so
+/home/darian/test_ws/devel/lib/libmoveit_common_planning_interface_objects.so.0.9.17: /opt/ros/kinetic/lib/x86_64-linux-gnu/libeigenpy.so
+/home/darian/test_ws/devel/lib/libmoveit_common_planning_interface_objects.so.0.9.17: /usr/lib/x86_64-linux-gnu/libboost_python-py27.so
 /home/darian/test_ws/devel/lib/libmoveit_common_planning_interface_objects.so.0.9.17: /opt/ros/kinetic/lib/libtf_conversions.so
 /home/darian/test_ws/devel/lib/libmoveit_common_planning_interface_objects.so.0.9.17: /opt/ros/kinetic/lib/libkdl_conversions.so
 /home/darian/test_ws/devel/lib/libmoveit_common_planning_interface_objects.so.0.9.17: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2

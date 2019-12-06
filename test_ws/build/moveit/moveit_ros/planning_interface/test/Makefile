@@ -56,27 +56,17 @@ CMAKE_BINARY_DIR = /home/darian/test_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # Special rule for the target list_install_components
 list_install_components:
@@ -99,16 +89,27 @@ install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
 
-# Special rule for the target test
-test/fast: test
+# Special rule for the target install/local
+install/local/fast: install/local
 
-.PHONY : test/fast
+.PHONY : install/local/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -120,18 +121,6 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -165,273 +154,18 @@ depend:
 	cd /home/darian/test_ws/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-# Convenience name for target.
-moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test.dir/rule
-.PHONY : moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test: moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test.dir/rule
-
-.PHONY : _run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test
-
-# fast build rule for target.
-_run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test.dir/build.make moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test.dir/build
-.PHONY : _run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test/fast
-
-# Convenience name for target.
-moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test.dir/rule
-.PHONY : moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test: moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test.dir/rule
-
-.PHONY : run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test
-
-# fast build rule for target.
-run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test.dir/build.make moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test.dir/build
-.PHONY : run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test/fast
-
-# Convenience name for target.
-moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test.dir/rule
-.PHONY : moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test: moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test.dir/rule
-
-.PHONY : _run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test
-
-# fast build rule for target.
-_run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test.dir/build.make moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test.dir/build
-.PHONY : _run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test/fast
-
-# Convenience name for target.
-moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest.dir/rule
-.PHONY : moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_ros_planning_interface_rostest: moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest.dir/rule
-
-.PHONY : run_tests_moveit_ros_planning_interface_rostest
-
-# fast build rule for target.
-run_tests_moveit_ros_planning_interface_rostest/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest.dir/build.make moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest.dir/build
-.PHONY : run_tests_moveit_ros_planning_interface_rostest/fast
-
-# Convenience name for target.
-moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface.dir/rule
-.PHONY : moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_ros_planning_interface: moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface.dir/rule
-
-.PHONY : _run_tests_moveit_ros_planning_interface
-
-# fast build rule for target.
-_run_tests_moveit_ros_planning_interface/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface.dir/build.make moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface.dir/build
-.PHONY : _run_tests_moveit_ros_planning_interface/fast
-
-# Convenience name for target.
-moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface.dir/rule
-.PHONY : moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_ros_planning_interface: moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface.dir/rule
-
-.PHONY : run_tests_moveit_ros_planning_interface
-
-# fast build rule for target.
-run_tests_moveit_ros_planning_interface/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface.dir/build.make moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface.dir/build
-.PHONY : run_tests_moveit_ros_planning_interface/fast
-
-# Convenience name for target.
-moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest.dir/rule
-.PHONY : moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_ros_planning_interface_rostest: moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest.dir/rule
-
-.PHONY : _run_tests_moveit_ros_planning_interface_rostest
-
-# fast build rule for target.
-_run_tests_moveit_ros_planning_interface_rostest/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest.dir/build.make moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest.dir/build
-.PHONY : _run_tests_moveit_ros_planning_interface_rostest/fast
-
-# Convenience name for target.
-moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test.dir/rule
-.PHONY : moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test: moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test.dir/rule
-
-.PHONY : _run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test
-
-# fast build rule for target.
-_run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test.dir/build.make moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test.dir/build
-.PHONY : _run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test/fast
-
-# Convenience name for target.
-moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test.dir/rule
-.PHONY : moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test: moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test.dir/rule
-
-.PHONY : run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test
-
-# fast build rule for target.
-run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test.dir/build.make moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test.dir/build
-.PHONY : run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test/fast
-
-# Convenience name for target.
-moveit/moveit_ros/planning_interface/test/CMakeFiles/test_cleanup.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/planning_interface/test/CMakeFiles/test_cleanup.dir/rule
-.PHONY : moveit/moveit_ros/planning_interface/test/CMakeFiles/test_cleanup.dir/rule
-
-# Convenience name for target.
-test_cleanup: moveit/moveit_ros/planning_interface/test/CMakeFiles/test_cleanup.dir/rule
-
-.PHONY : test_cleanup
-
-# fast build rule for target.
-test_cleanup/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/planning_interface/test/CMakeFiles/test_cleanup.dir/build.make moveit/moveit_ros/planning_interface/test/CMakeFiles/test_cleanup.dir/build
-.PHONY : test_cleanup/fast
-
-# Convenience name for target.
-moveit/moveit_ros/planning_interface/test/CMakeFiles/clean_test_results_moveit_ros_planning_interface.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/planning_interface/test/CMakeFiles/clean_test_results_moveit_ros_planning_interface.dir/rule
-.PHONY : moveit/moveit_ros/planning_interface/test/CMakeFiles/clean_test_results_moveit_ros_planning_interface.dir/rule
-
-# Convenience name for target.
-clean_test_results_moveit_ros_planning_interface: moveit/moveit_ros/planning_interface/test/CMakeFiles/clean_test_results_moveit_ros_planning_interface.dir/rule
-
-.PHONY : clean_test_results_moveit_ros_planning_interface
-
-# fast build rule for target.
-clean_test_results_moveit_ros_planning_interface/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/planning_interface/test/CMakeFiles/clean_test_results_moveit_ros_planning_interface.dir/build.make moveit/moveit_ros/planning_interface/test/CMakeFiles/clean_test_results_moveit_ros_planning_interface.dir/build
-.PHONY : clean_test_results_moveit_ros_planning_interface/fast
-
-# Convenience name for target.
-moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test.dir/rule
-.PHONY : moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test: moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test.dir/rule
-
-.PHONY : run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test
-
-# fast build rule for target.
-run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test.dir/build.make moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test.dir/build
-.PHONY : run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test/fast
-
-# Convenience name for target.
-moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test.dir/rule
-.PHONY : moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test: moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test.dir/rule
-
-.PHONY : run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test
-
-# fast build rule for target.
-run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test.dir/build.make moveit/moveit_ros/planning_interface/test/CMakeFiles/run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test.dir/build
-.PHONY : run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test/fast
-
-# Convenience name for target.
-moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test.dir/rule
-.PHONY : moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test: moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test.dir/rule
-
-.PHONY : _run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test
-
-# fast build rule for target.
-_run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test.dir/build.make moveit/moveit_ros/planning_interface/test/CMakeFiles/_run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test.dir/build
-.PHONY : _run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test/fast
-
-cleanup.o: cleanup.cpp.o
-
-.PHONY : cleanup.o
-
-# target to build an object file
-cleanup.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/planning_interface/test/CMakeFiles/test_cleanup.dir/build.make moveit/moveit_ros/planning_interface/test/CMakeFiles/test_cleanup.dir/cleanup.cpp.o
-.PHONY : cleanup.cpp.o
-
-cleanup.i: cleanup.cpp.i
-
-.PHONY : cleanup.i
-
-# target to preprocess a source file
-cleanup.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/planning_interface/test/CMakeFiles/test_cleanup.dir/build.make moveit/moveit_ros/planning_interface/test/CMakeFiles/test_cleanup.dir/cleanup.cpp.i
-.PHONY : cleanup.cpp.i
-
-cleanup.s: cleanup.cpp.s
-
-.PHONY : cleanup.s
-
-# target to generate assembly for a file
-cleanup.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/planning_interface/test/CMakeFiles/test_cleanup.dir/build.make moveit/moveit_ros/planning_interface/test/CMakeFiles/test_cleanup.dir/cleanup.cpp.s
-.PHONY : cleanup.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
-	@echo "... install/local"
+	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... install/strip"
-	@echo "... _run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test"
-	@echo "... test"
-	@echo "... run_tests_moveit_ros_planning_interface_rostest_test_robot_state_update.test"
+	@echo "... install/local"
+	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... _run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test"
-	@echo "... run_tests_moveit_ros_planning_interface_rostest"
-	@echo "... _run_tests_moveit_ros_planning_interface"
-	@echo "... install"
-	@echo "... run_tests_moveit_ros_planning_interface"
-	@echo "... _run_tests_moveit_ros_planning_interface_rostest"
-	@echo "... _run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test"
-	@echo "... run_tests_moveit_ros_planning_interface_rostest_test_cleanup.test"
-	@echo "... test_cleanup"
-	@echo "... clean_test_results_moveit_ros_planning_interface"
-	@echo "... run_tests_moveit_ros_planning_interface_rostest_test_python_move_group_ns.test"
-	@echo "... run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test"
-	@echo "... _run_tests_moveit_ros_planning_interface_rostest_test_python_move_group.test"
-	@echo "... cleanup.o"
-	@echo "... cleanup.i"
-	@echo "... cleanup.s"
 .PHONY : help
 
 

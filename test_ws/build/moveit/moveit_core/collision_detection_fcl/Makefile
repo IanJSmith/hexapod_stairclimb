@@ -56,27 +56,17 @@ CMAKE_BINARY_DIR = /home/darian/test_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
 
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # Special rule for the target list_install_components
 list_install_components:
@@ -87,6 +77,17 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -110,28 +111,16 @@ install/local/fast: install/local
 
 .PHONY : install/local/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
 
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -164,51 +153,6 @@ preinstall/fast:
 depend:
 	cd /home/darian/test_ws/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
-
-# Convenience name for target.
-moveit/moveit_core/collision_detection_fcl/CMakeFiles/test_fcl_collision_detection.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/collision_detection_fcl/CMakeFiles/test_fcl_collision_detection.dir/rule
-.PHONY : moveit/moveit_core/collision_detection_fcl/CMakeFiles/test_fcl_collision_detection.dir/rule
-
-# Convenience name for target.
-test_fcl_collision_detection: moveit/moveit_core/collision_detection_fcl/CMakeFiles/test_fcl_collision_detection.dir/rule
-
-.PHONY : test_fcl_collision_detection
-
-# fast build rule for target.
-test_fcl_collision_detection/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection_fcl/CMakeFiles/test_fcl_collision_detection.dir/build.make moveit/moveit_core/collision_detection_fcl/CMakeFiles/test_fcl_collision_detection.dir/build
-.PHONY : test_fcl_collision_detection/fast
-
-# Convenience name for target.
-moveit/moveit_core/collision_detection_fcl/CMakeFiles/_run_tests_moveit_core_gtest_test_fcl_collision_detection.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/collision_detection_fcl/CMakeFiles/_run_tests_moveit_core_gtest_test_fcl_collision_detection.dir/rule
-.PHONY : moveit/moveit_core/collision_detection_fcl/CMakeFiles/_run_tests_moveit_core_gtest_test_fcl_collision_detection.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_core_gtest_test_fcl_collision_detection: moveit/moveit_core/collision_detection_fcl/CMakeFiles/_run_tests_moveit_core_gtest_test_fcl_collision_detection.dir/rule
-
-.PHONY : _run_tests_moveit_core_gtest_test_fcl_collision_detection
-
-# fast build rule for target.
-_run_tests_moveit_core_gtest_test_fcl_collision_detection/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection_fcl/CMakeFiles/_run_tests_moveit_core_gtest_test_fcl_collision_detection.dir/build.make moveit/moveit_core/collision_detection_fcl/CMakeFiles/_run_tests_moveit_core_gtest_test_fcl_collision_detection.dir/build
-.PHONY : _run_tests_moveit_core_gtest_test_fcl_collision_detection/fast
-
-# Convenience name for target.
-moveit/moveit_core/collision_detection_fcl/CMakeFiles/run_tests_moveit_core_gtest_test_fcl_collision_detection.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/collision_detection_fcl/CMakeFiles/run_tests_moveit_core_gtest_test_fcl_collision_detection.dir/rule
-.PHONY : moveit/moveit_core/collision_detection_fcl/CMakeFiles/run_tests_moveit_core_gtest_test_fcl_collision_detection.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_core_gtest_test_fcl_collision_detection: moveit/moveit_core/collision_detection_fcl/CMakeFiles/run_tests_moveit_core_gtest_test_fcl_collision_detection.dir/rule
-
-.PHONY : run_tests_moveit_core_gtest_test_fcl_collision_detection
-
-# fast build rule for target.
-run_tests_moveit_core_gtest_test_fcl_collision_detection/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection_fcl/CMakeFiles/run_tests_moveit_core_gtest_test_fcl_collision_detection.dir/build.make moveit/moveit_core/collision_detection_fcl/CMakeFiles/run_tests_moveit_core_gtest_test_fcl_collision_detection.dir/build
-.PHONY : run_tests_moveit_core_gtest_test_fcl_collision_detection/fast
 
 # Convenience name for target.
 moveit/moveit_core/collision_detection_fcl/CMakeFiles/moveit_collision_detection_fcl.dir/rule:
@@ -306,50 +250,19 @@ src/collision_world_fcl.cpp.s:
 	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection_fcl/CMakeFiles/moveit_collision_detection_fcl.dir/build.make moveit/moveit_core/collision_detection_fcl/CMakeFiles/moveit_collision_detection_fcl.dir/src/collision_world_fcl.cpp.s
 .PHONY : src/collision_world_fcl.cpp.s
 
-test/test_fcl_collision_detection.o: test/test_fcl_collision_detection.cpp.o
-
-.PHONY : test/test_fcl_collision_detection.o
-
-# target to build an object file
-test/test_fcl_collision_detection.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection_fcl/CMakeFiles/test_fcl_collision_detection.dir/build.make moveit/moveit_core/collision_detection_fcl/CMakeFiles/test_fcl_collision_detection.dir/test/test_fcl_collision_detection.cpp.o
-.PHONY : test/test_fcl_collision_detection.cpp.o
-
-test/test_fcl_collision_detection.i: test/test_fcl_collision_detection.cpp.i
-
-.PHONY : test/test_fcl_collision_detection.i
-
-# target to preprocess a source file
-test/test_fcl_collision_detection.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection_fcl/CMakeFiles/test_fcl_collision_detection.dir/build.make moveit/moveit_core/collision_detection_fcl/CMakeFiles/test_fcl_collision_detection.dir/test/test_fcl_collision_detection.cpp.i
-.PHONY : test/test_fcl_collision_detection.cpp.i
-
-test/test_fcl_collision_detection.s: test/test_fcl_collision_detection.cpp.s
-
-.PHONY : test/test_fcl_collision_detection.s
-
-# target to generate assembly for a file
-test/test_fcl_collision_detection.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection_fcl/CMakeFiles/test_fcl_collision_detection.dir/build.make moveit/moveit_core/collision_detection_fcl/CMakeFiles/test_fcl_collision_detection.dir/test/test_fcl_collision_detection.cpp.s
-.PHONY : test/test_fcl_collision_detection.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
-	@echo "... test_fcl_collision_detection"
-	@echo "... _run_tests_moveit_core_gtest_test_fcl_collision_detection"
-	@echo "... test"
+	@echo "... install"
 	@echo "... list_install_components"
+	@echo "... rebuild_cache"
+	@echo "... moveit_collision_detection_fcl"
 	@echo "... install/strip"
 	@echo "... install/local"
-	@echo "... rebuild_cache"
-	@echo "... run_tests_moveit_core_gtest_test_fcl_collision_detection"
-	@echo "... moveit_collision_detection_fcl"
-	@echo "... install"
+	@echo "... edit_cache"
 	@echo "... src/collision_common.o"
 	@echo "... src/collision_common.i"
 	@echo "... src/collision_common.s"
@@ -359,9 +272,6 @@ help:
 	@echo "... src/collision_world_fcl.o"
 	@echo "... src/collision_world_fcl.i"
 	@echo "... src/collision_world_fcl.s"
-	@echo "... test/test_fcl_collision_detection.o"
-	@echo "... test/test_fcl_collision_detection.i"
-	@echo "... test/test_fcl_collision_detection.s"
 .PHONY : help
 
 

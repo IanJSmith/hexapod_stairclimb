@@ -56,39 +56,6 @@ CMAKE_BINARY_DIR = /home/darian/test_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -101,17 +68,6 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
-
 # Special rule for the target list_install_components
 list_install_components:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
@@ -121,6 +77,17 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -132,6 +99,28 @@ install/strip: preinstall
 install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,96 +155,6 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-moveit/moveit_core/collision_detection/CMakeFiles/_run_tests_moveit_core_gtest_test_world.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/collision_detection/CMakeFiles/_run_tests_moveit_core_gtest_test_world.dir/rule
-.PHONY : moveit/moveit_core/collision_detection/CMakeFiles/_run_tests_moveit_core_gtest_test_world.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_core_gtest_test_world: moveit/moveit_core/collision_detection/CMakeFiles/_run_tests_moveit_core_gtest_test_world.dir/rule
-
-.PHONY : _run_tests_moveit_core_gtest_test_world
-
-# fast build rule for target.
-_run_tests_moveit_core_gtest_test_world/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection/CMakeFiles/_run_tests_moveit_core_gtest_test_world.dir/build.make moveit/moveit_core/collision_detection/CMakeFiles/_run_tests_moveit_core_gtest_test_world.dir/build
-.PHONY : _run_tests_moveit_core_gtest_test_world/fast
-
-# Convenience name for target.
-moveit/moveit_core/collision_detection/CMakeFiles/test_world.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/collision_detection/CMakeFiles/test_world.dir/rule
-.PHONY : moveit/moveit_core/collision_detection/CMakeFiles/test_world.dir/rule
-
-# Convenience name for target.
-test_world: moveit/moveit_core/collision_detection/CMakeFiles/test_world.dir/rule
-
-.PHONY : test_world
-
-# fast build rule for target.
-test_world/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection/CMakeFiles/test_world.dir/build.make moveit/moveit_core/collision_detection/CMakeFiles/test_world.dir/build
-.PHONY : test_world/fast
-
-# Convenience name for target.
-moveit/moveit_core/collision_detection/CMakeFiles/_run_tests_moveit_core_gtest_test_world_diff.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/collision_detection/CMakeFiles/_run_tests_moveit_core_gtest_test_world_diff.dir/rule
-.PHONY : moveit/moveit_core/collision_detection/CMakeFiles/_run_tests_moveit_core_gtest_test_world_diff.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_core_gtest_test_world_diff: moveit/moveit_core/collision_detection/CMakeFiles/_run_tests_moveit_core_gtest_test_world_diff.dir/rule
-
-.PHONY : _run_tests_moveit_core_gtest_test_world_diff
-
-# fast build rule for target.
-_run_tests_moveit_core_gtest_test_world_diff/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection/CMakeFiles/_run_tests_moveit_core_gtest_test_world_diff.dir/build.make moveit/moveit_core/collision_detection/CMakeFiles/_run_tests_moveit_core_gtest_test_world_diff.dir/build
-.PHONY : _run_tests_moveit_core_gtest_test_world_diff/fast
-
-# Convenience name for target.
-moveit/moveit_core/collision_detection/CMakeFiles/test_all_valid.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/collision_detection/CMakeFiles/test_all_valid.dir/rule
-.PHONY : moveit/moveit_core/collision_detection/CMakeFiles/test_all_valid.dir/rule
-
-# Convenience name for target.
-test_all_valid: moveit/moveit_core/collision_detection/CMakeFiles/test_all_valid.dir/rule
-
-.PHONY : test_all_valid
-
-# fast build rule for target.
-test_all_valid/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection/CMakeFiles/test_all_valid.dir/build.make moveit/moveit_core/collision_detection/CMakeFiles/test_all_valid.dir/build
-.PHONY : test_all_valid/fast
-
-# Convenience name for target.
-moveit/moveit_core/collision_detection/CMakeFiles/run_tests_moveit_core_gtest_test_world.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/collision_detection/CMakeFiles/run_tests_moveit_core_gtest_test_world.dir/rule
-.PHONY : moveit/moveit_core/collision_detection/CMakeFiles/run_tests_moveit_core_gtest_test_world.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_core_gtest_test_world: moveit/moveit_core/collision_detection/CMakeFiles/run_tests_moveit_core_gtest_test_world.dir/rule
-
-.PHONY : run_tests_moveit_core_gtest_test_world
-
-# fast build rule for target.
-run_tests_moveit_core_gtest_test_world/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection/CMakeFiles/run_tests_moveit_core_gtest_test_world.dir/build.make moveit/moveit_core/collision_detection/CMakeFiles/run_tests_moveit_core_gtest_test_world.dir/build
-.PHONY : run_tests_moveit_core_gtest_test_world/fast
-
-# Convenience name for target.
-moveit/moveit_core/collision_detection/CMakeFiles/run_tests_moveit_core_gtest_test_all_valid.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/collision_detection/CMakeFiles/run_tests_moveit_core_gtest_test_all_valid.dir/rule
-.PHONY : moveit/moveit_core/collision_detection/CMakeFiles/run_tests_moveit_core_gtest_test_all_valid.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_core_gtest_test_all_valid: moveit/moveit_core/collision_detection/CMakeFiles/run_tests_moveit_core_gtest_test_all_valid.dir/rule
-
-.PHONY : run_tests_moveit_core_gtest_test_all_valid
-
-# fast build rule for target.
-run_tests_moveit_core_gtest_test_all_valid/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection/CMakeFiles/run_tests_moveit_core_gtest_test_all_valid.dir/build.make moveit/moveit_core/collision_detection/CMakeFiles/run_tests_moveit_core_gtest_test_all_valid.dir/build
-.PHONY : run_tests_moveit_core_gtest_test_all_valid/fast
-
-# Convenience name for target.
 moveit/moveit_core/collision_detection/CMakeFiles/moveit_collision_detection.dir/rule:
 	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/collision_detection/CMakeFiles/moveit_collision_detection.dir/rule
 .PHONY : moveit/moveit_core/collision_detection/CMakeFiles/moveit_collision_detection.dir/rule
@@ -269,51 +168,6 @@ moveit_collision_detection: moveit/moveit_core/collision_detection/CMakeFiles/mo
 moveit_collision_detection/fast:
 	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection/CMakeFiles/moveit_collision_detection.dir/build.make moveit/moveit_core/collision_detection/CMakeFiles/moveit_collision_detection.dir/build
 .PHONY : moveit_collision_detection/fast
-
-# Convenience name for target.
-moveit/moveit_core/collision_detection/CMakeFiles/test_world_diff.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/collision_detection/CMakeFiles/test_world_diff.dir/rule
-.PHONY : moveit/moveit_core/collision_detection/CMakeFiles/test_world_diff.dir/rule
-
-# Convenience name for target.
-test_world_diff: moveit/moveit_core/collision_detection/CMakeFiles/test_world_diff.dir/rule
-
-.PHONY : test_world_diff
-
-# fast build rule for target.
-test_world_diff/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection/CMakeFiles/test_world_diff.dir/build.make moveit/moveit_core/collision_detection/CMakeFiles/test_world_diff.dir/build
-.PHONY : test_world_diff/fast
-
-# Convenience name for target.
-moveit/moveit_core/collision_detection/CMakeFiles/run_tests_moveit_core_gtest_test_world_diff.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/collision_detection/CMakeFiles/run_tests_moveit_core_gtest_test_world_diff.dir/rule
-.PHONY : moveit/moveit_core/collision_detection/CMakeFiles/run_tests_moveit_core_gtest_test_world_diff.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_core_gtest_test_world_diff: moveit/moveit_core/collision_detection/CMakeFiles/run_tests_moveit_core_gtest_test_world_diff.dir/rule
-
-.PHONY : run_tests_moveit_core_gtest_test_world_diff
-
-# fast build rule for target.
-run_tests_moveit_core_gtest_test_world_diff/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection/CMakeFiles/run_tests_moveit_core_gtest_test_world_diff.dir/build.make moveit/moveit_core/collision_detection/CMakeFiles/run_tests_moveit_core_gtest_test_world_diff.dir/build
-.PHONY : run_tests_moveit_core_gtest_test_world_diff/fast
-
-# Convenience name for target.
-moveit/moveit_core/collision_detection/CMakeFiles/_run_tests_moveit_core_gtest_test_all_valid.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/collision_detection/CMakeFiles/_run_tests_moveit_core_gtest_test_all_valid.dir/rule
-.PHONY : moveit/moveit_core/collision_detection/CMakeFiles/_run_tests_moveit_core_gtest_test_all_valid.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_core_gtest_test_all_valid: moveit/moveit_core/collision_detection/CMakeFiles/_run_tests_moveit_core_gtest_test_all_valid.dir/rule
-
-.PHONY : _run_tests_moveit_core_gtest_test_all_valid
-
-# fast build rule for target.
-_run_tests_moveit_core_gtest_test_all_valid/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection/CMakeFiles/_run_tests_moveit_core_gtest_test_all_valid.dir/build.make moveit/moveit_core/collision_detection/CMakeFiles/_run_tests_moveit_core_gtest_test_all_valid.dir/build
-.PHONY : _run_tests_moveit_core_gtest_test_all_valid/fast
 
 src/allvalid/collision_robot_allvalid.o: src/allvalid/collision_robot_allvalid.cpp.o
 
@@ -558,110 +412,19 @@ src/world_diff.cpp.s:
 	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection/CMakeFiles/moveit_collision_detection.dir/build.make moveit/moveit_core/collision_detection/CMakeFiles/moveit_collision_detection.dir/src/world_diff.cpp.s
 .PHONY : src/world_diff.cpp.s
 
-test/test_all_valid.o: test/test_all_valid.cpp.o
-
-.PHONY : test/test_all_valid.o
-
-# target to build an object file
-test/test_all_valid.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection/CMakeFiles/test_all_valid.dir/build.make moveit/moveit_core/collision_detection/CMakeFiles/test_all_valid.dir/test/test_all_valid.cpp.o
-.PHONY : test/test_all_valid.cpp.o
-
-test/test_all_valid.i: test/test_all_valid.cpp.i
-
-.PHONY : test/test_all_valid.i
-
-# target to preprocess a source file
-test/test_all_valid.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection/CMakeFiles/test_all_valid.dir/build.make moveit/moveit_core/collision_detection/CMakeFiles/test_all_valid.dir/test/test_all_valid.cpp.i
-.PHONY : test/test_all_valid.cpp.i
-
-test/test_all_valid.s: test/test_all_valid.cpp.s
-
-.PHONY : test/test_all_valid.s
-
-# target to generate assembly for a file
-test/test_all_valid.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection/CMakeFiles/test_all_valid.dir/build.make moveit/moveit_core/collision_detection/CMakeFiles/test_all_valid.dir/test/test_all_valid.cpp.s
-.PHONY : test/test_all_valid.cpp.s
-
-test/test_world.o: test/test_world.cpp.o
-
-.PHONY : test/test_world.o
-
-# target to build an object file
-test/test_world.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection/CMakeFiles/test_world.dir/build.make moveit/moveit_core/collision_detection/CMakeFiles/test_world.dir/test/test_world.cpp.o
-.PHONY : test/test_world.cpp.o
-
-test/test_world.i: test/test_world.cpp.i
-
-.PHONY : test/test_world.i
-
-# target to preprocess a source file
-test/test_world.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection/CMakeFiles/test_world.dir/build.make moveit/moveit_core/collision_detection/CMakeFiles/test_world.dir/test/test_world.cpp.i
-.PHONY : test/test_world.cpp.i
-
-test/test_world.s: test/test_world.cpp.s
-
-.PHONY : test/test_world.s
-
-# target to generate assembly for a file
-test/test_world.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection/CMakeFiles/test_world.dir/build.make moveit/moveit_core/collision_detection/CMakeFiles/test_world.dir/test/test_world.cpp.s
-.PHONY : test/test_world.cpp.s
-
-test/test_world_diff.o: test/test_world_diff.cpp.o
-
-.PHONY : test/test_world_diff.o
-
-# target to build an object file
-test/test_world_diff.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection/CMakeFiles/test_world_diff.dir/build.make moveit/moveit_core/collision_detection/CMakeFiles/test_world_diff.dir/test/test_world_diff.cpp.o
-.PHONY : test/test_world_diff.cpp.o
-
-test/test_world_diff.i: test/test_world_diff.cpp.i
-
-.PHONY : test/test_world_diff.i
-
-# target to preprocess a source file
-test/test_world_diff.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection/CMakeFiles/test_world_diff.dir/build.make moveit/moveit_core/collision_detection/CMakeFiles/test_world_diff.dir/test/test_world_diff.cpp.i
-.PHONY : test/test_world_diff.cpp.i
-
-test/test_world_diff.s: test/test_world_diff.cpp.s
-
-.PHONY : test/test_world_diff.s
-
-# target to generate assembly for a file
-test/test_world_diff.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_detection/CMakeFiles/test_world_diff.dir/build.make moveit/moveit_core/collision_detection/CMakeFiles/test_world_diff.dir/test/test_world_diff.cpp.s
-.PHONY : test/test_world_diff.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... test"
-	@echo "... _run_tests_moveit_core_gtest_test_world"
 	@echo "... install"
-	@echo "... test_world"
-	@echo "... install/local"
-	@echo "... _run_tests_moveit_core_gtest_test_world_diff"
-	@echo "... test_all_valid"
-	@echo "... run_tests_moveit_core_gtest_test_world"
-	@echo "... run_tests_moveit_core_gtest_test_all_valid"
-	@echo "... moveit_collision_detection"
 	@echo "... list_install_components"
+	@echo "... rebuild_cache"
+	@echo "... moveit_collision_detection"
 	@echo "... install/strip"
-	@echo "... test_world_diff"
-	@echo "... run_tests_moveit_core_gtest_test_world_diff"
-	@echo "... _run_tests_moveit_core_gtest_test_all_valid"
+	@echo "... install/local"
+	@echo "... edit_cache"
 	@echo "... src/allvalid/collision_robot_allvalid.o"
 	@echo "... src/allvalid/collision_robot_allvalid.i"
 	@echo "... src/allvalid/collision_robot_allvalid.s"
@@ -689,15 +452,6 @@ help:
 	@echo "... src/world_diff.o"
 	@echo "... src/world_diff.i"
 	@echo "... src/world_diff.s"
-	@echo "... test/test_all_valid.o"
-	@echo "... test/test_all_valid.i"
-	@echo "... test/test_all_valid.s"
-	@echo "... test/test_world.o"
-	@echo "... test/test_world.i"
-	@echo "... test/test_world.s"
-	@echo "... test/test_world_diff.o"
-	@echo "... test/test_world_diff.i"
-	@echo "... test/test_world_diff.s"
 .PHONY : help
 
 

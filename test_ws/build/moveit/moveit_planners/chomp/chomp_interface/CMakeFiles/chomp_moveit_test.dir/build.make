@@ -261,7 +261,8 @@ chomp_moveit_test_EXTERNAL_OBJECTS =
 /home/darian/test_ws/devel/lib/moveit_planners_chomp/chomp_moveit_test: /opt/ros/kinetic/lib/libroslib.so
 /home/darian/test_ws/devel/lib/moveit_planners_chomp/chomp_moveit_test: /opt/ros/kinetic/lib/librospack.so
 /home/darian/test_ws/devel/lib/moveit_planners_chomp/chomp_moveit_test: /usr/lib/x86_64-linux-gnu/libpython2.7.so
-/home/darian/test_ws/devel/lib/moveit_planners_chomp/chomp_moveit_test: /opt/ros/kinetic/lib/libeigenpy.so
+/home/darian/test_ws/devel/lib/moveit_planners_chomp/chomp_moveit_test: /opt/ros/kinetic/lib/x86_64-linux-gnu/libeigenpy.so
+/home/darian/test_ws/devel/lib/moveit_planners_chomp/chomp_moveit_test: /usr/lib/x86_64-linux-gnu/libboost_python-py27.so
 /home/darian/test_ws/devel/lib/moveit_planners_chomp/chomp_moveit_test: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
 /home/darian/test_ws/devel/lib/moveit_planners_chomp/chomp_moveit_test: /usr/lib/x86_64-linux-gnu/libtinyxml.so
 /home/darian/test_ws/devel/lib/moveit_planners_chomp/chomp_moveit_test: /opt/ros/kinetic/lib/libtf_conversions.so

@@ -79,17 +79,6 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target list_install_components
 list_install_components:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
@@ -122,16 +111,16 @@ install/local/fast: install/local
 
 .PHONY : install/local/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
 
-# Special rule for the target test
-test/fast: test
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
 
-.PHONY : test/fast
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -473,12 +462,11 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... moveit_evaluate_collision_checking_speed"
 	@echo "... moveit_kinematics_speed_and_validity_evaluator"
-	@echo "... edit_cache"
-	@echo "... moveit_evaluate_state_operations_speed"
 	@echo "... list_install_components"
 	@echo "... install/strip"
 	@echo "... install/local"
-	@echo "... test"
+	@echo "... moveit_evaluate_state_operations_speed"
+	@echo "... edit_cache"
 	@echo "... src/display_random_state.o"
 	@echo "... src/display_random_state.i"
 	@echo "... src/display_random_state.s"

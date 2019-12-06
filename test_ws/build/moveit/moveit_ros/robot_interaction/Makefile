@@ -68,38 +68,15 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
 
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
 
-.PHONY : edit_cache/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
+.PHONY : list_install_components/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -112,16 +89,6 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -132,6 +99,28 @@ install/strip: preinstall
 install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,51 +155,6 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-moveit/moveit_ros/robot_interaction/CMakeFiles/run_tests_moveit_ros_robot_interaction.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/robot_interaction/CMakeFiles/run_tests_moveit_ros_robot_interaction.dir/rule
-.PHONY : moveit/moveit_ros/robot_interaction/CMakeFiles/run_tests_moveit_ros_robot_interaction.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_ros_robot_interaction: moveit/moveit_ros/robot_interaction/CMakeFiles/run_tests_moveit_ros_robot_interaction.dir/rule
-
-.PHONY : run_tests_moveit_ros_robot_interaction
-
-# fast build rule for target.
-run_tests_moveit_ros_robot_interaction/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/robot_interaction/CMakeFiles/run_tests_moveit_ros_robot_interaction.dir/build.make moveit/moveit_ros/robot_interaction/CMakeFiles/run_tests_moveit_ros_robot_interaction.dir/build
-.PHONY : run_tests_moveit_ros_robot_interaction/fast
-
-# Convenience name for target.
-moveit/moveit_ros/robot_interaction/CMakeFiles/locked_robot_state_test.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/robot_interaction/CMakeFiles/locked_robot_state_test.dir/rule
-.PHONY : moveit/moveit_ros/robot_interaction/CMakeFiles/locked_robot_state_test.dir/rule
-
-# Convenience name for target.
-locked_robot_state_test: moveit/moveit_ros/robot_interaction/CMakeFiles/locked_robot_state_test.dir/rule
-
-.PHONY : locked_robot_state_test
-
-# fast build rule for target.
-locked_robot_state_test/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/robot_interaction/CMakeFiles/locked_robot_state_test.dir/build.make moveit/moveit_ros/robot_interaction/CMakeFiles/locked_robot_state_test.dir/build
-.PHONY : locked_robot_state_test/fast
-
-# Convenience name for target.
-moveit/moveit_ros/robot_interaction/CMakeFiles/_run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/robot_interaction/CMakeFiles/_run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test.dir/rule
-.PHONY : moveit/moveit_ros/robot_interaction/CMakeFiles/_run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test: moveit/moveit_ros/robot_interaction/CMakeFiles/_run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test.dir/rule
-
-.PHONY : _run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test
-
-# fast build rule for target.
-_run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/robot_interaction/CMakeFiles/_run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test.dir/build.make moveit/moveit_ros/robot_interaction/CMakeFiles/_run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test.dir/build
-.PHONY : _run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test/fast
-
-# Convenience name for target.
 moveit/moveit_ros/robot_interaction/CMakeFiles/moveit_robot_interaction.dir/rule:
 	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/robot_interaction/CMakeFiles/moveit_robot_interaction.dir/rule
 .PHONY : moveit/moveit_ros/robot_interaction/CMakeFiles/moveit_robot_interaction.dir/rule
@@ -224,81 +168,6 @@ moveit_robot_interaction: moveit/moveit_ros/robot_interaction/CMakeFiles/moveit_
 moveit_robot_interaction/fast:
 	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/robot_interaction/CMakeFiles/moveit_robot_interaction.dir/build.make moveit/moveit_ros/robot_interaction/CMakeFiles/moveit_robot_interaction.dir/build
 .PHONY : moveit_robot_interaction/fast
-
-# Convenience name for target.
-moveit/moveit_ros/robot_interaction/CMakeFiles/_run_tests_moveit_ros_robot_interaction_gtest.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/robot_interaction/CMakeFiles/_run_tests_moveit_ros_robot_interaction_gtest.dir/rule
-.PHONY : moveit/moveit_ros/robot_interaction/CMakeFiles/_run_tests_moveit_ros_robot_interaction_gtest.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_ros_robot_interaction_gtest: moveit/moveit_ros/robot_interaction/CMakeFiles/_run_tests_moveit_ros_robot_interaction_gtest.dir/rule
-
-.PHONY : _run_tests_moveit_ros_robot_interaction_gtest
-
-# fast build rule for target.
-_run_tests_moveit_ros_robot_interaction_gtest/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/robot_interaction/CMakeFiles/_run_tests_moveit_ros_robot_interaction_gtest.dir/build.make moveit/moveit_ros/robot_interaction/CMakeFiles/_run_tests_moveit_ros_robot_interaction_gtest.dir/build
-.PHONY : _run_tests_moveit_ros_robot_interaction_gtest/fast
-
-# Convenience name for target.
-moveit/moveit_ros/robot_interaction/CMakeFiles/_run_tests_moveit_ros_robot_interaction.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/robot_interaction/CMakeFiles/_run_tests_moveit_ros_robot_interaction.dir/rule
-.PHONY : moveit/moveit_ros/robot_interaction/CMakeFiles/_run_tests_moveit_ros_robot_interaction.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_ros_robot_interaction: moveit/moveit_ros/robot_interaction/CMakeFiles/_run_tests_moveit_ros_robot_interaction.dir/rule
-
-.PHONY : _run_tests_moveit_ros_robot_interaction
-
-# fast build rule for target.
-_run_tests_moveit_ros_robot_interaction/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/robot_interaction/CMakeFiles/_run_tests_moveit_ros_robot_interaction.dir/build.make moveit/moveit_ros/robot_interaction/CMakeFiles/_run_tests_moveit_ros_robot_interaction.dir/build
-.PHONY : _run_tests_moveit_ros_robot_interaction/fast
-
-# Convenience name for target.
-moveit/moveit_ros/robot_interaction/CMakeFiles/run_tests_moveit_ros_robot_interaction_gtest.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/robot_interaction/CMakeFiles/run_tests_moveit_ros_robot_interaction_gtest.dir/rule
-.PHONY : moveit/moveit_ros/robot_interaction/CMakeFiles/run_tests_moveit_ros_robot_interaction_gtest.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_ros_robot_interaction_gtest: moveit/moveit_ros/robot_interaction/CMakeFiles/run_tests_moveit_ros_robot_interaction_gtest.dir/rule
-
-.PHONY : run_tests_moveit_ros_robot_interaction_gtest
-
-# fast build rule for target.
-run_tests_moveit_ros_robot_interaction_gtest/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/robot_interaction/CMakeFiles/run_tests_moveit_ros_robot_interaction_gtest.dir/build.make moveit/moveit_ros/robot_interaction/CMakeFiles/run_tests_moveit_ros_robot_interaction_gtest.dir/build
-.PHONY : run_tests_moveit_ros_robot_interaction_gtest/fast
-
-# Convenience name for target.
-moveit/moveit_ros/robot_interaction/CMakeFiles/run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/robot_interaction/CMakeFiles/run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test.dir/rule
-.PHONY : moveit/moveit_ros/robot_interaction/CMakeFiles/run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test: moveit/moveit_ros/robot_interaction/CMakeFiles/run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test.dir/rule
-
-.PHONY : run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test
-
-# fast build rule for target.
-run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/robot_interaction/CMakeFiles/run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test.dir/build.make moveit/moveit_ros/robot_interaction/CMakeFiles/run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test.dir/build
-.PHONY : run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test/fast
-
-# Convenience name for target.
-moveit/moveit_ros/robot_interaction/CMakeFiles/clean_test_results_moveit_ros_robot_interaction.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_ros/robot_interaction/CMakeFiles/clean_test_results_moveit_ros_robot_interaction.dir/rule
-.PHONY : moveit/moveit_ros/robot_interaction/CMakeFiles/clean_test_results_moveit_ros_robot_interaction.dir/rule
-
-# Convenience name for target.
-clean_test_results_moveit_ros_robot_interaction: moveit/moveit_ros/robot_interaction/CMakeFiles/clean_test_results_moveit_ros_robot_interaction.dir/rule
-
-.PHONY : clean_test_results_moveit_ros_robot_interaction
-
-# fast build rule for target.
-clean_test_results_moveit_ros_robot_interaction/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/robot_interaction/CMakeFiles/clean_test_results_moveit_ros_robot_interaction.dir/build.make moveit/moveit_ros/robot_interaction/CMakeFiles/clean_test_results_moveit_ros_robot_interaction.dir/build
-.PHONY : clean_test_results_moveit_ros_robot_interaction/fast
 
 src/interaction_handler.o: src/interaction_handler.cpp.o
 
@@ -462,33 +331,6 @@ src/robot_interaction.cpp.s:
 	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/robot_interaction/CMakeFiles/moveit_robot_interaction.dir/build.make moveit/moveit_ros/robot_interaction/CMakeFiles/moveit_robot_interaction.dir/src/robot_interaction.cpp.s
 .PHONY : src/robot_interaction.cpp.s
 
-test/locked_robot_state_test.o: test/locked_robot_state_test.cpp.o
-
-.PHONY : test/locked_robot_state_test.o
-
-# target to build an object file
-test/locked_robot_state_test.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/robot_interaction/CMakeFiles/locked_robot_state_test.dir/build.make moveit/moveit_ros/robot_interaction/CMakeFiles/locked_robot_state_test.dir/test/locked_robot_state_test.cpp.o
-.PHONY : test/locked_robot_state_test.cpp.o
-
-test/locked_robot_state_test.i: test/locked_robot_state_test.cpp.i
-
-.PHONY : test/locked_robot_state_test.i
-
-# target to preprocess a source file
-test/locked_robot_state_test.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/robot_interaction/CMakeFiles/locked_robot_state_test.dir/build.make moveit/moveit_ros/robot_interaction/CMakeFiles/locked_robot_state_test.dir/test/locked_robot_state_test.cpp.i
-.PHONY : test/locked_robot_state_test.cpp.i
-
-test/locked_robot_state_test.s: test/locked_robot_state_test.cpp.s
-
-.PHONY : test/locked_robot_state_test.s
-
-# target to generate assembly for a file
-test/locked_robot_state_test.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_ros/robot_interaction/CMakeFiles/locked_robot_state_test.dir/build.make moveit/moveit_ros/robot_interaction/CMakeFiles/locked_robot_state_test.dir/test/locked_robot_state_test.cpp.s
-.PHONY : test/locked_robot_state_test.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -496,21 +338,12 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install"
-	@echo "... edit_cache"
-	@echo "... test"
-	@echo "... install/local"
-	@echo "... run_tests_moveit_ros_robot_interaction"
-	@echo "... locked_robot_state_test"
-	@echo "... rebuild_cache"
-	@echo "... _run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test"
-	@echo "... moveit_robot_interaction"
-	@echo "... _run_tests_moveit_ros_robot_interaction_gtest"
 	@echo "... list_install_components"
+	@echo "... rebuild_cache"
+	@echo "... moveit_robot_interaction"
 	@echo "... install/strip"
-	@echo "... _run_tests_moveit_ros_robot_interaction"
-	@echo "... run_tests_moveit_ros_robot_interaction_gtest"
-	@echo "... run_tests_moveit_ros_robot_interaction_gtest_locked_robot_state_test"
-	@echo "... clean_test_results_moveit_ros_robot_interaction"
+	@echo "... install/local"
+	@echo "... edit_cache"
 	@echo "... src/interaction_handler.o"
 	@echo "... src/interaction_handler.i"
 	@echo "... src/interaction_handler.s"
@@ -529,9 +362,6 @@ help:
 	@echo "... src/robot_interaction.o"
 	@echo "... src/robot_interaction.i"
 	@echo "... src/robot_interaction.s"
-	@echo "... test/locked_robot_state_test.o"
-	@echo "... test/locked_robot_state_test.i"
-	@echo "... test/locked_robot_state_test.s"
 .PHONY : help
 
 

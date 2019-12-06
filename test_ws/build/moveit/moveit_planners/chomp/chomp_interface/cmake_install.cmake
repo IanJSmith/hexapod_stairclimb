@@ -79,7 +79,7 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
        NOT IS_SYMLINK "${file}")
       file(RPATH_CHANGE
            FILE "${file}"
-           OLD_RPATH "/home/darian/test_ws/devel/lib:/opt/ros/kinetic/lib:/opt/ros/kinetic/lib/x86_64-linux-gnu:"
+           OLD_RPATH "/home/darian/test_ws/devel/lib:/opt/ros/kinetic/lib:"
            NEW_RPATH "")
       if(CMAKE_INSTALL_DO_STRIP)
         execute_process(COMMAND "/usr/bin/strip" "${file}")
@@ -112,7 +112,7 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
        NOT IS_SYMLINK "${file}")
       file(RPATH_CHANGE
            FILE "${file}"
-           OLD_RPATH "/home/darian/test_ws/devel/lib:/opt/ros/kinetic/lib:/opt/ros/kinetic/lib/x86_64-linux-gnu:"
+           OLD_RPATH "/home/darian/test_ws/devel/lib:/opt/ros/kinetic/lib:"
            NEW_RPATH "")
       if(CMAKE_INSTALL_DO_STRIP)
         execute_process(COMMAND "/usr/bin/strip" "${file}")

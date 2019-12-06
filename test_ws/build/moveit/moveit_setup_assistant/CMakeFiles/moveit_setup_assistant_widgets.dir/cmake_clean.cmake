@@ -1,9 +1,8 @@
 file(REMOVE_RECURSE
-  "moveit_setup_assistant_updater_automoc.cpp"
-  "moveit_setup_assistant_automoc.cpp"
   "moveit_setup_assistant_tools_automoc.cpp"
   "moveit_setup_assistant_widgets_automoc.cpp"
-  "test_reading_writing_config_automoc.cpp"
+  "moveit_setup_assistant_automoc.cpp"
+  "moveit_setup_assistant_updater_automoc.cpp"
   "CMakeFiles/moveit_setup_assistant_widgets.dir/src/widgets/start_screen_widget.cpp.o"
   "CMakeFiles/moveit_setup_assistant_widgets.dir/src/widgets/planning_groups_widget.cpp.o"
   "CMakeFiles/moveit_setup_assistant_widgets.dir/src/widgets/double_list_widget.cpp.o"

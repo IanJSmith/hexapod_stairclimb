@@ -56,6 +56,18 @@ CMAKE_BINARY_DIR = /home/darian/test_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
 # Special rule for the target list_install_components
 list_install_components:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
@@ -65,6 +77,17 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -88,17 +111,6 @@ install/local/fast: install/local
 
 .PHONY : install/local/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -109,29 +121,6 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,36 +155,6 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-moveit/moveit_core/collision_distance_field/CMakeFiles/run_tests_moveit_core_gtest_test_collision_distance_field.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/collision_distance_field/CMakeFiles/run_tests_moveit_core_gtest_test_collision_distance_field.dir/rule
-.PHONY : moveit/moveit_core/collision_distance_field/CMakeFiles/run_tests_moveit_core_gtest_test_collision_distance_field.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_core_gtest_test_collision_distance_field: moveit/moveit_core/collision_distance_field/CMakeFiles/run_tests_moveit_core_gtest_test_collision_distance_field.dir/rule
-
-.PHONY : run_tests_moveit_core_gtest_test_collision_distance_field
-
-# fast build rule for target.
-run_tests_moveit_core_gtest_test_collision_distance_field/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_distance_field/CMakeFiles/run_tests_moveit_core_gtest_test_collision_distance_field.dir/build.make moveit/moveit_core/collision_distance_field/CMakeFiles/run_tests_moveit_core_gtest_test_collision_distance_field.dir/build
-.PHONY : run_tests_moveit_core_gtest_test_collision_distance_field/fast
-
-# Convenience name for target.
-moveit/moveit_core/collision_distance_field/CMakeFiles/test_collision_distance_field.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/collision_distance_field/CMakeFiles/test_collision_distance_field.dir/rule
-.PHONY : moveit/moveit_core/collision_distance_field/CMakeFiles/test_collision_distance_field.dir/rule
-
-# Convenience name for target.
-test_collision_distance_field: moveit/moveit_core/collision_distance_field/CMakeFiles/test_collision_distance_field.dir/rule
-
-.PHONY : test_collision_distance_field
-
-# fast build rule for target.
-test_collision_distance_field/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_distance_field/CMakeFiles/test_collision_distance_field.dir/build.make moveit/moveit_core/collision_distance_field/CMakeFiles/test_collision_distance_field.dir/build
-.PHONY : test_collision_distance_field/fast
-
-# Convenience name for target.
 moveit/moveit_core/collision_distance_field/CMakeFiles/moveit_collision_distance_field.dir/rule:
 	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/collision_distance_field/CMakeFiles/moveit_collision_distance_field.dir/rule
 .PHONY : moveit/moveit_core/collision_distance_field/CMakeFiles/moveit_collision_distance_field.dir/rule
@@ -209,21 +168,6 @@ moveit_collision_distance_field: moveit/moveit_core/collision_distance_field/CMa
 moveit_collision_distance_field/fast:
 	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_distance_field/CMakeFiles/moveit_collision_distance_field.dir/build.make moveit/moveit_core/collision_distance_field/CMakeFiles/moveit_collision_distance_field.dir/build
 .PHONY : moveit_collision_distance_field/fast
-
-# Convenience name for target.
-moveit/moveit_core/collision_distance_field/CMakeFiles/_run_tests_moveit_core_gtest_test_collision_distance_field.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/collision_distance_field/CMakeFiles/_run_tests_moveit_core_gtest_test_collision_distance_field.dir/rule
-.PHONY : moveit/moveit_core/collision_distance_field/CMakeFiles/_run_tests_moveit_core_gtest_test_collision_distance_field.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_core_gtest_test_collision_distance_field: moveit/moveit_core/collision_distance_field/CMakeFiles/_run_tests_moveit_core_gtest_test_collision_distance_field.dir/rule
-
-.PHONY : _run_tests_moveit_core_gtest_test_collision_distance_field
-
-# fast build rule for target.
-_run_tests_moveit_core_gtest_test_collision_distance_field/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_distance_field/CMakeFiles/_run_tests_moveit_core_gtest_test_collision_distance_field.dir/build.make moveit/moveit_core/collision_distance_field/CMakeFiles/_run_tests_moveit_core_gtest_test_collision_distance_field.dir/build
-.PHONY : _run_tests_moveit_core_gtest_test_collision_distance_field/fast
 
 src/collision_common_distance_field.o: src/collision_common_distance_field.cpp.o
 
@@ -387,50 +331,19 @@ src/collision_world_hybrid.cpp.s:
 	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_distance_field/CMakeFiles/moveit_collision_distance_field.dir/build.make moveit/moveit_core/collision_distance_field/CMakeFiles/moveit_collision_distance_field.dir/src/collision_world_hybrid.cpp.s
 .PHONY : src/collision_world_hybrid.cpp.s
 
-test/test_collision_distance_field.o: test/test_collision_distance_field.cpp.o
-
-.PHONY : test/test_collision_distance_field.o
-
-# target to build an object file
-test/test_collision_distance_field.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_distance_field/CMakeFiles/test_collision_distance_field.dir/build.make moveit/moveit_core/collision_distance_field/CMakeFiles/test_collision_distance_field.dir/test/test_collision_distance_field.cpp.o
-.PHONY : test/test_collision_distance_field.cpp.o
-
-test/test_collision_distance_field.i: test/test_collision_distance_field.cpp.i
-
-.PHONY : test/test_collision_distance_field.i
-
-# target to preprocess a source file
-test/test_collision_distance_field.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_distance_field/CMakeFiles/test_collision_distance_field.dir/build.make moveit/moveit_core/collision_distance_field/CMakeFiles/test_collision_distance_field.dir/test/test_collision_distance_field.cpp.i
-.PHONY : test/test_collision_distance_field.cpp.i
-
-test/test_collision_distance_field.s: test/test_collision_distance_field.cpp.s
-
-.PHONY : test/test_collision_distance_field.s
-
-# target to generate assembly for a file
-test/test_collision_distance_field.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/collision_distance_field/CMakeFiles/test_collision_distance_field.dir/build.make moveit/moveit_core/collision_distance_field/CMakeFiles/test_collision_distance_field.dir/test/test_collision_distance_field.cpp.s
-.PHONY : test/test_collision_distance_field.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... run_tests_moveit_core_gtest_test_collision_distance_field"
-	@echo "... test_collision_distance_field"
-	@echo "... moveit_collision_distance_field"
+	@echo "... install"
 	@echo "... list_install_components"
+	@echo "... rebuild_cache"
+	@echo "... moveit_collision_distance_field"
 	@echo "... install/strip"
 	@echo "... install/local"
-	@echo "... _run_tests_moveit_core_gtest_test_collision_distance_field"
-	@echo "... test"
 	@echo "... edit_cache"
-	@echo "... rebuild_cache"
-	@echo "... install"
 	@echo "... src/collision_common_distance_field.o"
 	@echo "... src/collision_common_distance_field.i"
 	@echo "... src/collision_common_distance_field.s"
@@ -449,9 +362,6 @@ help:
 	@echo "... src/collision_world_hybrid.o"
 	@echo "... src/collision_world_hybrid.i"
 	@echo "... src/collision_world_hybrid.s"
-	@echo "... test/test_collision_distance_field.o"
-	@echo "... test/test_collision_distance_field.i"
-	@echo "... test/test_collision_distance_field.s"
 .PHONY : help
 
 

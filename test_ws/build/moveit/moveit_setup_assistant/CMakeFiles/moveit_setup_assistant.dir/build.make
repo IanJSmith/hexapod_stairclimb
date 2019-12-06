@@ -194,7 +194,8 @@ moveit_setup_assistant_EXTERNAL_OBJECTS =
 /home/darian/test_ws/devel/lib/moveit_setup_assistant/moveit_setup_assistant: /home/darian/test_ws/devel/lib/libmoveit_move_group_interface.so.0.9.17
 /home/darian/test_ws/devel/lib/moveit_setup_assistant/moveit_setup_assistant: /home/darian/test_ws/devel/lib/libmoveit_planning_scene_interface.so.0.9.17
 /home/darian/test_ws/devel/lib/moveit_setup_assistant/moveit_setup_assistant: /home/darian/test_ws/devel/lib/libmoveit_common_planning_interface_objects.so.0.9.17
-/home/darian/test_ws/devel/lib/moveit_setup_assistant/moveit_setup_assistant: /opt/ros/kinetic/lib/libeigenpy.so
+/home/darian/test_ws/devel/lib/moveit_setup_assistant/moveit_setup_assistant: /opt/ros/kinetic/lib/x86_64-linux-gnu/libeigenpy.so
+/home/darian/test_ws/devel/lib/moveit_setup_assistant/moveit_setup_assistant: /usr/lib/x86_64-linux-gnu/libboost_python-py27.so
 /home/darian/test_ws/devel/lib/moveit_setup_assistant/moveit_setup_assistant: /usr/lib/x86_64-linux-gnu/libboost_python.so
 /home/darian/test_ws/devel/lib/moveit_setup_assistant/moveit_setup_assistant: /home/darian/test_ws/devel/lib/libmoveit_warehouse.so.0.9.17
 /home/darian/test_ws/devel/lib/moveit_setup_assistant/moveit_setup_assistant: /opt/ros/kinetic/lib/libwarehouse_ros.so

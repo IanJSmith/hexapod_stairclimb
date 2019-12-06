@@ -56,50 +56,6 @@ CMAKE_BINARY_DIR = /home/darian/test_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -122,6 +78,17 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -132,6 +99,28 @@ install/strip: preinstall
 install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,66 +155,6 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-moveit/moveit_core/robot_model/CMakeFiles/run_tests_moveit_core.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/robot_model/CMakeFiles/run_tests_moveit_core.dir/rule
-.PHONY : moveit/moveit_core/robot_model/CMakeFiles/run_tests_moveit_core.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_core: moveit/moveit_core/robot_model/CMakeFiles/run_tests_moveit_core.dir/rule
-
-.PHONY : run_tests_moveit_core
-
-# fast build rule for target.
-run_tests_moveit_core/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_model/CMakeFiles/run_tests_moveit_core.dir/build.make moveit/moveit_core/robot_model/CMakeFiles/run_tests_moveit_core.dir/build
-.PHONY : run_tests_moveit_core/fast
-
-# Convenience name for target.
-moveit/moveit_core/robot_model/CMakeFiles/test_robot_model.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/robot_model/CMakeFiles/test_robot_model.dir/rule
-.PHONY : moveit/moveit_core/robot_model/CMakeFiles/test_robot_model.dir/rule
-
-# Convenience name for target.
-test_robot_model: moveit/moveit_core/robot_model/CMakeFiles/test_robot_model.dir/rule
-
-.PHONY : test_robot_model
-
-# fast build rule for target.
-test_robot_model/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_model/CMakeFiles/test_robot_model.dir/build.make moveit/moveit_core/robot_model/CMakeFiles/test_robot_model.dir/build
-.PHONY : test_robot_model/fast
-
-# Convenience name for target.
-moveit/moveit_core/robot_model/CMakeFiles/_run_tests_moveit_core_gtest.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/robot_model/CMakeFiles/_run_tests_moveit_core_gtest.dir/rule
-.PHONY : moveit/moveit_core/robot_model/CMakeFiles/_run_tests_moveit_core_gtest.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_core_gtest: moveit/moveit_core/robot_model/CMakeFiles/_run_tests_moveit_core_gtest.dir/rule
-
-.PHONY : _run_tests_moveit_core_gtest
-
-# fast build rule for target.
-_run_tests_moveit_core_gtest/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_model/CMakeFiles/_run_tests_moveit_core_gtest.dir/build.make moveit/moveit_core/robot_model/CMakeFiles/_run_tests_moveit_core_gtest.dir/build
-.PHONY : _run_tests_moveit_core_gtest/fast
-
-# Convenience name for target.
-moveit/moveit_core/robot_model/CMakeFiles/_run_tests_moveit_core.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/robot_model/CMakeFiles/_run_tests_moveit_core.dir/rule
-.PHONY : moveit/moveit_core/robot_model/CMakeFiles/_run_tests_moveit_core.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_core: moveit/moveit_core/robot_model/CMakeFiles/_run_tests_moveit_core.dir/rule
-
-.PHONY : _run_tests_moveit_core
-
-# fast build rule for target.
-_run_tests_moveit_core/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_model/CMakeFiles/_run_tests_moveit_core.dir/build.make moveit/moveit_core/robot_model/CMakeFiles/_run_tests_moveit_core.dir/build
-.PHONY : _run_tests_moveit_core/fast
-
-# Convenience name for target.
 moveit/moveit_core/robot_model/CMakeFiles/moveit_robot_model.dir/rule:
 	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/robot_model/CMakeFiles/moveit_robot_model.dir/rule
 .PHONY : moveit/moveit_core/robot_model/CMakeFiles/moveit_robot_model.dir/rule
@@ -239,66 +168,6 @@ moveit_robot_model: moveit/moveit_core/robot_model/CMakeFiles/moveit_robot_model
 moveit_robot_model/fast:
 	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_model/CMakeFiles/moveit_robot_model.dir/build.make moveit/moveit_core/robot_model/CMakeFiles/moveit_robot_model.dir/build
 .PHONY : moveit_robot_model/fast
-
-# Convenience name for target.
-moveit/moveit_core/robot_model/CMakeFiles/run_tests_moveit_core_gtest.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/robot_model/CMakeFiles/run_tests_moveit_core_gtest.dir/rule
-.PHONY : moveit/moveit_core/robot_model/CMakeFiles/run_tests_moveit_core_gtest.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_core_gtest: moveit/moveit_core/robot_model/CMakeFiles/run_tests_moveit_core_gtest.dir/rule
-
-.PHONY : run_tests_moveit_core_gtest
-
-# fast build rule for target.
-run_tests_moveit_core_gtest/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_model/CMakeFiles/run_tests_moveit_core_gtest.dir/build.make moveit/moveit_core/robot_model/CMakeFiles/run_tests_moveit_core_gtest.dir/build
-.PHONY : run_tests_moveit_core_gtest/fast
-
-# Convenience name for target.
-moveit/moveit_core/robot_model/CMakeFiles/_run_tests_moveit_core_gtest_test_robot_model.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/robot_model/CMakeFiles/_run_tests_moveit_core_gtest_test_robot_model.dir/rule
-.PHONY : moveit/moveit_core/robot_model/CMakeFiles/_run_tests_moveit_core_gtest_test_robot_model.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_core_gtest_test_robot_model: moveit/moveit_core/robot_model/CMakeFiles/_run_tests_moveit_core_gtest_test_robot_model.dir/rule
-
-.PHONY : _run_tests_moveit_core_gtest_test_robot_model
-
-# fast build rule for target.
-_run_tests_moveit_core_gtest_test_robot_model/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_model/CMakeFiles/_run_tests_moveit_core_gtest_test_robot_model.dir/build.make moveit/moveit_core/robot_model/CMakeFiles/_run_tests_moveit_core_gtest_test_robot_model.dir/build
-.PHONY : _run_tests_moveit_core_gtest_test_robot_model/fast
-
-# Convenience name for target.
-moveit/moveit_core/robot_model/CMakeFiles/run_tests_moveit_core_gtest_test_robot_model.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/robot_model/CMakeFiles/run_tests_moveit_core_gtest_test_robot_model.dir/rule
-.PHONY : moveit/moveit_core/robot_model/CMakeFiles/run_tests_moveit_core_gtest_test_robot_model.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_core_gtest_test_robot_model: moveit/moveit_core/robot_model/CMakeFiles/run_tests_moveit_core_gtest_test_robot_model.dir/rule
-
-.PHONY : run_tests_moveit_core_gtest_test_robot_model
-
-# fast build rule for target.
-run_tests_moveit_core_gtest_test_robot_model/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_model/CMakeFiles/run_tests_moveit_core_gtest_test_robot_model.dir/build.make moveit/moveit_core/robot_model/CMakeFiles/run_tests_moveit_core_gtest_test_robot_model.dir/build
-.PHONY : run_tests_moveit_core_gtest_test_robot_model/fast
-
-# Convenience name for target.
-moveit/moveit_core/robot_model/CMakeFiles/clean_test_results_moveit_core.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/robot_model/CMakeFiles/clean_test_results_moveit_core.dir/rule
-.PHONY : moveit/moveit_core/robot_model/CMakeFiles/clean_test_results_moveit_core.dir/rule
-
-# Convenience name for target.
-clean_test_results_moveit_core: moveit/moveit_core/robot_model/CMakeFiles/clean_test_results_moveit_core.dir/rule
-
-.PHONY : clean_test_results_moveit_core
-
-# fast build rule for target.
-clean_test_results_moveit_core/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_model/CMakeFiles/clean_test_results_moveit_core.dir/build.make moveit/moveit_core/robot_model/CMakeFiles/clean_test_results_moveit_core.dir/build
-.PHONY : clean_test_results_moveit_core/fast
 
 src/aabb.o: src/aabb.cpp.o
 
@@ -570,55 +439,19 @@ src/robot_model.cpp.s:
 	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_model/CMakeFiles/moveit_robot_model.dir/build.make moveit/moveit_core/robot_model/CMakeFiles/moveit_robot_model.dir/src/robot_model.cpp.s
 .PHONY : src/robot_model.cpp.s
 
-test/test.o: test/test.cpp.o
-
-.PHONY : test/test.o
-
-# target to build an object file
-test/test.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_model/CMakeFiles/test_robot_model.dir/build.make moveit/moveit_core/robot_model/CMakeFiles/test_robot_model.dir/test/test.cpp.o
-.PHONY : test/test.cpp.o
-
-test/test.i: test/test.cpp.i
-
-.PHONY : test/test.i
-
-# target to preprocess a source file
-test/test.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_model/CMakeFiles/test_robot_model.dir/build.make moveit/moveit_core/robot_model/CMakeFiles/test_robot_model.dir/test/test.cpp.i
-.PHONY : test/test.cpp.i
-
-test/test.s: test/test.cpp.s
-
-.PHONY : test/test.s
-
-# target to generate assembly for a file
-test/test.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_model/CMakeFiles/test_robot_model.dir/build.make moveit/moveit_core/robot_model/CMakeFiles/test_robot_model.dir/test/test.cpp.s
-.PHONY : test/test.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... test"
-	@echo "... run_tests_moveit_core"
-	@echo "... install/local"
-	@echo "... test_robot_model"
-	@echo "... _run_tests_moveit_core_gtest"
-	@echo "... _run_tests_moveit_core"
 	@echo "... install"
-	@echo "... moveit_robot_model"
-	@echo "... run_tests_moveit_core_gtest"
-	@echo "... _run_tests_moveit_core_gtest_test_robot_model"
-	@echo "... run_tests_moveit_core_gtest_test_robot_model"
 	@echo "... list_install_components"
+	@echo "... rebuild_cache"
 	@echo "... install/strip"
-	@echo "... clean_test_results_moveit_core"
+	@echo "... install/local"
+	@echo "... moveit_robot_model"
+	@echo "... edit_cache"
 	@echo "... src/aabb.o"
 	@echo "... src/aabb.i"
 	@echo "... src/aabb.s"
@@ -649,9 +482,6 @@ help:
 	@echo "... src/robot_model.o"
 	@echo "... src/robot_model.i"
 	@echo "... src/robot_model.s"
-	@echo "... test/test.o"
-	@echo "... test/test.i"
-	@echo "... test/test.s"
 .PHONY : help
 
 

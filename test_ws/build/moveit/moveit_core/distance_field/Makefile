@@ -68,6 +68,16 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -78,38 +88,6 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -132,6 +110,17 @@ install/local: preinstall
 install/local/fast: install/local
 
 .PHONY : install/local/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,66 +155,6 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-moveit/moveit_core/distance_field/CMakeFiles/_run_tests_moveit_core_gtest_test_voxel_grid.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/distance_field/CMakeFiles/_run_tests_moveit_core_gtest_test_voxel_grid.dir/rule
-.PHONY : moveit/moveit_core/distance_field/CMakeFiles/_run_tests_moveit_core_gtest_test_voxel_grid.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_core_gtest_test_voxel_grid: moveit/moveit_core/distance_field/CMakeFiles/_run_tests_moveit_core_gtest_test_voxel_grid.dir/rule
-
-.PHONY : _run_tests_moveit_core_gtest_test_voxel_grid
-
-# fast build rule for target.
-_run_tests_moveit_core_gtest_test_voxel_grid/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/distance_field/CMakeFiles/_run_tests_moveit_core_gtest_test_voxel_grid.dir/build.make moveit/moveit_core/distance_field/CMakeFiles/_run_tests_moveit_core_gtest_test_voxel_grid.dir/build
-.PHONY : _run_tests_moveit_core_gtest_test_voxel_grid/fast
-
-# Convenience name for target.
-moveit/moveit_core/distance_field/CMakeFiles/run_tests_moveit_core_gtest_test_distance_field.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/distance_field/CMakeFiles/run_tests_moveit_core_gtest_test_distance_field.dir/rule
-.PHONY : moveit/moveit_core/distance_field/CMakeFiles/run_tests_moveit_core_gtest_test_distance_field.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_core_gtest_test_distance_field: moveit/moveit_core/distance_field/CMakeFiles/run_tests_moveit_core_gtest_test_distance_field.dir/rule
-
-.PHONY : run_tests_moveit_core_gtest_test_distance_field
-
-# fast build rule for target.
-run_tests_moveit_core_gtest_test_distance_field/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/distance_field/CMakeFiles/run_tests_moveit_core_gtest_test_distance_field.dir/build.make moveit/moveit_core/distance_field/CMakeFiles/run_tests_moveit_core_gtest_test_distance_field.dir/build
-.PHONY : run_tests_moveit_core_gtest_test_distance_field/fast
-
-# Convenience name for target.
-moveit/moveit_core/distance_field/CMakeFiles/_run_tests_moveit_core_gtest_test_distance_field.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/distance_field/CMakeFiles/_run_tests_moveit_core_gtest_test_distance_field.dir/rule
-.PHONY : moveit/moveit_core/distance_field/CMakeFiles/_run_tests_moveit_core_gtest_test_distance_field.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_core_gtest_test_distance_field: moveit/moveit_core/distance_field/CMakeFiles/_run_tests_moveit_core_gtest_test_distance_field.dir/rule
-
-.PHONY : _run_tests_moveit_core_gtest_test_distance_field
-
-# fast build rule for target.
-_run_tests_moveit_core_gtest_test_distance_field/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/distance_field/CMakeFiles/_run_tests_moveit_core_gtest_test_distance_field.dir/build.make moveit/moveit_core/distance_field/CMakeFiles/_run_tests_moveit_core_gtest_test_distance_field.dir/build
-.PHONY : _run_tests_moveit_core_gtest_test_distance_field/fast
-
-# Convenience name for target.
-moveit/moveit_core/distance_field/CMakeFiles/run_tests_moveit_core_gtest_test_voxel_grid.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/distance_field/CMakeFiles/run_tests_moveit_core_gtest_test_voxel_grid.dir/rule
-.PHONY : moveit/moveit_core/distance_field/CMakeFiles/run_tests_moveit_core_gtest_test_voxel_grid.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_core_gtest_test_voxel_grid: moveit/moveit_core/distance_field/CMakeFiles/run_tests_moveit_core_gtest_test_voxel_grid.dir/rule
-
-.PHONY : run_tests_moveit_core_gtest_test_voxel_grid
-
-# fast build rule for target.
-run_tests_moveit_core_gtest_test_voxel_grid/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/distance_field/CMakeFiles/run_tests_moveit_core_gtest_test_voxel_grid.dir/build.make moveit/moveit_core/distance_field/CMakeFiles/run_tests_moveit_core_gtest_test_voxel_grid.dir/build
-.PHONY : run_tests_moveit_core_gtest_test_voxel_grid/fast
-
-# Convenience name for target.
 moveit/moveit_core/distance_field/CMakeFiles/moveit_distance_field.dir/rule:
 	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/distance_field/CMakeFiles/moveit_distance_field.dir/rule
 .PHONY : moveit/moveit_core/distance_field/CMakeFiles/moveit_distance_field.dir/rule
@@ -239,36 +168,6 @@ moveit_distance_field: moveit/moveit_core/distance_field/CMakeFiles/moveit_dista
 moveit_distance_field/fast:
 	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/distance_field/CMakeFiles/moveit_distance_field.dir/build.make moveit/moveit_core/distance_field/CMakeFiles/moveit_distance_field.dir/build
 .PHONY : moveit_distance_field/fast
-
-# Convenience name for target.
-moveit/moveit_core/distance_field/CMakeFiles/test_voxel_grid.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/distance_field/CMakeFiles/test_voxel_grid.dir/rule
-.PHONY : moveit/moveit_core/distance_field/CMakeFiles/test_voxel_grid.dir/rule
-
-# Convenience name for target.
-test_voxel_grid: moveit/moveit_core/distance_field/CMakeFiles/test_voxel_grid.dir/rule
-
-.PHONY : test_voxel_grid
-
-# fast build rule for target.
-test_voxel_grid/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/distance_field/CMakeFiles/test_voxel_grid.dir/build.make moveit/moveit_core/distance_field/CMakeFiles/test_voxel_grid.dir/build
-.PHONY : test_voxel_grid/fast
-
-# Convenience name for target.
-moveit/moveit_core/distance_field/CMakeFiles/test_distance_field.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/distance_field/CMakeFiles/test_distance_field.dir/rule
-.PHONY : moveit/moveit_core/distance_field/CMakeFiles/test_distance_field.dir/rule
-
-# Convenience name for target.
-test_distance_field: moveit/moveit_core/distance_field/CMakeFiles/test_distance_field.dir/rule
-
-.PHONY : test_distance_field
-
-# fast build rule for target.
-test_distance_field/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/distance_field/CMakeFiles/test_distance_field.dir/build.make moveit/moveit_core/distance_field/CMakeFiles/test_distance_field.dir/build
-.PHONY : test_distance_field/fast
 
 src/distance_field.o: src/distance_field.cpp.o
 
@@ -351,60 +250,6 @@ src/propagation_distance_field.cpp.s:
 	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/distance_field/CMakeFiles/moveit_distance_field.dir/build.make moveit/moveit_core/distance_field/CMakeFiles/moveit_distance_field.dir/src/propagation_distance_field.cpp.s
 .PHONY : src/propagation_distance_field.cpp.s
 
-test/test_distance_field.o: test/test_distance_field.cpp.o
-
-.PHONY : test/test_distance_field.o
-
-# target to build an object file
-test/test_distance_field.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/distance_field/CMakeFiles/test_distance_field.dir/build.make moveit/moveit_core/distance_field/CMakeFiles/test_distance_field.dir/test/test_distance_field.cpp.o
-.PHONY : test/test_distance_field.cpp.o
-
-test/test_distance_field.i: test/test_distance_field.cpp.i
-
-.PHONY : test/test_distance_field.i
-
-# target to preprocess a source file
-test/test_distance_field.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/distance_field/CMakeFiles/test_distance_field.dir/build.make moveit/moveit_core/distance_field/CMakeFiles/test_distance_field.dir/test/test_distance_field.cpp.i
-.PHONY : test/test_distance_field.cpp.i
-
-test/test_distance_field.s: test/test_distance_field.cpp.s
-
-.PHONY : test/test_distance_field.s
-
-# target to generate assembly for a file
-test/test_distance_field.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/distance_field/CMakeFiles/test_distance_field.dir/build.make moveit/moveit_core/distance_field/CMakeFiles/test_distance_field.dir/test/test_distance_field.cpp.s
-.PHONY : test/test_distance_field.cpp.s
-
-test/test_voxel_grid.o: test/test_voxel_grid.cpp.o
-
-.PHONY : test/test_voxel_grid.o
-
-# target to build an object file
-test/test_voxel_grid.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/distance_field/CMakeFiles/test_voxel_grid.dir/build.make moveit/moveit_core/distance_field/CMakeFiles/test_voxel_grid.dir/test/test_voxel_grid.cpp.o
-.PHONY : test/test_voxel_grid.cpp.o
-
-test/test_voxel_grid.i: test/test_voxel_grid.cpp.i
-
-.PHONY : test/test_voxel_grid.i
-
-# target to preprocess a source file
-test/test_voxel_grid.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/distance_field/CMakeFiles/test_voxel_grid.dir/build.make moveit/moveit_core/distance_field/CMakeFiles/test_voxel_grid.dir/test/test_voxel_grid.cpp.i
-.PHONY : test/test_voxel_grid.cpp.i
-
-test/test_voxel_grid.s: test/test_voxel_grid.cpp.s
-
-.PHONY : test/test_voxel_grid.s
-
-# target to generate assembly for a file
-test/test_voxel_grid.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/distance_field/CMakeFiles/test_voxel_grid.dir/build.make moveit/moveit_core/distance_field/CMakeFiles/test_voxel_grid.dir/test/test_voxel_grid.cpp.s
-.PHONY : test/test_voxel_grid.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -412,19 +257,12 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install"
-	@echo "... rebuild_cache"
-	@echo "... _run_tests_moveit_core_gtest_test_voxel_grid"
-	@echo "... run_tests_moveit_core_gtest_test_distance_field"
-	@echo "... _run_tests_moveit_core_gtest_test_distance_field"
-	@echo "... edit_cache"
-	@echo "... run_tests_moveit_core_gtest_test_voxel_grid"
-	@echo "... moveit_distance_field"
-	@echo "... test_voxel_grid"
-	@echo "... test_distance_field"
-	@echo "... test"
 	@echo "... list_install_components"
+	@echo "... rebuild_cache"
+	@echo "... moveit_distance_field"
 	@echo "... install/strip"
 	@echo "... install/local"
+	@echo "... edit_cache"
 	@echo "... src/distance_field.o"
 	@echo "... src/distance_field.i"
 	@echo "... src/distance_field.s"
@@ -434,12 +272,6 @@ help:
 	@echo "... src/propagation_distance_field.o"
 	@echo "... src/propagation_distance_field.i"
 	@echo "... src/propagation_distance_field.s"
-	@echo "... test/test_distance_field.o"
-	@echo "... test/test_distance_field.i"
-	@echo "... test/test_distance_field.s"
-	@echo "... test/test_voxel_grid.o"
-	@echo "... test/test_voxel_grid.i"
-	@echo "... test/test_voxel_grid.s"
 .PHONY : help
 
 

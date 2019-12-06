@@ -56,38 +56,17 @@ CMAKE_BINARY_DIR = /home/darian/test_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
 
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # Special rule for the target list_install_components
 list_install_components:
@@ -98,17 +77,6 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-
-.PHONY : install/strip/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -121,17 +89,38 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
 
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+
+.PHONY : install/strip/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,51 +155,6 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-moveit/moveit_core/robot_state/CMakeFiles/run_tests_moveit_core_gtest_test_aabb.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/robot_state/CMakeFiles/run_tests_moveit_core_gtest_test_aabb.dir/rule
-.PHONY : moveit/moveit_core/robot_state/CMakeFiles/run_tests_moveit_core_gtest_test_aabb.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_core_gtest_test_aabb: moveit/moveit_core/robot_state/CMakeFiles/run_tests_moveit_core_gtest_test_aabb.dir/rule
-
-.PHONY : run_tests_moveit_core_gtest_test_aabb
-
-# fast build rule for target.
-run_tests_moveit_core_gtest_test_aabb/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_state/CMakeFiles/run_tests_moveit_core_gtest_test_aabb.dir/build.make moveit/moveit_core/robot_state/CMakeFiles/run_tests_moveit_core_gtest_test_aabb.dir/build
-.PHONY : run_tests_moveit_core_gtest_test_aabb/fast
-
-# Convenience name for target.
-moveit/moveit_core/robot_state/CMakeFiles/test_robot_state.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/robot_state/CMakeFiles/test_robot_state.dir/rule
-.PHONY : moveit/moveit_core/robot_state/CMakeFiles/test_robot_state.dir/rule
-
-# Convenience name for target.
-test_robot_state: moveit/moveit_core/robot_state/CMakeFiles/test_robot_state.dir/rule
-
-.PHONY : test_robot_state
-
-# fast build rule for target.
-test_robot_state/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_state/CMakeFiles/test_robot_state.dir/build.make moveit/moveit_core/robot_state/CMakeFiles/test_robot_state.dir/build
-.PHONY : test_robot_state/fast
-
-# Convenience name for target.
-moveit/moveit_core/robot_state/CMakeFiles/run_tests_moveit_core_gtest_test_robot_state.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/robot_state/CMakeFiles/run_tests_moveit_core_gtest_test_robot_state.dir/rule
-.PHONY : moveit/moveit_core/robot_state/CMakeFiles/run_tests_moveit_core_gtest_test_robot_state.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_core_gtest_test_robot_state: moveit/moveit_core/robot_state/CMakeFiles/run_tests_moveit_core_gtest_test_robot_state.dir/rule
-
-.PHONY : run_tests_moveit_core_gtest_test_robot_state
-
-# fast build rule for target.
-run_tests_moveit_core_gtest_test_robot_state/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_state/CMakeFiles/run_tests_moveit_core_gtest_test_robot_state.dir/build.make moveit/moveit_core/robot_state/CMakeFiles/run_tests_moveit_core_gtest_test_robot_state.dir/build
-.PHONY : run_tests_moveit_core_gtest_test_robot_state/fast
-
-# Convenience name for target.
 moveit/moveit_core/robot_state/CMakeFiles/moveit_robot_state.dir/rule:
 	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/robot_state/CMakeFiles/moveit_robot_state.dir/rule
 .PHONY : moveit/moveit_core/robot_state/CMakeFiles/moveit_robot_state.dir/rule
@@ -224,96 +168,6 @@ moveit_robot_state: moveit/moveit_core/robot_state/CMakeFiles/moveit_robot_state
 moveit_robot_state/fast:
 	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_state/CMakeFiles/moveit_robot_state.dir/build.make moveit/moveit_core/robot_state/CMakeFiles/moveit_robot_state.dir/build
 .PHONY : moveit_robot_state/fast
-
-# Convenience name for target.
-moveit/moveit_core/robot_state/CMakeFiles/run_tests_moveit_core_gtest_test_robot_state_complex.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/robot_state/CMakeFiles/run_tests_moveit_core_gtest_test_robot_state_complex.dir/rule
-.PHONY : moveit/moveit_core/robot_state/CMakeFiles/run_tests_moveit_core_gtest_test_robot_state_complex.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_core_gtest_test_robot_state_complex: moveit/moveit_core/robot_state/CMakeFiles/run_tests_moveit_core_gtest_test_robot_state_complex.dir/rule
-
-.PHONY : run_tests_moveit_core_gtest_test_robot_state_complex
-
-# fast build rule for target.
-run_tests_moveit_core_gtest_test_robot_state_complex/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_state/CMakeFiles/run_tests_moveit_core_gtest_test_robot_state_complex.dir/build.make moveit/moveit_core/robot_state/CMakeFiles/run_tests_moveit_core_gtest_test_robot_state_complex.dir/build
-.PHONY : run_tests_moveit_core_gtest_test_robot_state_complex/fast
-
-# Convenience name for target.
-moveit/moveit_core/robot_state/CMakeFiles/_run_tests_moveit_core_gtest_test_robot_state_complex.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/robot_state/CMakeFiles/_run_tests_moveit_core_gtest_test_robot_state_complex.dir/rule
-.PHONY : moveit/moveit_core/robot_state/CMakeFiles/_run_tests_moveit_core_gtest_test_robot_state_complex.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_core_gtest_test_robot_state_complex: moveit/moveit_core/robot_state/CMakeFiles/_run_tests_moveit_core_gtest_test_robot_state_complex.dir/rule
-
-.PHONY : _run_tests_moveit_core_gtest_test_robot_state_complex
-
-# fast build rule for target.
-_run_tests_moveit_core_gtest_test_robot_state_complex/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_state/CMakeFiles/_run_tests_moveit_core_gtest_test_robot_state_complex.dir/build.make moveit/moveit_core/robot_state/CMakeFiles/_run_tests_moveit_core_gtest_test_robot_state_complex.dir/build
-.PHONY : _run_tests_moveit_core_gtest_test_robot_state_complex/fast
-
-# Convenience name for target.
-moveit/moveit_core/robot_state/CMakeFiles/test_aabb.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/robot_state/CMakeFiles/test_aabb.dir/rule
-.PHONY : moveit/moveit_core/robot_state/CMakeFiles/test_aabb.dir/rule
-
-# Convenience name for target.
-test_aabb: moveit/moveit_core/robot_state/CMakeFiles/test_aabb.dir/rule
-
-.PHONY : test_aabb
-
-# fast build rule for target.
-test_aabb/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_state/CMakeFiles/test_aabb.dir/build.make moveit/moveit_core/robot_state/CMakeFiles/test_aabb.dir/build
-.PHONY : test_aabb/fast
-
-# Convenience name for target.
-moveit/moveit_core/robot_state/CMakeFiles/_run_tests_moveit_core_gtest_test_robot_state.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/robot_state/CMakeFiles/_run_tests_moveit_core_gtest_test_robot_state.dir/rule
-.PHONY : moveit/moveit_core/robot_state/CMakeFiles/_run_tests_moveit_core_gtest_test_robot_state.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_core_gtest_test_robot_state: moveit/moveit_core/robot_state/CMakeFiles/_run_tests_moveit_core_gtest_test_robot_state.dir/rule
-
-.PHONY : _run_tests_moveit_core_gtest_test_robot_state
-
-# fast build rule for target.
-_run_tests_moveit_core_gtest_test_robot_state/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_state/CMakeFiles/_run_tests_moveit_core_gtest_test_robot_state.dir/build.make moveit/moveit_core/robot_state/CMakeFiles/_run_tests_moveit_core_gtest_test_robot_state.dir/build
-.PHONY : _run_tests_moveit_core_gtest_test_robot_state/fast
-
-# Convenience name for target.
-moveit/moveit_core/robot_state/CMakeFiles/test_robot_state_complex.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/robot_state/CMakeFiles/test_robot_state_complex.dir/rule
-.PHONY : moveit/moveit_core/robot_state/CMakeFiles/test_robot_state_complex.dir/rule
-
-# Convenience name for target.
-test_robot_state_complex: moveit/moveit_core/robot_state/CMakeFiles/test_robot_state_complex.dir/rule
-
-.PHONY : test_robot_state_complex
-
-# fast build rule for target.
-test_robot_state_complex/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_state/CMakeFiles/test_robot_state_complex.dir/build.make moveit/moveit_core/robot_state/CMakeFiles/test_robot_state_complex.dir/build
-.PHONY : test_robot_state_complex/fast
-
-# Convenience name for target.
-moveit/moveit_core/robot_state/CMakeFiles/_run_tests_moveit_core_gtest_test_aabb.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/robot_state/CMakeFiles/_run_tests_moveit_core_gtest_test_aabb.dir/rule
-.PHONY : moveit/moveit_core/robot_state/CMakeFiles/_run_tests_moveit_core_gtest_test_aabb.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_core_gtest_test_aabb: moveit/moveit_core/robot_state/CMakeFiles/_run_tests_moveit_core_gtest_test_aabb.dir/rule
-
-.PHONY : _run_tests_moveit_core_gtest_test_aabb
-
-# fast build rule for target.
-_run_tests_moveit_core_gtest_test_aabb/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_state/CMakeFiles/_run_tests_moveit_core_gtest_test_aabb.dir/build.make moveit/moveit_core/robot_state/CMakeFiles/_run_tests_moveit_core_gtest_test_aabb.dir/build
-.PHONY : _run_tests_moveit_core_gtest_test_aabb/fast
 
 src/attached_body.o: src/attached_body.cpp.o
 
@@ -396,110 +250,19 @@ src/robot_state.cpp.s:
 	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_state/CMakeFiles/moveit_robot_state.dir/build.make moveit/moveit_core/robot_state/CMakeFiles/moveit_robot_state.dir/src/robot_state.cpp.s
 .PHONY : src/robot_state.cpp.s
 
-test/robot_state_test.o: test/robot_state_test.cpp.o
-
-.PHONY : test/robot_state_test.o
-
-# target to build an object file
-test/robot_state_test.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_state/CMakeFiles/test_robot_state.dir/build.make moveit/moveit_core/robot_state/CMakeFiles/test_robot_state.dir/test/robot_state_test.cpp.o
-.PHONY : test/robot_state_test.cpp.o
-
-test/robot_state_test.i: test/robot_state_test.cpp.i
-
-.PHONY : test/robot_state_test.i
-
-# target to preprocess a source file
-test/robot_state_test.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_state/CMakeFiles/test_robot_state.dir/build.make moveit/moveit_core/robot_state/CMakeFiles/test_robot_state.dir/test/robot_state_test.cpp.i
-.PHONY : test/robot_state_test.cpp.i
-
-test/robot_state_test.s: test/robot_state_test.cpp.s
-
-.PHONY : test/robot_state_test.s
-
-# target to generate assembly for a file
-test/robot_state_test.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_state/CMakeFiles/test_robot_state.dir/build.make moveit/moveit_core/robot_state/CMakeFiles/test_robot_state.dir/test/robot_state_test.cpp.s
-.PHONY : test/robot_state_test.cpp.s
-
-test/test_aabb.o: test/test_aabb.cpp.o
-
-.PHONY : test/test_aabb.o
-
-# target to build an object file
-test/test_aabb.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_state/CMakeFiles/test_aabb.dir/build.make moveit/moveit_core/robot_state/CMakeFiles/test_aabb.dir/test/test_aabb.cpp.o
-.PHONY : test/test_aabb.cpp.o
-
-test/test_aabb.i: test/test_aabb.cpp.i
-
-.PHONY : test/test_aabb.i
-
-# target to preprocess a source file
-test/test_aabb.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_state/CMakeFiles/test_aabb.dir/build.make moveit/moveit_core/robot_state/CMakeFiles/test_aabb.dir/test/test_aabb.cpp.i
-.PHONY : test/test_aabb.cpp.i
-
-test/test_aabb.s: test/test_aabb.cpp.s
-
-.PHONY : test/test_aabb.s
-
-# target to generate assembly for a file
-test/test_aabb.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_state/CMakeFiles/test_aabb.dir/build.make moveit/moveit_core/robot_state/CMakeFiles/test_aabb.dir/test/test_aabb.cpp.s
-.PHONY : test/test_aabb.cpp.s
-
-test/test_kinematic_complex.o: test/test_kinematic_complex.cpp.o
-
-.PHONY : test/test_kinematic_complex.o
-
-# target to build an object file
-test/test_kinematic_complex.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_state/CMakeFiles/test_robot_state_complex.dir/build.make moveit/moveit_core/robot_state/CMakeFiles/test_robot_state_complex.dir/test/test_kinematic_complex.cpp.o
-.PHONY : test/test_kinematic_complex.cpp.o
-
-test/test_kinematic_complex.i: test/test_kinematic_complex.cpp.i
-
-.PHONY : test/test_kinematic_complex.i
-
-# target to preprocess a source file
-test/test_kinematic_complex.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_state/CMakeFiles/test_robot_state_complex.dir/build.make moveit/moveit_core/robot_state/CMakeFiles/test_robot_state_complex.dir/test/test_kinematic_complex.cpp.i
-.PHONY : test/test_kinematic_complex.cpp.i
-
-test/test_kinematic_complex.s: test/test_kinematic_complex.cpp.s
-
-.PHONY : test/test_kinematic_complex.s
-
-# target to generate assembly for a file
-test/test_kinematic_complex.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/robot_state/CMakeFiles/test_robot_state_complex.dir/build.make moveit/moveit_core/robot_state/CMakeFiles/test_robot_state_complex.dir/test/test_kinematic_complex.cpp.s
-.PHONY : test/test_kinematic_complex.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
-	@echo "... test"
-	@echo "... install/local"
-	@echo "... list_install_components"
-	@echo "... install/strip"
-	@echo "... rebuild_cache"
-	@echo "... run_tests_moveit_core_gtest_test_aabb"
-	@echo "... test_robot_state"
-	@echo "... run_tests_moveit_core_gtest_test_robot_state"
-	@echo "... moveit_robot_state"
-	@echo "... run_tests_moveit_core_gtest_test_robot_state_complex"
 	@echo "... install"
-	@echo "... _run_tests_moveit_core_gtest_test_robot_state_complex"
-	@echo "... test_aabb"
-	@echo "... _run_tests_moveit_core_gtest_test_robot_state"
-	@echo "... test_robot_state_complex"
-	@echo "... _run_tests_moveit_core_gtest_test_aabb"
+	@echo "... list_install_components"
+	@echo "... rebuild_cache"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... moveit_robot_state"
+	@echo "... edit_cache"
 	@echo "... src/attached_body.o"
 	@echo "... src/attached_body.i"
 	@echo "... src/attached_body.s"
@@ -509,15 +272,6 @@ help:
 	@echo "... src/robot_state.o"
 	@echo "... src/robot_state.i"
 	@echo "... src/robot_state.s"
-	@echo "... test/robot_state_test.o"
-	@echo "... test/robot_state_test.i"
-	@echo "... test/robot_state_test.s"
-	@echo "... test/test_aabb.o"
-	@echo "... test/test_aabb.i"
-	@echo "... test/test_aabb.s"
-	@echo "... test/test_kinematic_complex.o"
-	@echo "... test/test_kinematic_complex.i"
-	@echo "... test/test_kinematic_complex.s"
 .PHONY : help
 
 

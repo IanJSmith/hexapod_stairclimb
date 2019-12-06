@@ -1,0 +1,9 @@
+
+<launch>
+
+  <include file="$(find hexapod_moveit_config)/launch/demo.launch"/>
+
+  <node name="hexapod_movement" pkg="hexapod_moveit_config" type="hexapod_movement" respawn="false" output="screen">
+  </node>
+
+</launch>

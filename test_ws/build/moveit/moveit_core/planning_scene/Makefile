@@ -56,16 +56,17 @@ CMAKE_BINARY_DIR = /home/darian/test_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # Special rule for the target list_install_components
 list_install_components:
@@ -76,6 +77,17 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -110,29 +122,6 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
 # The main all target
 all: cmake_check_build_system
 	cd /home/darian/test_ws/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/darian/test_ws/build/CMakeFiles /home/darian/test_ws/build/moveit/moveit_core/planning_scene/CMakeFiles/progress.marks
@@ -164,51 +153,6 @@ preinstall/fast:
 depend:
 	cd /home/darian/test_ws/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
-
-# Convenience name for target.
-moveit/moveit_core/planning_scene/CMakeFiles/_run_tests_moveit_core_gtest_test_planning_scene.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/planning_scene/CMakeFiles/_run_tests_moveit_core_gtest_test_planning_scene.dir/rule
-.PHONY : moveit/moveit_core/planning_scene/CMakeFiles/_run_tests_moveit_core_gtest_test_planning_scene.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_core_gtest_test_planning_scene: moveit/moveit_core/planning_scene/CMakeFiles/_run_tests_moveit_core_gtest_test_planning_scene.dir/rule
-
-.PHONY : _run_tests_moveit_core_gtest_test_planning_scene
-
-# fast build rule for target.
-_run_tests_moveit_core_gtest_test_planning_scene/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/planning_scene/CMakeFiles/_run_tests_moveit_core_gtest_test_planning_scene.dir/build.make moveit/moveit_core/planning_scene/CMakeFiles/_run_tests_moveit_core_gtest_test_planning_scene.dir/build
-.PHONY : _run_tests_moveit_core_gtest_test_planning_scene/fast
-
-# Convenience name for target.
-moveit/moveit_core/planning_scene/CMakeFiles/test_planning_scene.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/planning_scene/CMakeFiles/test_planning_scene.dir/rule
-.PHONY : moveit/moveit_core/planning_scene/CMakeFiles/test_planning_scene.dir/rule
-
-# Convenience name for target.
-test_planning_scene: moveit/moveit_core/planning_scene/CMakeFiles/test_planning_scene.dir/rule
-
-.PHONY : test_planning_scene
-
-# fast build rule for target.
-test_planning_scene/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/planning_scene/CMakeFiles/test_planning_scene.dir/build.make moveit/moveit_core/planning_scene/CMakeFiles/test_planning_scene.dir/build
-.PHONY : test_planning_scene/fast
-
-# Convenience name for target.
-moveit/moveit_core/planning_scene/CMakeFiles/run_tests_moveit_core_gtest_test_planning_scene.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_core/planning_scene/CMakeFiles/run_tests_moveit_core_gtest_test_planning_scene.dir/rule
-.PHONY : moveit/moveit_core/planning_scene/CMakeFiles/run_tests_moveit_core_gtest_test_planning_scene.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_core_gtest_test_planning_scene: moveit/moveit_core/planning_scene/CMakeFiles/run_tests_moveit_core_gtest_test_planning_scene.dir/rule
-
-.PHONY : run_tests_moveit_core_gtest_test_planning_scene
-
-# fast build rule for target.
-run_tests_moveit_core_gtest_test_planning_scene/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/planning_scene/CMakeFiles/run_tests_moveit_core_gtest_test_planning_scene.dir/build.make moveit/moveit_core/planning_scene/CMakeFiles/run_tests_moveit_core_gtest_test_planning_scene.dir/build
-.PHONY : run_tests_moveit_core_gtest_test_planning_scene/fast
 
 # Convenience name for target.
 moveit/moveit_core/planning_scene/CMakeFiles/moveit_planning_scene.dir/rule:
@@ -252,56 +196,22 @@ src/planning_scene.cpp.s:
 	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/planning_scene/CMakeFiles/moveit_planning_scene.dir/build.make moveit/moveit_core/planning_scene/CMakeFiles/moveit_planning_scene.dir/src/planning_scene.cpp.s
 .PHONY : src/planning_scene.cpp.s
 
-test/test_planning_scene.o: test/test_planning_scene.cpp.o
-
-.PHONY : test/test_planning_scene.o
-
-# target to build an object file
-test/test_planning_scene.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/planning_scene/CMakeFiles/test_planning_scene.dir/build.make moveit/moveit_core/planning_scene/CMakeFiles/test_planning_scene.dir/test/test_planning_scene.cpp.o
-.PHONY : test/test_planning_scene.cpp.o
-
-test/test_planning_scene.i: test/test_planning_scene.cpp.i
-
-.PHONY : test/test_planning_scene.i
-
-# target to preprocess a source file
-test/test_planning_scene.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/planning_scene/CMakeFiles/test_planning_scene.dir/build.make moveit/moveit_core/planning_scene/CMakeFiles/test_planning_scene.dir/test/test_planning_scene.cpp.i
-.PHONY : test/test_planning_scene.cpp.i
-
-test/test_planning_scene.s: test/test_planning_scene.cpp.s
-
-.PHONY : test/test_planning_scene.s
-
-# target to generate assembly for a file
-test/test_planning_scene.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_core/planning_scene/CMakeFiles/test_planning_scene.dir/build.make moveit/moveit_core/planning_scene/CMakeFiles/test_planning_scene.dir/test/test_planning_scene.cpp.s
-.PHONY : test/test_planning_scene.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... _run_tests_moveit_core_gtest_test_planning_scene"
-	@echo "... test_planning_scene"
-	@echo "... rebuild_cache"
-	@echo "... run_tests_moveit_core_gtest_test_planning_scene"
+	@echo "... install"
 	@echo "... list_install_components"
+	@echo "... rebuild_cache"
 	@echo "... install/strip"
 	@echo "... install/local"
-	@echo "... edit_cache"
 	@echo "... moveit_planning_scene"
-	@echo "... test"
-	@echo "... install"
+	@echo "... edit_cache"
 	@echo "... src/planning_scene.o"
 	@echo "... src/planning_scene.i"
 	@echo "... src/planning_scene.s"
-	@echo "... test/test_planning_scene.o"
-	@echo "... test/test_planning_scene.i"
-	@echo "... test/test_planning_scene.s"
 .PHONY : help
 
 

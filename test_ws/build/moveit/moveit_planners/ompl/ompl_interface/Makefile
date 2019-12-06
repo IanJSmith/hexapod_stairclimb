@@ -56,18 +56,6 @@ CMAKE_BINARY_DIR = /home/darian/test_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -90,17 +78,6 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -112,16 +89,6 @@ install/local/fast: install/local
 
 .PHONY : install/local/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -132,6 +99,28 @@ install/strip: preinstall
 install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,49 +155,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/clean_test_results_moveit_planners_ompl.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/clean_test_results_moveit_planners_ompl.dir/rule
-.PHONY : moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/clean_test_results_moveit_planners_ompl.dir/rule
+moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_interface.dir/rule:
+	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_interface.dir/rule
+.PHONY : moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_interface.dir/rule
 
 # Convenience name for target.
-clean_test_results_moveit_planners_ompl: moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/clean_test_results_moveit_planners_ompl.dir/rule
+moveit_ompl_interface: moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_interface.dir/rule
 
-.PHONY : clean_test_results_moveit_planners_ompl
+.PHONY : moveit_ompl_interface
 
 # fast build rule for target.
-clean_test_results_moveit_planners_ompl/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/clean_test_results_moveit_planners_ompl.dir/build.make moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/clean_test_results_moveit_planners_ompl.dir/build
-.PHONY : clean_test_results_moveit_planners_ompl/fast
-
-# Convenience name for target.
-moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/_run_tests_moveit_planners_ompl_gtest_test_state_space.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/_run_tests_moveit_planners_ompl_gtest_test_state_space.dir/rule
-.PHONY : moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/_run_tests_moveit_planners_ompl_gtest_test_state_space.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_planners_ompl_gtest_test_state_space: moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/_run_tests_moveit_planners_ompl_gtest_test_state_space.dir/rule
-
-.PHONY : _run_tests_moveit_planners_ompl_gtest_test_state_space
-
-# fast build rule for target.
-_run_tests_moveit_planners_ompl_gtest_test_state_space/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/_run_tests_moveit_planners_ompl_gtest_test_state_space.dir/build.make moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/_run_tests_moveit_planners_ompl_gtest_test_state_space.dir/build
-.PHONY : _run_tests_moveit_planners_ompl_gtest_test_state_space/fast
-
-# Convenience name for target.
-moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_planner_plugin.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_planner_plugin.dir/rule
-.PHONY : moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_planner_plugin.dir/rule
-
-# Convenience name for target.
-moveit_ompl_planner_plugin: moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_planner_plugin.dir/rule
-
-.PHONY : moveit_ompl_planner_plugin
-
-# fast build rule for target.
-moveit_ompl_planner_plugin/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_planner_plugin.dir/build.make moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_planner_plugin.dir/build
-.PHONY : moveit_ompl_planner_plugin/fast
+moveit_ompl_interface/fast:
+	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_interface.dir/build.make moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_interface.dir/build
+.PHONY : moveit_ompl_interface/fast
 
 # Convenience name for target.
 moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_planner.dir/rule:
@@ -226,36 +185,6 @@ moveit_ompl_planner/fast:
 .PHONY : moveit_ompl_planner/fast
 
 # Convenience name for target.
-moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_interface.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_interface.dir/rule
-.PHONY : moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_interface.dir/rule
-
-# Convenience name for target.
-moveit_ompl_interface: moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_interface.dir/rule
-
-.PHONY : moveit_ompl_interface
-
-# fast build rule for target.
-moveit_ompl_interface/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_interface.dir/build.make moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_interface.dir/build
-.PHONY : moveit_ompl_interface/fast
-
-# Convenience name for target.
-moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/run_tests_moveit_planners_ompl.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/run_tests_moveit_planners_ompl.dir/rule
-.PHONY : moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/run_tests_moveit_planners_ompl.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_planners_ompl: moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/run_tests_moveit_planners_ompl.dir/rule
-
-.PHONY : run_tests_moveit_planners_ompl
-
-# fast build rule for target.
-run_tests_moveit_planners_ompl/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/run_tests_moveit_planners_ompl.dir/build.make moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/run_tests_moveit_planners_ompl.dir/build
-.PHONY : run_tests_moveit_planners_ompl/fast
-
-# Convenience name for target.
 moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_generate_state_database.dir/rule:
 	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_generate_state_database.dir/rule
 .PHONY : moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_generate_state_database.dir/rule
@@ -271,79 +200,19 @@ moveit_generate_state_database/fast:
 .PHONY : moveit_generate_state_database/fast
 
 # Convenience name for target.
-moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/test_state_space.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/test_state_space.dir/rule
-.PHONY : moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/test_state_space.dir/rule
+moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_planner_plugin.dir/rule:
+	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_planner_plugin.dir/rule
+.PHONY : moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_planner_plugin.dir/rule
 
 # Convenience name for target.
-test_state_space: moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/test_state_space.dir/rule
+moveit_ompl_planner_plugin: moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_planner_plugin.dir/rule
 
-.PHONY : test_state_space
+.PHONY : moveit_ompl_planner_plugin
 
 # fast build rule for target.
-test_state_space/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/test_state_space.dir/build.make moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/test_state_space.dir/build
-.PHONY : test_state_space/fast
-
-# Convenience name for target.
-moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/_run_tests_moveit_planners_ompl_gtest.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/_run_tests_moveit_planners_ompl_gtest.dir/rule
-.PHONY : moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/_run_tests_moveit_planners_ompl_gtest.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_planners_ompl_gtest: moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/_run_tests_moveit_planners_ompl_gtest.dir/rule
-
-.PHONY : _run_tests_moveit_planners_ompl_gtest
-
-# fast build rule for target.
-_run_tests_moveit_planners_ompl_gtest/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/_run_tests_moveit_planners_ompl_gtest.dir/build.make moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/_run_tests_moveit_planners_ompl_gtest.dir/build
-.PHONY : _run_tests_moveit_planners_ompl_gtest/fast
-
-# Convenience name for target.
-moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/_run_tests_moveit_planners_ompl.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/_run_tests_moveit_planners_ompl.dir/rule
-.PHONY : moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/_run_tests_moveit_planners_ompl.dir/rule
-
-# Convenience name for target.
-_run_tests_moveit_planners_ompl: moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/_run_tests_moveit_planners_ompl.dir/rule
-
-.PHONY : _run_tests_moveit_planners_ompl
-
-# fast build rule for target.
-_run_tests_moveit_planners_ompl/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/_run_tests_moveit_planners_ompl.dir/build.make moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/_run_tests_moveit_planners_ompl.dir/build
-.PHONY : _run_tests_moveit_planners_ompl/fast
-
-# Convenience name for target.
-moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/run_tests_moveit_planners_ompl_gtest.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/run_tests_moveit_planners_ompl_gtest.dir/rule
-.PHONY : moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/run_tests_moveit_planners_ompl_gtest.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_planners_ompl_gtest: moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/run_tests_moveit_planners_ompl_gtest.dir/rule
-
-.PHONY : run_tests_moveit_planners_ompl_gtest
-
-# fast build rule for target.
-run_tests_moveit_planners_ompl_gtest/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/run_tests_moveit_planners_ompl_gtest.dir/build.make moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/run_tests_moveit_planners_ompl_gtest.dir/build
-.PHONY : run_tests_moveit_planners_ompl_gtest/fast
-
-# Convenience name for target.
-moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/run_tests_moveit_planners_ompl_gtest_test_state_space.dir/rule:
-	cd /home/darian/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/run_tests_moveit_planners_ompl_gtest_test_state_space.dir/rule
-.PHONY : moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/run_tests_moveit_planners_ompl_gtest_test_state_space.dir/rule
-
-# Convenience name for target.
-run_tests_moveit_planners_ompl_gtest_test_state_space: moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/run_tests_moveit_planners_ompl_gtest_test_state_space.dir/rule
-
-.PHONY : run_tests_moveit_planners_ompl_gtest_test_state_space
-
-# fast build rule for target.
-run_tests_moveit_planners_ompl_gtest_test_state_space/fast:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/run_tests_moveit_planners_ompl_gtest_test_state_space.dir/build.make moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/run_tests_moveit_planners_ompl_gtest_test_state_space.dir/build
-.PHONY : run_tests_moveit_planners_ompl_gtest_test_state_space/fast
+moveit_ompl_planner_plugin/fast:
+	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_planner_plugin.dir/build.make moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_planner_plugin.dir/build
+.PHONY : moveit_ompl_planner_plugin/fast
 
 src/constraints_library.o: src/constraints_library.cpp.o
 
@@ -885,58 +754,22 @@ src/planning_context_manager.cpp.s:
 	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_interface.dir/build.make moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/moveit_ompl_interface.dir/src/planning_context_manager.cpp.s
 .PHONY : src/planning_context_manager.cpp.s
 
-test/test_state_space.o: test/test_state_space.cpp.o
-
-.PHONY : test/test_state_space.o
-
-# target to build an object file
-test/test_state_space.cpp.o:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/test_state_space.dir/build.make moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/test_state_space.dir/test/test_state_space.cpp.o
-.PHONY : test/test_state_space.cpp.o
-
-test/test_state_space.i: test/test_state_space.cpp.i
-
-.PHONY : test/test_state_space.i
-
-# target to preprocess a source file
-test/test_state_space.cpp.i:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/test_state_space.dir/build.make moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/test_state_space.dir/test/test_state_space.cpp.i
-.PHONY : test/test_state_space.cpp.i
-
-test/test_state_space.s: test/test_state_space.cpp.s
-
-.PHONY : test/test_state_space.s
-
-# target to generate assembly for a file
-test/test_state_space.cpp.s:
-	cd /home/darian/test_ws/build && $(MAKE) -f moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/test_state_space.dir/build.make moveit/moveit_planners/ompl/ompl_interface/CMakeFiles/test_state_space.dir/test/test_state_space.cpp.s
-.PHONY : test/test_state_space.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... test"
 	@echo "... install/local"
-	@echo "... list_install_components"
 	@echo "... install/strip"
-	@echo "... clean_test_results_moveit_planners_ompl"
-	@echo "... _run_tests_moveit_planners_ompl_gtest_test_state_space"
-	@echo "... moveit_ompl_planner_plugin"
-	@echo "... moveit_ompl_planner"
 	@echo "... moveit_ompl_interface"
-	@echo "... run_tests_moveit_planners_ompl"
+	@echo "... install"
+	@echo "... list_install_components"
+	@echo "... moveit_ompl_planner"
 	@echo "... moveit_generate_state_database"
-	@echo "... test_state_space"
-	@echo "... _run_tests_moveit_planners_ompl_gtest"
-	@echo "... _run_tests_moveit_planners_ompl"
-	@echo "... run_tests_moveit_planners_ompl_gtest"
-	@echo "... run_tests_moveit_planners_ompl_gtest_test_state_space"
+	@echo "... moveit_ompl_planner_plugin"
 	@echo "... src/constraints_library.o"
 	@echo "... src/constraints_library.i"
 	@echo "... src/constraints_library.s"
@@ -997,9 +830,6 @@ help:
 	@echo "... src/planning_context_manager.o"
 	@echo "... src/planning_context_manager.i"
 	@echo "... src/planning_context_manager.s"
-	@echo "... test/test_state_space.o"
-	@echo "... test/test_state_space.i"
-	@echo "... test/test_state_space.s"
 .PHONY : help
 
 

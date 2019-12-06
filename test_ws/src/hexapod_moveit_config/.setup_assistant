@@ -7,5 +7,5 @@ moveit_setup_assistant_config:
     relative_path: config/hexapodV2.srdf
   CONFIG:
     author_name: darebear
-    author_email: dariandirko@gmail.com
-    generated_timestamp: 1573849297
+    author_email: dariandzirko@gmail.com
+    generated_timestamp: 1575587005

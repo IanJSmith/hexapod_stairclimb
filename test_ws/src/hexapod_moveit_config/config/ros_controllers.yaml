@@ -1,6 +1,6 @@
 # Simulation settings for using moveit_sim_controllers
 moveit_sim_hw_interface:
-  joint_model_group: rf_leg
+  joint_model_group: lb_leg
   joint_model_group_pose: default
 # Settings for ros_control_boilerplate control loop
 generic_hw_control_loop:
@@ -9,6 +9,7 @@ generic_hw_control_loop:
 # Settings for ros_control hardware interface
 hardware_interface:
   joints:
+    - worldy_boi
     - lb_hip
     - lb_knee
     - lb_toe
