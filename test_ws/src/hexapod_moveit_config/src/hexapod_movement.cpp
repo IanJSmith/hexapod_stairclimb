@@ -1,38 +1,8 @@
-/*********************************************************************
- * Software License Agreement (BSD License)
- *
- *  Copyright (c) 2013, SRI International
- *  All rights reserved.
- *
- *  Redistribution and use in source and binary forms, with or without
- *  modification, are permitted provided that the following conditions
- *  are met:
- *
- *   * Redistributions of source code must retain the above copyright
- *     notice, this list of conditions and the following disclaimer.
- *   * Redistributions in binary form must reproduce the above
- *     copyright notice, this list of conditions and the following
- *     disclaimer in the documentation and/or other materials provided
- *     with the distribution.
- *   * Neither the name of SRI International nor the names of its
- *     contributors may be used to endorse or promote products derived
- *     from this software without specific prior written permission.
- *
- *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
- *  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
- *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
- *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
- *  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- *  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- *  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
- *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- *  POSSIBILITY OF SUCH DAMAGE.
- *********************************************************************/
-
-/* Author: Darebear */
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+#include "std_msgs/Float32.h"
+#include "std_msgs/Float32MultiArray.h"
+#include "std_msgs/MultiArrayDimension.h"
 
 #include <moveit/move_group_interface/move_group_interface.h>
 #include <moveit/planning_scene_interface/planning_scene_interface.h>
@@ -47,26 +17,35 @@
 #include <moveit/robot_model/robot_model.h>
 #include <moveit/robot_state/robot_state.h>
 
+
+uint32_t lidar1;
+uint32_t lidar2;
+uint32_t lidar3;
+uint32_t state=0;
+
+/**
+ * This tutorial demonstrates simple receipt of messages over the ROS system.
+ */
+
+void lidarCallback(const std_msgs::Float32MultiArray msg)
+{
+  lidar1=msg.data[0];
+  lidar2=msg.data[1];
+  lidar3=msg.data[2];
+
+}
+
 int main(int argc, char **argv)
 {
+  ros::init(argc, argv, "/lidar_data");
+  ros::NodeHandle node_handle;
+  ros::Subscriber sub = node_handle.subscribe("/lidar_data", 1000, lidarCallback);
+
   ros::init(argc, argv, "hexapod_move");
-  ros::NodeHandle node_handle;  
   ros::AsyncSpinner spinner(1);
   spinner.start();
 
-  /* This sleep is ONLY to allow Rviz to come up */
   sleep(3.0);
-  
-  // BEGIN_TUTORIAL
-  // 
-  // Setup
-  // ^^^^^
-  // 
-  // The :move_group_interface:`MoveGroupInterface` class can be easily 
-  // setup using just the name
-  // of the group you would like to control and plan for.
-  
-  //------moveit::planning_interface::MoveGroupInterface group("arm_group");
 
   moveit::planning_interface::MoveGroupInterface lb_leg("lb_leg");
   moveit::planning_interface::MoveGroupInterface lf_leg("lf_leg");
@@ -75,16 +54,6 @@ int main(int argc, char **argv)
   moveit::planning_interface::MoveGroupInterface rb_leg("rb_leg");
   moveit::planning_interface::MoveGroupInterface rf_leg("rf_leg");
   moveit::planning_interface::MoveGroupInterface rm_leg("rm_leg");
-
-  //Home position points
-/*  
-  lb_toe  Home  -0.154184 0.16404 -0.11567
-  lf_toe  Home  0.149208  0.163343  -0.115189
-  lm_toe  Home  -0.0024832  0.1642  -0.115785
-  rb_toe  Home  -0.15417  -0.161672 -0.115145
-  rf_toe  Home  0.149266  -0.162118 -0.115942
-  rm_toe  Home  -0.00239747 -0.161778 -0.115523
-*/
 
   //--------------------------------------------------------------------------------
   //Target pose declarations 
@@ -171,14 +140,6 @@ int main(int argc, char **argv)
   //--------------------------------------------------------------------------------
   //Left home defitions
 
-/*
-lb_toe  Home  -0.154184 0.16404 -0.11567
-lf_toe  Home  0.149208  0.163343  -0.115189
-lm_toe  Home  -0.0024832  0.1642  -0.115785
-rb_toe  Home  -0.15417  -0.161672 -0.115145
-rf_toe  Home  0.149266  -0.162118 -0.115942
-rm_toe  Home  -0.00239747 -0.161778 -0.115523
-*/
   lb_toe_home.position.x = -0.154184;
   lb_toe_home.position.y = 0.16404 ;
   lb_toe_home.position.z = -0.11567;
@@ -207,16 +168,6 @@ rm_toe  Home  -0.00239747 -0.161778 -0.115523
 
   //--------------------------------------------------------------------------------
   //Left up and foward defitions
-
-/*
-lb_toe  Up and Forward  -0.0520047  0.185305  -0.0428311
-lf_toe  Up and Forward  0.25078 0.184788  -0.0429786
-lm_toe  Up and Forward  0.0998278 0.185476  -0.0428002
-rb_toe  Up and Forward  -0.0533545  -0.183999 -0.0435861
-rf_toe  Up and Forward  0.250694  -0.184644 -0.0438348
-rm_toe  Up and Forward  0.098666  -0.184195 -0.0437799
-
-*/
 
   lb_toe_up_forward.position.x = -0.0520047;
   lb_toe_up_forward.position.y = 0.185305;
@@ -247,59 +198,34 @@ rm_toe  Up and Forward  0.098666  -0.184195 -0.0437799
   //--------------------------------------------------------------------------------
   //Left down and forward defintion
 
-/*
-lb_toe  Down and Forward  -0.0953619  0.138947  -0.117145
-lf_toe  Down and Forward  0.209946  0.141048  -0.114861
-lm_toe  Down and Forward  0.0588517 0.141638  -0.115452
-rb_toe  Down and Forward  -0.0954773  -0.1389 -0.11546
-rf_toe  Down and Forward  0.208273  -0.139224 -0.11626
-rm_toe  Down and Forward  0.0563553 -0.138944 -0.115839
-*/
+  lb_toe_down_forward.position.x = -0.0953619;
+  lb_toe_down_forward.position.y = 0.138947;
+  lb_toe_down_forward.position.z = -0.117145;
 
-  lb_toe_down_forward.position.x = -0.0520047;
-  lb_toe_down_forward.position.y = 0.185305;
-  lb_toe_down_forward.position.z = -0.0428311;
+  lf_toe_down_forward.position.x = 0.209946;
+  lf_toe_down_forward.position.y = 0.141048;
+  lf_toe_down_forward.position.z = -0.114861;
 
-  lf_toe_down_forward.position.x = 0.25078;
-  lf_toe_down_forward.position.y = 0.184788;
-  lf_toe_down_forward.position.z = -0.0429786;
-
-  lm_toe_down_forward.position.x = 0.0998278;
-  lm_toe_down_forward.position.y = 0.185476;
-  lm_toe_down_forward.position.z = -0.0428002;
+  lm_toe_down_forward.position.x = 0.0588517;
+  lm_toe_down_forward.position.y = 0.141638;
+  lm_toe_down_forward.position.z = -0.115452;
   //--------------------------------------------------------------------------------
 
   //Right up and foward defitions
-  rb_toe_down_forward.position.x = -0.0533545;
-  rb_toe_down_forward.position.y = -0.183999;
-  rb_toe_down_forward.position.z = -0.0435861;
+  rb_toe_down_forward.position.x = -0.0954773;
+  rb_toe_down_forward.position.y = -0.1389;
+  rb_toe_down_forward.position.z = -0.11546;
 
-  rf_toe_down_forward.position.x =  0.250694;
-  rf_toe_down_forward.position.y = -0.184644;
-  rf_toe_down_forward.position.z = -0.0438348;
+  rf_toe_down_forward.position.x =  0.208273;
+  rf_toe_down_forward.position.y = -0.139224;
+  rf_toe_down_forward.position.z = -0.11626;
 
-  rm_toe_down_forward.position.x = 0.098666;
-  rm_toe_down_forward.position.y = -0.184195;
-  rm_toe_down_forward.position.z = -0.0437799;
+  rm_toe_down_forward.position.x = 0.0563553;
+  rm_toe_down_forward.position.y = -0.138944;
+  rm_toe_down_forward.position.z = -0.115839;
 
   //--------------------------------------------------------------------------------
   //Left down and forward defintion
-  //Right up and backwards definitions
-  rb_toe_up_backward.position.x = -0.234064;
-  rb_toe_up_backward.position.y = -0.196963;
-  rb_toe_up_backward.position.z = -0.0435862;
-
-  rf_toe_up_backward.position.x = 0.0688811;
-  rf_toe_up_backward.position.y = -0.197683;
-  rf_toe_up_backward.position.z = -0.0438349;
-/*
-lb_toe  Up and Home -0.15595  0.2224612 -0.0428309
-lf_toe  Up and Home 0.147416  0.223776  -0.0429784
-lm_toe  Up and Home -0.00424232 0.224805  -0.0428001
-rb_toe  Up and Home -0.155965 -0.222734 -0.0435863
-rf_toe  Up and Home 0.147457  -0.223613 -0.0438349
-rm_toe  Up and Home -0.00416631 -0.223077 -0.04378
-*/
 
   lb_toe_up_home.position.x = -0.0520047;
   lb_toe_up_home.position.y = 0.185305;
@@ -330,49 +256,13 @@ rm_toe  Up and Home -0.00416631 -0.223077 -0.04378
 
   //--------------------------------------------------------------------------------
 
-/*  
-lb_toe  Down and Backward -0.200473 0.148799  -0.11567
-lf_toe  Down and Backward 0.103311  0.148184  -0.115189
-lm_toe  Down and Backward -0.0488539  0.148917  -0.115785
-rb_toe  Down and Backward -0.199166 -0.146825 -0.115145
-rf_toe  Down and Backward 0.104028  -0.14719  -0.115942
-rm_toe  Down and Backward -0.0474582  -0.146936 -0.115523
-*/
-
-
-  //--------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-lb_toe  Up and Backward -0.235058 0.198557  -0.042831
-lf_toe  Up and Backward 0.0687579 0.197797  -0.0429785
-lm_toe  Up and Backward -0.0834733  0.198693  -0.0428001
-rb_toe  Up and Backward -0.234064 -0.196963 -0.0435862
-rf_toe  Up and Backward 0.0688811 -0.197683 -0.0438349
-rm_toe  Up and Backward -0.0824648  -0.197288 -0.0437799
-*/
-
-  rm_toe_up_backward.position.x = -0.0824648;
-  rm_toe_up_backward.position.y = -0.197288;
-  rm_toe_up_backward.position.z = -0.0437799;
 
   //--------------------------------------------------------------------------------
   // We will use the :planning_scene_interface:`PlanningSceneInterface`
   // class to deal directly with the world.
   moveit::planning_interface::PlanningSceneInterface planning_scene_interface;  
 
-	//Without a specified planner, the group will use the default planner. If the default works fine, this line isn't needed.
+  //Without a specified planner, the group will use the default planner. If the default works fine, this line isn't needed.
   //WHAT FUCKING PLANNER SHOULD WE USE
   lb_leg.setPlannerId("RRTConnectkConfigDefault");
   lf_leg.setPlannerId("RRTConnectkConfigDefault");
@@ -391,12 +281,8 @@ rm_toe  Up and Backward -0.0824648  -0.197288 -0.0437799
   ros::Publisher rf_leg_publisher = node_handle.advertise<trajectory_msgs::JointTrajectory>("/rf_leg_group/command", 1, true);
   ros::Publisher rm_leg_publisher = node_handle.advertise<trajectory_msgs::JointTrajectory>("/rm_leg_group/command", 1, true);
 
-  // Getting Basic Information
-  // ^^^^^^^^^^^^^^^^^^^^^^^^^
-  //
-  // We can print the name of the reference frame for this robot.
-  
-  //ROS_INFO("Reference frame: %s", group.getPlanningFrame().c_str());
+  ros::Publisher js_publisher = node_handle.advertise<sensor_msgs::JointState>("/joint_states", 1, true);
+
   lb_leg.setNamedTarget("default");
   lf_leg.setNamedTarget("default");
   lm_leg.setNamedTarget("default");
@@ -405,12 +291,6 @@ rm_toe  Up and Backward -0.0824648  -0.197288 -0.0437799
   rf_leg.setNamedTarget("default");
   rm_leg.setNamedTarget("default");
 
-  // We can also print the name of the end-effector link for this group.
-  //ROS_INFO("End effector link: %s", group.getEndEffectorLink().c_str());
-
-	// Set the arm to the default pose created in the setup assistant
-
-  // Try to plan to move to the target
   //--------------------------------------------------------------------------------
 
   moveit::planning_interface::MoveGroupInterface::Plan lb_leg_plan;
@@ -452,705 +332,328 @@ rm_toe  Up and Backward -0.0824648  -0.197288 -0.0437799
   success = (bool)(rm_leg.plan(rm_leg_plan));
   ROS_INFO("Visualizing plan to default pose %s",success?"":"FAILED");
   rm_leg.execute(rm_leg_plan);
-  sleep(0.1);
+  sleep(20.0);
 
-	//servo_publisher.publish(my_plan.trajectory_.joint_trajectory);    
-
-  // Planning to a Pose goal
-  // ^^^^^^^^^^^^^^^^^^^^^^^
-  // We can plan a motion for this group to a desired pose for the 
-  // end-effector.
-
-  //Left side with respect to base y's are z's, x's are x's, z's are negative y's
-
-  lb_leg.setPositionTarget(lb_toe_home.position.x, lb_toe_home.position.y, lb_toe_home.position.z, "lb_toe_end");
-  lf_leg.setPositionTarget(lf_toe_home.position.x, lf_toe_home.position.y, lf_toe_home.position.z, "lf_toe_end");
-  lm_leg.setPositionTarget(lm_toe_home.position.x, lm_toe_home.position.y, lm_toe_home.position.z, "lm_toe_end");
-
-  rb_leg.setPositionTarget(rb_toe_home.position.x, rb_toe_home.position.y, rb_toe_home.position.z, "rb_toe_end");
-  rf_leg.setPositionTarget(rf_toe_home.position.x, rf_toe_home.position.y, rf_toe_home.position.z, "rf_toe_end");
-  rm_leg.setPositionTarget(rm_toe_home.position.x, rm_toe_home.position.y, rm_toe_home.position.z, "rm_toe_end");
-
-/*
-	group.setApproximateJointValueTarget(target_pose1);
-*/
-
- /*geometry_msgs::Point exact_pose = target_pose1.position;
-  geometry_msgs::Quaternion exact_orientation = target_pose1.orientation;
+  sensor_msgs::JointState home1;
+  home1.name.push_back("rm_hip");
+  home1.name.push_back("rm_toe");
+  home1.name.push_back("rm_knee");
+  
+  home1.name.push_back("lf_hip");
+  home1.name.push_back("lf_knee");
+  home1.name.push_back("lf_toe");
+  
+  home1.name.push_back("lb_hip");
+  home1.name.push_back("lb_knee");
+  home1.name.push_back("lb_toe");
+  
+  home1.position.push_back(0.00036366274877781607);
+  home1.position.push_back(0.0014642818616096864);
+  home1.position.push_back(1.5742249193273423);
+  
+  home1.position.push_back(0.0001195254564282332);
+  home1.position.push_back(-0.0013927852805418845);
+  home1.position.push_back(1.5696556967893192);
+  
+  home1.position.push_back(-0.03041695415859095);
+  home1.position.push_back(0.028544208166492172);
+  home1.position.push_back(-1.570191581062994);
   
   
-  std::cout<<"Robot position : "<<exact_pose.x<<"\t"<<exact_pose.y<<"\t"<<exact_pose.z<<std::endl;
-  std::cout<<"Robot Orientation : "<<exact_orientation.x<<"\t"<<exact_orientation.y<<"\t"<<exact_orientation.z<<"\t"<<exact_orientation.w<<std::endl;*/
+  sensor_msgs::JointState home2;
 
-
-  // Now, we call the planner to compute the plan
-  // and visualize it.
-  // Note that we are just planning, not asking move_group 
-  // to actually move the robot.
-
-  success = (bool)(lb_leg.plan(lb_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");    
-  // Sleep to give Rviz time to visualize the plan.
-  sleep(0.1);
-  lb_leg.execute(lb_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(lf_leg.plan(lf_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");    
-  // Sleep to give Rviz time to visualize the plan.
-  sleep(0.1);
-  lf_leg.execute(lf_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(lm_leg.plan(lm_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");    
-  // Sleep to give Rviz time to visualize the plan.
-  sleep(0.1);
-  lb_leg.execute(lm_leg_plan);
-  sleep(0.1);
-
-  //--------------------------------------------------------------------------------
-
-  success = (bool)(rb_leg.plan(rb_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");    
-  // Sleep to give Rviz time to visualize the plan.
-  sleep(0.1);
-  rb_leg.execute(rb_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(rf_leg.plan(rf_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");    
-  // Sleep to give Rviz time to visualize the plan.
-  sleep(0.1);
-  rf_leg.execute(rf_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(rm_leg.plan(rm_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");    
-  // Sleep to give Rviz time to visualize the plan.
-  sleep(0.1);
-  rm_leg.execute(rm_leg_plan);
-  sleep(0.1);
-
-  //--------------------------------------------------------------------------------
-  // TRIPOD GAIT
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // Set 1 Up and Forward
-  lb_leg.setPositionTarget(lb_toe_up_forward.position.x, lb_toe_up_forward.position.y, lb_toe_up_forward.position.z, "lb_toe_end");
-  lf_leg.setPositionTarget(lf_toe_up_forward.position.x, lf_toe_up_forward.position.y, lf_toe_up_forward.position.z, "lf_toe_end");
-  rm_leg.setPositionTarget(rm_toe_up_forward.position.x, rm_toe_up_forward.position.y, rm_toe_up_forward.position.z, "rm_toe_end");
-
-  success = (bool)(lb_leg.plan(lb_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  lb_leg.execute(lb_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(lf_leg.plan(lf_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  lf_leg.execute(lf_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(rm_leg.plan(rm_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  rm_leg.execute(rm_leg_plan);
-  sleep(0.1);
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // Set 1 Down and Forward
-
-  lb_leg.setPositionTarget(lb_toe_down_forward.position.x, lb_toe_down_forward.position.y, lb_toe_down_forward.position.z, "lb_toe_end");
-  lf_leg.setPositionTarget(lf_toe_down_forward.position.x, lf_toe_down_forward.position.y, lf_toe_down_forward.position.z, "lf_toe_end");
-  rm_leg.setPositionTarget(rm_toe_down_forward.position.x, rm_toe_down_forward.position.y, rm_toe_down_forward.position.z, "rm_toe_end");
-
-  success = (bool)(lb_leg.plan(lb_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  lb_leg.execute(lb_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(lf_leg.plan(lf_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  lf_leg.execute(lf_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(rm_leg.plan(rm_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  rm_leg.execute(rm_leg_plan);
-  sleep(0.1);
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // Set 1 Up and Center
-
-  lb_leg.setPositionTarget(lb_toe_up_home.position.x, lb_toe_up_home.position.y, lb_toe_up_home.position.z, "lb_toe_end");
-  lf_leg.setPositionTarget(lf_toe_up_home.position.x, lf_toe_up_home.position.y, lf_toe_up_home.position.z, "lf_toe_end");
-  rm_leg.setPositionTarget(rm_toe_up_home.position.x, rm_toe_up_home.position.y, rm_toe_up_home.position.z, "rm_toe_end");
-
-  success = (bool)(lb_leg.plan(lb_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  lb_leg.execute(lb_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(lf_leg.plan(lf_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  lf_leg.execute(lf_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(rm_leg.plan(rm_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  rm_leg.execute(rm_leg_plan);
-  sleep(0.1);
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // Set 2 Up and Center
-
-  lm_leg.setPositionTarget(lm_toe_up_home.position.x, lm_toe_up_home.position.y, lm_toe_up_home.position.z, "lm_toe_end");
-  rb_leg.setPositionTarget(rb_toe_up_home.position.x, rb_toe_up_home.position.y, rb_toe_up_home.position.z, "rb_toe_end");
-  rf_leg.setPositionTarget(rf_toe_up_home.position.x, rf_toe_up_home.position.y, rf_toe_up_home.position.z, "rf_toe_end");
-
-  success = (bool)(lm_leg.plan(lm_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  lb_leg.execute(lm_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(rb_leg.plan(rb_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  rb_leg.execute(rb_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(rf_leg.plan(rf_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  rf_leg.execute(rf_leg_plan);
-  sleep(0.1);
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // Set 2 Up and Forward
-
-  lm_leg.setPositionTarget(lm_toe_up_forward.position.x, lm_toe_up_forward.position.y, lm_toe_up_forward.position.z, "lm_toe_end");
-  rb_leg.setPositionTarget(rb_toe_up_forward.position.x, rb_toe_up_forward.position.y, rb_toe_up_forward.position.z, "rb_toe_end");
-  rf_leg.setPositionTarget(rf_toe_up_forward.position.x, rf_toe_up_forward.position.y, rf_toe_up_forward.position.z, "rf_toe_end");
-
-  success = (bool)(lm_leg.plan(lm_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  lb_leg.execute(lm_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(rb_leg.plan(rb_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  rb_leg.execute(rb_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(rf_leg.plan(rf_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  rf_leg.execute(rf_leg_plan);
-  sleep(0.1);
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // Set 2 Down and Forward
-
-  lm_leg.setPositionTarget(lm_toe_down_forward.position.x, lm_toe_down_forward.position.y, lm_toe_down_forward.position.z, "lm_toe_end");
-  rb_leg.setPositionTarget(rb_toe_down_forward.position.x, rb_toe_down_forward.position.y, rb_toe_down_forward.position.z, "rb_toe_end");
-  rf_leg.setPositionTarget(rf_toe_down_forward.position.x, rf_toe_down_forward.position.y, rf_toe_down_forward.position.z, "rf_toe_end");
-
-  success = (bool)(lm_leg.plan(lm_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  lb_leg.execute(lm_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(rb_leg.plan(rb_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  rb_leg.execute(rb_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(rf_leg.plan(rf_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  rf_leg.execute(rf_leg_plan);
-  sleep(0.1);
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
-
-
-	//servo_publisher.publish(my_plan.trajectory_.joint_trajectory);
-
-	// Instead of giving an absolute position, a relative change can be given too.
-
-/*	target_pose1.position.z+=.1;
-	group.setApproximateJointValueTarget(target_pose1);
-	success = bool(group.plan(my_plan));
-  ROS_INFO("Visualizing plan 1 (relative pose goal) %s",success?"":"FAILED");    
-  sleep(1.0);
-	group.execute(my_plan);
-*/
-
-	//servo_publisher.publish(my_plan.trajectory_.joint_trajectory);
-
+  home2.name.push_back("rf_hip");
+  home2.name.push_back("rf_knee");
+  home2.name.push_back("rf_toe");
   
-  // Moving to a pose goal
-  // ^^^^^^^^^^^^^^^^^^^^^
-  //
-  // Moving to a pose goal is similar to the step above
-  // except we now use the move() function. Note that
-  // the pose goal we had set earlier is still active 
-  // and so the robot will try to move to that goal. We will
-  // not use that function in this tutorial since it is 
-  // a blocking function and requires a controller to be active
-  // and report success on execution of a trajectory.
-
-	// If you already used plan(my_plan), then it's sufficient to just use
-	// execute(my_plan). move() is a combination of plan(my_plan) and execute(my_plan).
-	// But in this case, we're publishing to the ssc32_node instead of 
-	// using the move/execute functions.
- 
-  // Uncomment below line when working with a real robot
-  // group.move() 
-
-  // Planning to a joint-space goal 
-  // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  //
-  // Let's set a joint space goal and move towards it.  This will replace the
-  // pose target we set above.
-  //
-  // First get the current set of joint values for the group.
-
-/*  std::vector<double> group_variable_values;
-  group.getCurrentState()->copyJointGroupPositions(group.getCurrentState()->getRobotModel()->getJointModelGroup(group.getName()), group_variable_values);
+  home2.name.push_back("rb_hip");
+  home2.name.push_back("rb_knee");
+  home2.name.push_back("rb_toe");
   
-  // Now, let's modify one of the joints, plan to the new joint
-  // space goal and visualize the plan.
-  group_variable_values[0] = -1.0;  
-  group.setJointValueTarget(group_variable_values);
-  success = bool(group.plan(my_plan));
-
-  ROS_INFO("Visualizing plan 2 (joint space goal) %s",success?"":"FAILED");
-  // Sleep to give Rviz time to visualize the plan.
-  sleep(5.0);
-	//servo_publisher.publish(my_plan.trajectory_.joint_trajectory);
-
-	target_pose1.position.z-=.1;
-	group.setApproximateJointValueTarget(target_pose1);
-	success = bool(group.plan(my_plan));
-  ROS_INFO("Visualizing plan 1 (relative pose goal) %s",success?"":"FAILED");    
-  sleep(1.0);
-	group.execute(my_plan);
-*/	//servo_publisher.publish(my_plan.trajectory_.joint_trajectory);
+  home2.name.push_back("lm_hip");
+  home2.name.push_back("lm_knee");
+  home2.name.push_back("lm_toe");
+  
+  home2.position.push_back(0.0005494598920195385);
+  home2.position.push_back(0.00033841381185778464);
+  home2.position.push_back(1.5745533198544903);
+  
+  home2.position.push_back(-0.00013365282215757284);
+  home2.position.push_back(-0.0015704057142507306);
+  home2.position.push_back(1.5694978101688597);
+  
+  home2.position.push_back(0.0001626035399991959);
+  home2.position.push_back(-0.0013168479862824926);
+  home2.position.push_back(-1.5703153291811438);  
 
 
-
-	//How to get current joint values and pose
-/*
-  robot_model_loader::RobotModelLoader robot_model_loader("robot_description");
-  robot_model::RobotModelPtr kinematic_model = robot_model_loader.getModel();
-	robot_state::RobotStatePtr kinematic_state(group.getCurrentState());
-  const robot_state::JointModelGroup *joint_model_group = kinematic_model->getJointModelGroup("arm_group");
-
-  const std::vector<std::string> &joint_names = joint_model_group->getVariableNames();
-
-  // Get Joint Values
-  // ^^^^^^^^^^^^^^^^
-  // We can retreive the current set of joint values stored in the state for the arm.
-  std::vector<double> joint_values;
-  kinematic_state->copyJointGroupPositions(joint_model_group, joint_values);
-  for (std::size_t i = 0; i < joint_names.size(); ++i)
+  while(1)
   {
-    ROS_INFO("Joint %s: %f", joint_names[i].c_str(), joint_values[i]);
+    state = 0;
+    switch(state)
+    {
+      case 0: // Walk / Check
+      {
+        if(lidar1>200 && lidar2>200)
+        {
+          state = 0;
+          printf("Walking State");
+
+          lb_leg.setPositionTarget(lb_toe_up_forward.position.x, lb_toe_up_forward.position.y, lb_toe_up_forward.position.z, "lb_toe_end");
+          lf_leg.setPositionTarget(lf_toe_up_forward.position.x, lf_toe_up_forward.position.y, lf_toe_up_forward.position.z, "lf_toe_end");
+          rm_leg.setPositionTarget(rm_toe_up_forward.position.x, rm_toe_up_forward.position.y, rm_toe_up_forward.position.z, "rm_toe_end");
+
+          success = (bool)(lb_leg.plan(lb_leg_plan));
+          ROS_INFO("Visualizing plan 2 (pose goal) %s",success?"":"FAILED");
+          sleep(0.5);
+          lb_leg.execute(lb_leg_plan);
+          sleep(0.5);
+
+          success = (bool)(lf_leg.plan(lf_leg_plan));
+          ROS_INFO("Visualizing plan 3 (pose goal) %s",success?"":"FAILED");
+          sleep(0.5);
+          lf_leg.execute(lf_leg_plan);
+          sleep(0.5);
+
+          success = (bool)(rm_leg.plan(rm_leg_plan));
+          ROS_INFO("Visualizing plan 4 (pose goal) %s",success?"":"FAILED");
+          sleep(0.5);
+          rm_leg.execute(rm_leg_plan);
+          sleep(0.5);
+
+          //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          // Set 1 Down and Forward
+
+          lb_leg.setPositionTarget(lb_toe_down_forward.position.x, lb_toe_down_forward.position.y, lb_toe_down_forward.position.z, "lb_toe_end");
+          lf_leg.setPositionTarget(lf_toe_down_forward.position.x, lf_toe_down_forward.position.y, lf_toe_down_forward.position.z, "lf_toe_end");
+          rm_leg.setPositionTarget(rm_toe_down_forward.position.x, rm_toe_down_forward.position.y, rm_toe_down_forward.position.z, "rm_toe_end");
+
+          success = (bool)(lb_leg.plan(lb_leg_plan));
+          ROS_INFO("Visualizing plan 5 (pose goal) %s",success?"":"FAILED");
+          sleep(0.5);
+          lb_leg.execute(lb_leg_plan);
+          sleep(0.5);
+
+          success = (bool)(lf_leg.plan(lf_leg_plan));
+          ROS_INFO("Visualizing plan 6 (pose goal) %s",success?"":"FAILED");
+          sleep(0.5);
+          lf_leg.execute(lf_leg_plan);
+          sleep(0.5);
+
+          success = (bool)(rm_leg.plan(rm_leg_plan));
+          ROS_INFO("Visualizing plan 7 (pose goal) %s",success?"":"FAILED");
+          sleep(0.5);
+          rm_leg.execute(rm_leg_plan);
+          sleep(0.5);
+
+          //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          // Set 2 Up and Center
+
+          lm_leg.setPositionTarget(lm_toe_up_home.position.x, lm_toe_up_home.position.y, lm_toe_up_home.position.z, "lm_toe_end");
+          rb_leg.setPositionTarget(rb_toe_up_home.position.x, rb_toe_up_home.position.y, rb_toe_up_home.position.z, "rb_toe_end");
+          rf_leg.setPositionTarget(rf_toe_up_home.position.x, rf_toe_up_home.position.y, rf_toe_up_home.position.z, "rf_toe_end");
+
+          success = (bool)(lm_leg.plan(lm_leg_plan));
+          ROS_INFO("Visualizing plan 8 (pose goal) %s",success?"":"FAILED");
+          sleep(0.5);
+          lb_leg.execute(lm_leg_plan);
+          sleep(0.5);
+
+          success = (bool)(rb_leg.plan(rb_leg_plan));
+          ROS_INFO("Visualizing plan 9 (pose goal) %s",success?"":"FAILED");
+          sleep(0.5);
+          rb_leg.execute(rb_leg_plan);
+          sleep(0.5);
+
+          success = (bool)(rf_leg.plan(rf_leg_plan));
+          ROS_INFO("Visualizing plan 10 (pose goal) %s",success?"":"FAILED");
+          sleep(0.5);
+          rf_leg.execute(rf_leg_plan);
+          sleep(0.5);
+
+
+          // Center 1
+          js_publisher.publish(home1);
+          sleep(0.5);
+
+
+
+
+
+
+          lm_leg.setPositionTarget(lm_toe_up_forward.position.x, lm_toe_up_forward.position.y, lm_toe_up_forward.position.z, "lm_toe_end");
+          rb_leg.setPositionTarget(rb_toe_up_forward.position.x, rb_toe_up_forward.position.y, rb_toe_up_forward.position.z, "rb_toe_end");
+          rf_leg.setPositionTarget(rf_toe_up_forward.position.x, rf_toe_up_forward.position.y, rf_toe_up_forward.position.z, "rf_toe_end");
+
+          success = (bool)(lm_leg.plan(lm_leg_plan));
+          ROS_INFO("Visualizing plan 11 (pose goal) %s",success?"":"FAILED");
+          sleep(0.5);
+          lb_leg.execute(lm_leg_plan);
+          sleep(0.5);
+
+          success = (bool)(rb_leg.plan(rb_leg_plan));
+          ROS_INFO("Visualizing plan 12 (pose goal) %s",success?"":"FAILED");
+          sleep(0.5);
+          rb_leg.execute(rb_leg_plan);
+          sleep(0.5);
+
+          success = (bool)(rf_leg.plan(rf_leg_plan));
+          ROS_INFO("Visualizing plan 13 (pose goal) %s",success?"":"FAILED");
+          sleep(0.5);
+          rf_leg.execute(rf_leg_plan);
+          sleep(0.5);
+
+          //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          // Set 2 Down and Forward
+
+          lm_leg.setPositionTarget(lm_toe_down_forward.position.x, lm_toe_down_forward.position.y, lm_toe_down_forward.position.z, "lm_toe_end");
+          rb_leg.setPositionTarget(rb_toe_down_forward.position.x, rb_toe_down_forward.position.y, rb_toe_down_forward.position.z, "rb_toe_end");
+          rf_leg.setPositionTarget(rf_toe_down_forward.position.x, rf_toe_down_forward.position.y, rf_toe_down_forward.position.z, "rf_toe_end");
+
+          success = (bool)(lm_leg.plan(lm_leg_plan));
+          ROS_INFO("Visualizing plan 14 (pose goal) %s",success?"":"FAILED");
+          sleep(0.5);
+          lb_leg.execute(lm_leg_plan);
+          sleep(0.5);
+
+          success = (bool)(rb_leg.plan(rb_leg_plan));
+          ROS_INFO("Visualizing plan 15 (pose goal) %s",success?"":"FAILED");
+          sleep(0.5);
+          rb_leg.execute(rb_leg_plan);
+          sleep(0.5);
+
+          success = (bool)(rf_leg.plan(rf_leg_plan));
+          ROS_INFO("Visualizing plan 16 (pose goal) %s",success?"":"FAILED");
+          sleep(0.5);
+          rf_leg.execute(rf_leg_plan);
+          sleep(0.5);
+
+          //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          // Set 1 Up and Center
+
+          lb_leg.setPositionTarget(lb_toe_up_home.position.x, lb_toe_up_home.position.y, lb_toe_up_home.position.z, "lb_toe_end");
+          lf_leg.setPositionTarget(lf_toe_up_home.position.x, lf_toe_up_home.position.y, lf_toe_up_home.position.z, "lf_toe_end");
+          rm_leg.setPositionTarget(rm_toe_up_home.position.x, rm_toe_up_home.position.y, rm_toe_up_home.position.z, "rm_toe_end");
+
+          success = (bool)(lb_leg.plan(lb_leg_plan));
+          ROS_INFO("Visualizing plan 17 (pose goal) %s",success?"":"FAILED");
+          sleep(0.5);
+          lb_leg.execute(lb_leg_plan);
+          sleep(0.5);
+
+          success = (bool)(lf_leg.plan(lf_leg_plan));
+          ROS_INFO("Visualizing plan 18 (pose goal) %s",success?"":"FAILED");
+          sleep(0.5);
+          lf_leg.execute(lf_leg_plan);
+          sleep(0.5);
+
+          success = (bool)(rm_leg.plan(rm_leg_plan));
+          ROS_INFO("Visualizing plan 19 (pose goal) %s",success?"":"FAILED");
+          sleep(0.5);
+          rm_leg.execute(rm_leg_plan);
+          sleep(0.5);
+
+
+          // Center 2
+          js_publisher.publish(home2);
+          sleep(0.5);
+
+        }
+        else
+        {
+          state = 1;
+          printf("Detect State");
+        }
+        break;
+      }
+
+      case 1: // Check if stair / wall
+      {
+        if(lidar3 > 5000)
+        {
+          state = 2;
+          printf("May be a stair");
+        }
+        else if(lidar3 < 5000)
+        {
+          state = 3;
+          printf("May be a wall");
+        }
+        break;
+      }
+
+      case 2: // Adjust to get close to stairs
+      {
+        if(lidar1>100 && lidar2<100)
+        {
+          printf("Shuffle left");
+          break;
+        }
+        else if(lidar1<100 && lidar2>100)
+        {
+          printf("Shuffle right");
+          break;
+        }
+        else if(lidar1>100 && lidar2>100)
+        {
+          printf("Move Closer");
+          break;
+        }
+        else if(lidar1<100 && lidar2<100)
+        {
+          printf("Stair within climbing distance");
+          state = 4;
+          break;
+        }
+      }
+
+      case 3: // Evade the wall
+      {
+        //EVADE THE WALL
+        printf("Evade the wall");
+        break;
+      }
+
+      case 4: //Align robot
+      {
+        if(abs(lidar1-lidar2) < 10)
+        {
+          printf("Aligned for climbing");
+          state = 5;
+          break;
+        }
+        if(lidar1-lidar2 < 0)
+        {
+          printf("Slight turn right");
+          break;
+        }
+        else if(lidar1-lidar2 >0)
+        {
+          printf("Slight turn left");
+          break;
+        }
+        break;
+      }
+
+      case 5: //Climb
+      {
+          //Climb...
+        break;
+      }
+
+      default:
+        break;
+
+    }
   }
+  
 
-  const Eigen::Affine3d &end_effector_state = kinematic_state->getGlobalLinkTransform("gripper_link");
+  /**
+   * ros::spin() will enter a loop, pumping callbacks.  With this version, all
+   * callbacks will be called from within this thread (the main one).  ros::spin()
+   * will exit when Ctrl-C is pressed, or the node is shutdown by the master.
+   */
+  ros::spin();
 
-  // Print end-effector pose. Remember that this is in the model frame 
-  ROS_INFO_STREAM("Translation: " << end_effector_state.translation());
-  ROS_INFO_STREAM("Rotation: " << end_effector_state.rotation());
-*/
-// END_TUTORIAL
-
-  ros::shutdown();  
   return 0;
-}
-
-void moveit_setup()
-{
-  ros::init(argc, argv, "hexapod_move");
-  ros::NodeHandle node_handle;  
-  ros::AsyncSpinner spinner(1);
-  spinner.start();
-
-  moveit::planning_interface::MoveGroupInterface lb_leg("lb_leg");
-  moveit::planning_interface::MoveGroupInterface lf_leg("lf_leg");
-  moveit::planning_interface::MoveGroupInterface lm_leg("lm_leg");
-
-  moveit::planning_interface::MoveGroupInterface rb_leg("rb_leg");
-  moveit::planning_interface::MoveGroupInterface rf_leg("rf_leg");
-  moveit::planning_interface::MoveGroupInterface rm_leg("rm_leg");
-
-  geometry_msgs::Pose target_pose_lb_toe;
-  geometry_msgs::Pose target_pose_lf_toe;
-  geometry_msgs::Pose target_pose_lm_toe;
-
-  geometry_msgs::Pose target_pose_rb_toe;
-  geometry_msgs::Pose target_pose_rf_toe;
-  geometry_msgs::Pose target_pose_rm_toe;
-
-  geometry_msgs::Pose current_pose_lb_toe;
-  geometry_msgs::Pose current_pose_lf_toe;
-  geometry_msgs::Pose current_pose_lm_toe;
-
-  geometry_msgs::Pose current_pose_rb_toe;
-  geometry_msgs::Pose current_pose_rf_toe;
-  geometry_msgs::Pose current_pose_rm_toe;
-
-  geometry_msgs::Pose lb_toe_home;
-  geometry_msgs::Pose lf_toe_home;
-  geometry_msgs::Pose lm_toe_home;
-
-  geometry_msgs::Pose rb_toe_home;
-  geometry_msgs::Pose rf_toe_home;
-  geometry_msgs::Pose rm_toe_home;
-
-  geometry_msgs::Pose lb_toe_up_forward;
-  geometry_msgs::Pose lf_toe_up_forward;
-  geometry_msgs::Pose lm_toe_up_forward;
-
-  geometry_msgs::Pose rb_toe_up_forward;
-  geometry_msgs::Pose rf_toe_up_forward;
-  geometry_msgs::Pose rm_toe_up_forward;
-
-  geometry_msgs::Pose lb_toe_down_forward;
-  geometry_msgs::Pose lf_toe_down_forward;
-  geometry_msgs::Pose lm_toe_down_forward;
-
-  geometry_msgs::Pose rb_toe_down_forward;
-  geometry_msgs::Pose rf_toe_down_forward;
-  geometry_msgs::Pose rm_toe_down_forward;
-
-  geometry_msgs::Pose lb_toe_up_home;
-  geometry_msgs::Pose lf_toe_up_home;
-  geometry_msgs::Pose lm_toe_up_home;
-
-  geometry_msgs::Pose rb_toe_up_home;
-  geometry_msgs::Pose rf_toe_up_home;
-  geometry_msgs::Pose rm_toe_up_home;
-
-  geometry_msgs::Pose lb_toe_down_backward;
-  geometry_msgs::Pose lf_toe_down_backward;
-  geometry_msgs::Pose lm_toe_down_backward;
-
-  geometry_msgs::Pose rb_toe_down_backward;
-  geometry_msgs::Pose rf_toe_down_backward;
-  geometry_msgs::Pose rm_toe_down_backward;
-
-  geometry_msgs::Pose lb_toe_up_backward;
-  geometry_msgs::Pose lf_toe_up_backward;
-  geometry_msgs::Pose lm_toe_up_backward;
-
-  geometry_msgs::Pose rb_toe_up_backward;
-  geometry_msgs::Pose rf_toe_up_backward;
-  geometry_msgs::Pose rm_toe_up_backward;
-
-  lb_toe_home.position.x = -0.154184;
-  lb_toe_home.position.y = 0.16404 ;
-  lb_toe_home.position.z = -0.11567;
-
-  lf_toe_home.position.x = 0.149208;
-  lf_toe_home.position.y = 0.163343;
-  lf_toe_home.position.z = -0.115189;
-
-  lm_toe_home.position.x = -0.0024832;
-  lm_toe_home.position.y = 0.1642;
-  lm_toe_home.position.z = -0.115785;
-
-  rb_toe_home.position.x = -0.15417;
-  rb_toe_home.position.y = -0.161672;
-  rb_toe_home.position.z = -0.115145;
-
-  rf_toe_home.position.x = 0.149266;
-  rf_toe_home.position.y = -0.162118;
-  rf_toe_home.position.z = -0.115942;
-
-  rm_toe_home.position.x = -0.00239747;
-  rm_toe_home.position.y = -0.161778;
-  rm_toe_home.position.z = -0.115523;
-
-  lb_toe_up_forward.position.x = -0.0520047;
-  lb_toe_up_forward.position.y = 0.185305;
-  lb_toe_up_forward.position.z = -0.0428311;
-
-  lf_toe_up_forward.position.x = 0.25078;
-  lf_toe_up_forward.position.y = 0.184788;
-  lf_toe_up_forward.position.z = -0.0429786;
-
-  lm_toe_up_forward.position.x = 0.0998278;
-  lm_toe_up_forward.position.y = 0.185476;
-  lm_toe_up_forward.position.z = -0.0428002;
-
-  rb_toe_up_forward.position.x = -0.0533545;
-  rb_toe_up_forward.position.y = -0.183999;
-  rb_toe_up_forward.position.z = -0.0435861;
-
-  rf_toe_up_forward.position.x =  0.250694;
-  rf_toe_up_forward.position.y = -0.184644;
-  rf_toe_up_forward.position.z = -0.0438348;
-
-  rm_toe_up_forward.position.x = 0.098666;
-  rm_toe_up_forward.position.y = -0.184195;
-  rm_toe_up_forward.position.z = -0.0437799;
-
-  lb_toe_down_forward.position.x = -0.0520047;
-  lb_toe_down_forward.position.y = 0.185305;
-  lb_toe_down_forward.position.z = -0.0428311;
-
-  lf_toe_down_forward.position.x = 0.25078;
-  lf_toe_down_forward.position.y = 0.184788;
-  lf_toe_down_forward.position.z = -0.0429786;
-
-  lm_toe_down_forward.position.x = 0.0998278;
-  lm_toe_down_forward.position.y = 0.185476;
-  lm_toe_down_forward.position.z = -0.0428002;
-
-  rb_toe_down_forward.position.x = -0.0533545;
-  rb_toe_down_forward.position.y = -0.183999;
-  rb_toe_down_forward.position.z = -0.0435861;
-
-  rf_toe_down_forward.position.x =  0.250694;
-  rf_toe_down_forward.position.y = -0.184644;
-  rf_toe_down_forward.position.z = -0.0438348;
-
-  rm_toe_down_forward.position.x = 0.098666;
-  rm_toe_down_forward.position.y = -0.184195;
-  rm_toe_down_forward.position.z = -0.0437799;
-
-  rb_toe_up_backward.position.x = -0.234064;
-  rb_toe_up_backward.position.y = -0.196963;
-  rb_toe_up_backward.position.z = -0.0435862;
-
-  rf_toe_up_backward.position.x = 0.0688811;
-  rf_toe_up_backward.position.y = -0.197683;
-  rf_toe_up_backward.position.z = -0.0438349;
-
-  lb_toe_up_home.position.x = -0.0520047;
-  lb_toe_up_home.position.y = 0.185305;
-  lb_toe_up_home.position.z = -0.0428311;
-
-  lf_toe_up_home.position.x = 0.25078;
-  lf_toe_up_home.position.y = 0.184788;
-  lf_toe_up_home.position.z = -0.0429786;
-
-  lm_toe_up_home.position.x = 0.0998278;
-  lm_toe_up_home.position.y = 0.185476;
-  lm_toe_up_home.position.z = -0.0428002;
-
-  rb_toe_up_home.position.x = -0.0533545;
-  rb_toe_up_home.position.y = -0.183999;
-  rb_toe_up_home.position.z = -0.0435861;
-
-  rf_toe_up_home.position.x =  0.250694;
-  rf_toe_up_home.position.y = -0.184644;
-  rf_toe_up_home.position.z = -0.0438348;
-
-  rm_toe_up_home.position.x = 0.098666;
-  rm_toe_up_home.position.y = -0.184195;
-  rm_toe_up_home.position.z = -0.0437799;
-
-  moveit::planning_interface::PlanningSceneInterface planning_scene_interface; 
-
-  lb_leg.setPlannerId("RRTConnectkConfigDefault");
-  lf_leg.setPlannerId("RRTConnectkConfigDefault");
-  lm_leg.setPlannerId("RRTConnectkConfigDefault");
-
-  rb_leg.setPlannerId("RRTConnectkConfigDefault");
-  rf_leg.setPlannerId("RRTConnectkConfigDefault");
-  rm_leg.setPlannerId("RRTConnectkConfigDefault");
-
-  ros::Publisher lb_leg_publisher = node_handle.advertise<trajectory_msgs::JointTrajectory>("/lb_leg_group/command", 1, true);
-  ros::Publisher lf_leg_publisher = node_handle.advertise<trajectory_msgs::JointTrajectory>("/lf_leg_group/command", 1, true);
-  ros::Publisher lm_leg_publisher = node_handle.advertise<trajectory_msgs::JointTrajectory>("/lm_leg_group/command", 1, true);
-
-  ros::Publisher rb_leg_publisher = node_handle.advertise<trajectory_msgs::JointTrajectory>("/rb_leg_group/command", 1, true);
-  ros::Publisher rf_leg_publisher = node_handle.advertise<trajectory_msgs::JointTrajectory>("/rf_leg_group/command", 1, true);
-  ros::Publisher rm_leg_publisher = node_handle.advertise<trajectory_msgs::JointTrajectory>("/rm_leg_group/command", 1, true);
-
-  lb_leg.setNamedTarget("default");
-  lf_leg.setNamedTarget("default");
-  lm_leg.setNamedTarget("default");
-
-  rb_leg.setNamedTarget("default");
-  rf_leg.setNamedTarget("default");
-  rm_leg.setNamedTarget("default");
-
-  moveit::planning_interface::MoveGroupInterface::Plan lb_leg_plan;
-  moveit::planning_interface::MoveGroupInterface::Plan lf_leg_plan;
-  moveit::planning_interface::MoveGroupInterface::Plan lm_leg_plan;
-
-  moveit::planning_interface::MoveGroupInterface::Plan rb_leg_plan;
-  moveit::planning_interface::MoveGroupInterface::Plan rf_leg_plan;
-  moveit::planning_interface::MoveGroupInterface::Plan rm_leg_plan;
-}
-
-void moveit_Set1
-{
-  // Set 1 Up and Forward
-  lb_leg.setPositionTarget(lb_toe_up_forward.position.x, lb_toe_up_forward.position.y, lb_toe_up_forward.position.z, "lb_toe_end");
-  lf_leg.setPositionTarget(lf_toe_up_forward.position.x, lf_toe_up_forward.position.y, lf_toe_up_forward.position.z, "lf_toe_end");
-  rm_leg.setPositionTarget(rm_toe_up_forward.position.x, rm_toe_up_forward.position.y, rm_toe_up_forward.position.z, "rm_toe_end");
-
-  success = (bool)(lb_leg.plan(lb_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  lb_leg.execute(lb_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(lf_leg.plan(lf_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  lf_leg.execute(lf_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(rm_leg.plan(rm_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  rm_leg.execute(rm_leg_plan);
-  sleep(0.1);
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // Set 1 Down and Forward
-
-  lb_leg.setPositionTarget(lb_toe_down_forward.position.x, lb_toe_down_forward.position.y, lb_toe_down_forward.position.z, "lb_toe_end");
-  lf_leg.setPositionTarget(lf_toe_down_forward.position.x, lf_toe_down_forward.position.y, lf_toe_down_forward.position.z, "lf_toe_end");
-  rm_leg.setPositionTarget(rm_toe_down_forward.position.x, rm_toe_down_forward.position.y, rm_toe_down_forward.position.z, "rm_toe_end");
-
-  success = (bool)(lb_leg.plan(lb_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  lb_leg.execute(lb_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(lf_leg.plan(lf_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  lf_leg.execute(lf_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(rm_leg.plan(rm_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  rm_leg.execute(rm_leg_plan);
-  sleep(0.1);
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // Set 2 Up and Center
-
-  lm_leg.setPositionTarget(lm_toe_up_home.position.x, lm_toe_up_home.position.y, lm_toe_up_home.position.z, "lm_toe_end");
-  rb_leg.setPositionTarget(rb_toe_up_home.position.x, rb_toe_up_home.position.y, rb_toe_up_home.position.z, "rb_toe_end");
-  rf_leg.setPositionTarget(rf_toe_up_home.position.x, rf_toe_up_home.position.y, rf_toe_up_home.position.z, "rf_toe_end");
-
-  success = (bool)(lm_leg.plan(lm_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  lb_leg.execute(lm_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(rb_leg.plan(rb_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  rb_leg.execute(rb_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(rf_leg.plan(rf_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  rf_leg.execute(rf_leg_plan);
-  sleep(0.1);
-}
-
-void moveit_Set2
-{
-  // Set 2 Up and Forward
-
-  lm_leg.setPositionTarget(lm_toe_up_forward.position.x, lm_toe_up_forward.position.y, lm_toe_up_forward.position.z, "lm_toe_end");
-  rb_leg.setPositionTarget(rb_toe_up_forward.position.x, rb_toe_up_forward.position.y, rb_toe_up_forward.position.z, "rb_toe_end");
-  rf_leg.setPositionTarget(rf_toe_up_forward.position.x, rf_toe_up_forward.position.y, rf_toe_up_forward.position.z, "rf_toe_end");
-
-  success = (bool)(lm_leg.plan(lm_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  lb_leg.execute(lm_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(rb_leg.plan(rb_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  rb_leg.execute(rb_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(rf_leg.plan(rf_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  rf_leg.execute(rf_leg_plan);
-  sleep(0.1);
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // Set 2 Down and Forward
-
-  lm_leg.setPositionTarget(lm_toe_down_forward.position.x, lm_toe_down_forward.position.y, lm_toe_down_forward.position.z, "lm_toe_end");
-  rb_leg.setPositionTarget(rb_toe_down_forward.position.x, rb_toe_down_forward.position.y, rb_toe_down_forward.position.z, "rb_toe_end");
-  rf_leg.setPositionTarget(rf_toe_down_forward.position.x, rf_toe_down_forward.position.y, rf_toe_down_forward.position.z, "rf_toe_end");
-
-  success = (bool)(lm_leg.plan(lm_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  lb_leg.execute(lm_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(rb_leg.plan(rb_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  rb_leg.execute(rb_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(rf_leg.plan(rf_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  rf_leg.execute(rf_leg_plan);
-  sleep(0.1);
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // Set 1 Up and Center
-
-  lb_leg.setPositionTarget(lb_toe_up_home.position.x, lb_toe_up_home.position.y, lb_toe_up_home.position.z, "lb_toe_end");
-  lf_leg.setPositionTarget(lf_toe_up_home.position.x, lf_toe_up_home.position.y, lf_toe_up_home.position.z, "lf_toe_end");
-  rm_leg.setPositionTarget(rm_toe_up_home.position.x, rm_toe_up_home.position.y, rm_toe_up_home.position.z, "rm_toe_end");
-
-  success = (bool)(lb_leg.plan(lb_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  lb_leg.execute(lb_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(lf_leg.plan(lf_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  lf_leg.execute(lf_leg_plan);
-  sleep(0.1);
-
-  success = (bool)(rm_leg.plan(rm_leg_plan));
-  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
-  sleep(0.1);
-  rm_leg.execute(rm_leg_plan);
-  sleep(0.1);
 }
