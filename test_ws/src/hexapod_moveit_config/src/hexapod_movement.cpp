@@ -117,7 +117,7 @@ int main(int argc, char **argv)
   geometry_msgs::Pose rm_toe_home;
 
   //--------------------------------------------------------------------------------
-  //Target pose declarations 
+  //Up_forward position declarations
   geometry_msgs::Pose lb_toe_up_forward;
   geometry_msgs::Pose lf_toe_up_forward;
   geometry_msgs::Pose lm_toe_up_forward;
@@ -128,6 +128,7 @@ int main(int argc, char **argv)
 
   //--------------------------------------------------------------------------------
   //Target pose declarations 
+  //Down_forward position declarations
   geometry_msgs::Pose lb_toe_down_forward;
   geometry_msgs::Pose lf_toe_down_forward;
   geometry_msgs::Pose lm_toe_down_forward;
@@ -137,7 +138,8 @@ int main(int argc, char **argv)
   geometry_msgs::Pose rm_toe_down_forward;
 
   //--------------------------------------------------------------------------------
-  //Target pose declarations 
+  //Target pose declarations
+  //Up_home position declarations
   geometry_msgs::Pose lb_toe_up_home;
   geometry_msgs::Pose lf_toe_up_home;
   geometry_msgs::Pose lm_toe_up_home;
@@ -168,6 +170,15 @@ int main(int argc, char **argv)
 
   //--------------------------------------------------------------------------------
   //Left home defitions
+
+/*
+lb_toe  Home  -0.154184 0.16404 -0.11567
+lf_toe  Home  0.149208  0.163343  -0.115189
+lm_toe  Home  -0.0024832  0.1642  -0.115785
+rb_toe  Home  -0.15417  -0.161672 -0.115145
+rf_toe  Home  0.149266  -0.162118 -0.115942
+rm_toe  Home  -0.00239747 -0.161778 -0.115523
+*/
   lb_toe_home.position.x = -0.154184;
   lb_toe_home.position.y = 0.16404 ;
   lb_toe_home.position.z = -0.11567;
@@ -197,12 +208,14 @@ int main(int argc, char **argv)
   //--------------------------------------------------------------------------------
   //Left up and foward defitions
 
-/*-0.0520047  0.185305  -0.0428311
-  0.25078 0.184788  -0.0429786
-  0.0998278 0.185476  -0.0428002
-  -0.0533545  -0.183999 -0.0435861
-  0.250694  -0.184644 -0.0438348
-  0.098666  -0.184195 -0.0437799
+/*
+lb_toe  Up and Forward  -0.0520047  0.185305  -0.0428311
+lf_toe  Up and Forward  0.25078 0.184788  -0.0429786
+lm_toe  Up and Forward  0.0998278 0.185476  -0.0428002
+rb_toe  Up and Forward  -0.0533545  -0.183999 -0.0435861
+rf_toe  Up and Forward  0.250694  -0.184644 -0.0438348
+rm_toe  Up and Forward  0.098666  -0.184195 -0.0437799
+
 */
 
   lb_toe_up_forward.position.x = -0.0520047;
@@ -218,7 +231,7 @@ int main(int argc, char **argv)
   lm_toe_up_forward.position.z = -0.0428002;
   //--------------------------------------------------------------------------------
 
-  //Right up and foward defitions
+  //Right up and forward defitions
   rb_toe_up_forward.position.x = -0.0533545;
   rb_toe_up_forward.position.y = -0.183999;
   rb_toe_up_forward.position.z = -0.0435861;
@@ -235,12 +248,12 @@ int main(int argc, char **argv)
   //Left down and forward defintion
 
 /*
-  lb_toe  Down and Forward  -0.0953619  0.138947  -0.117145
-  lf_toe  Down and Forward  0.209946  0.141048  -0.114861
-  lm_toe  Down and Forward  0.0588517 0.141638  -0.1p15452
-  rb_toe  Down and Forward  -0.0954773  -0.1389 -0.11546
-  rf_toe  Down and Forward  0.208273  -0.139224 -0.11626
-  rm_toe  Down and Forward  0.0563553 -0.138944 -0.115839
+lb_toe  Down and Forward  -0.0953619  0.138947  -0.117145
+lf_toe  Down and Forward  0.209946  0.141048  -0.114861
+lm_toe  Down and Forward  0.0588517 0.141638  -0.115452
+rb_toe  Down and Forward  -0.0954773  -0.1389 -0.11546
+rf_toe  Down and Forward  0.208273  -0.139224 -0.11626
+rm_toe  Down and Forward  0.0563553 -0.138944 -0.115839
 */
 
   lb_toe_down_forward.position.x = -0.0520047;
@@ -270,7 +283,7 @@ int main(int argc, char **argv)
   rm_toe_down_forward.position.z = -0.0437799;
 
   //--------------------------------------------------------------------------------
-
+  //Left down and forward defintion
   //Right up and backwards definitions
   rb_toe_up_backward.position.x = -0.234064;
   rb_toe_up_backward.position.y = -0.196963;
@@ -279,6 +292,77 @@ int main(int argc, char **argv)
   rf_toe_up_backward.position.x = 0.0688811;
   rf_toe_up_backward.position.y = -0.197683;
   rf_toe_up_backward.position.z = -0.0438349;
+/*
+lb_toe  Up and Home -0.15595  0.2224612 -0.0428309
+lf_toe  Up and Home 0.147416  0.223776  -0.0429784
+lm_toe  Up and Home -0.00424232 0.224805  -0.0428001
+rb_toe  Up and Home -0.155965 -0.222734 -0.0435863
+rf_toe  Up and Home 0.147457  -0.223613 -0.0438349
+rm_toe  Up and Home -0.00416631 -0.223077 -0.04378
+*/
+
+  lb_toe_up_home.position.x = -0.0520047;
+  lb_toe_up_home.position.y = 0.185305;
+  lb_toe_up_home.position.z = -0.0428311;
+
+  lf_toe_up_home.position.x = 0.25078;
+  lf_toe_up_home.position.y = 0.184788;
+  lf_toe_up_home.position.z = -0.0429786;
+
+  lm_toe_up_home.position.x = 0.0998278;
+  lm_toe_up_home.position.y = 0.185476;
+  lm_toe_up_home.position.z = -0.0428002;
+
+  //--------------------------------------------------------------------------------
+
+  //Right up and foward defitions
+  rb_toe_up_home.position.x = -0.0533545;
+  rb_toe_up_home.position.y = -0.183999;
+  rb_toe_up_home.position.z = -0.0435861;
+
+  rf_toe_up_home.position.x =  0.250694;
+  rf_toe_up_home.position.y = -0.184644;
+  rf_toe_up_home.position.z = -0.0438348;
+
+  rm_toe_up_home.position.x = 0.098666;
+  rm_toe_up_home.position.y = -0.184195;
+  rm_toe_up_home.position.z = -0.0437799;
+
+  //--------------------------------------------------------------------------------
+
+/*  
+lb_toe  Down and Backward -0.200473 0.148799  -0.11567
+lf_toe  Down and Backward 0.103311  0.148184  -0.115189
+lm_toe  Down and Backward -0.0488539  0.148917  -0.115785
+rb_toe  Down and Backward -0.199166 -0.146825 -0.115145
+rf_toe  Down and Backward 0.104028  -0.14719  -0.115942
+rm_toe  Down and Backward -0.0474582  -0.146936 -0.115523
+*/
+
+
+  //--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+lb_toe  Up and Backward -0.235058 0.198557  -0.042831
+lf_toe  Up and Backward 0.0687579 0.197797  -0.0429785
+lm_toe  Up and Backward -0.0834733  0.198693  -0.0428001
+rb_toe  Up and Backward -0.234064 -0.196963 -0.0435862
+rf_toe  Up and Backward 0.0688811 -0.197683 -0.0438349
+rm_toe  Up and Backward -0.0824648  -0.197288 -0.0437799
+*/
+>>>>>>> a04ceb6f3da53eb504cf1a7f9c76e8e1f35681b0
 
   rm_toe_up_backward.position.x = -0.0824648;
   rm_toe_up_backward.position.y = -0.197288;
