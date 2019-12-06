@@ -127,6 +127,46 @@ int main(int argc, char **argv)
   geometry_msgs::Pose rm_toe_up_forward;
 
   //--------------------------------------------------------------------------------
+  //Target pose declarations 
+  geometry_msgs::Pose lb_toe_down_forward;
+  geometry_msgs::Pose lf_toe_down_forward;
+  geometry_msgs::Pose lm_toe_down_forward;
+
+  geometry_msgs::Pose rb_toe_down_forward;
+  geometry_msgs::Pose rf_toe_down_forward;
+  geometry_msgs::Pose rm_toe_down_forward;
+
+  //--------------------------------------------------------------------------------
+  //Target pose declarations 
+  geometry_msgs::Pose lb_toe_up_home;
+  geometry_msgs::Pose lf_toe_up_home;
+  geometry_msgs::Pose lm_toe_up_home;
+
+  geometry_msgs::Pose rb_toe_up_home;
+  geometry_msgs::Pose rf_toe_up_home;
+  geometry_msgs::Pose rm_toe_up_home;
+
+  //--------------------------------------------------------------------------------
+  //Target pose declarations 
+  geometry_msgs::Pose lb_toe_down_backward;
+  geometry_msgs::Pose lf_toe_down_backward;
+  geometry_msgs::Pose lm_toe_down_backward;
+
+  geometry_msgs::Pose rb_toe_down_backward;
+  geometry_msgs::Pose rf_toe_down_backward;
+  geometry_msgs::Pose rm_toe_down_backward;
+
+  //--------------------------------------------------------------------------------
+  //Target pose declarations 
+  geometry_msgs::Pose lb_toe_up_backward;
+  geometry_msgs::Pose lf_toe_up_backward;
+  geometry_msgs::Pose lm_toe_up_backward;
+
+  geometry_msgs::Pose rb_toe_up_backward;
+  geometry_msgs::Pose rf_toe_up_backward;
+  geometry_msgs::Pose rm_toe_up_backward;
+
+  //--------------------------------------------------------------------------------
   //Left home defitions
   lb_toe_home.position.x = -0.154184;
   lb_toe_home.position.y = 0.16404 ;
@@ -231,9 +271,20 @@ int main(int argc, char **argv)
 
   //--------------------------------------------------------------------------------
 
-  
+  //Right up and backwards definitions
+  rb_toe_up_backward.position.x = -0.234064;
+  rb_toe_up_backward.position.y = -0.196963;
+  rb_toe_up_backward.position.z = -0.0435862;
 
+  rf_toe_up_backward.position.x = 0.0688811;
+  rf_toe_up_backward.position.y = -0.197683;
+  rf_toe_up_backward.position.z = -0.0438349;
 
+  rm_toe_up_backward.position.x = -0.0824648;
+  rm_toe_up_backward.position.y = -0.197288;
+  rm_toe_up_backward.position.z = -0.0437799;
+
+  //--------------------------------------------------------------------------------
   // We will use the :planning_scene_interface:`PlanningSceneInterface`
   // class to deal directly with the world.
   moveit::planning_interface::PlanningSceneInterface planning_scene_interface;  
@@ -397,6 +448,8 @@ int main(int argc, char **argv)
   sleep(0.1);
   rm_leg.execute(rm_leg_plan);
   sleep(0.1);
+
+
 
 	//servo_publisher.publish(my_plan.trajectory_.joint_trajectory);
 
